@@ -18,9 +18,15 @@
 		8283B5AB166A368E00C0A830 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8283B5AA166A368E00C0A830 /* Default@2x.png */; };
 		8283B5AD166A368E00C0A830 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8283B5AC166A368E00C0A830 /* Default-568h@2x.png */; };
 		8283B5B0166A368E00C0A830 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8283B5AE166A368E00C0A830 /* MainStoryboard.storyboard */; };
-		8283B5B3166A368E00C0A830 /* ProjectBlocks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5B1166A368E00C0A830 /* ProjectBlocks.xcdatamodeld */; };
 		8283B5B6166A368E00C0A830 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5B5166A368E00C0A830 /* MasterViewController.m */; };
 		8283B5B9166A368E00C0A830 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5B8166A368E00C0A830 /* DetailViewController.m */; };
+		8283B5C1166A36FE00C0A830 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5BF166A36FD00C0A830 /* Model.xcdatamodeld */; };
+		8283B5C4166A4E6B00C0A830 /* ProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5C3166A4E6A00C0A830 /* ProjectsViewController.m */; };
+		8283B5CB166B781600C0A830 /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5CA166B781600C0A830 /* Project.m */; };
+		8283B5CE166B781800C0A830 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5CD166B781800C0A830 /* Section.m */; };
+		8283B5D1166B781800C0A830 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5D0166B781800C0A830 /* Task.m */; };
+		8283B5D4166B781800C0A830 /* TaskImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5D3166B781800C0A830 /* TaskImage.m */; };
+		8283B5E0166BA18400C0A830 /* ProjectPopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5DF166BA18300C0A830 /* ProjectPopOverViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,11 +45,23 @@
 		8283B5AA166A368E00C0A830 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		8283B5AC166A368E00C0A830 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8283B5AF166A368E00C0A830 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		8283B5B2166A368E00C0A830 /* ProjectBlocks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ProjectBlocks.xcdatamodel; sourceTree = "<group>"; };
 		8283B5B4166A368E00C0A830 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		8283B5B5166A368E00C0A830 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		8283B5B7166A368E00C0A830 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		8283B5B8166A368E00C0A830 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		8283B5C0166A36FE00C0A830 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		8283B5C2166A4E6A00C0A830 /* ProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsViewController.h; sourceTree = "<group>"; };
+		8283B5C3166A4E6A00C0A830 /* ProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsViewController.m; sourceTree = "<group>"; };
+		8283B5C9166B781600C0A830 /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Project.h; sourceTree = "<group>"; };
+		8283B5CA166B781600C0A830 /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Project.m; sourceTree = "<group>"; };
+		8283B5CC166B781700C0A830 /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
+		8283B5CD166B781800C0A830 /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Section.m; sourceTree = "<group>"; };
+		8283B5CF166B781800C0A830 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		8283B5D0166B781800C0A830 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		8283B5D2166B781800C0A830 /* TaskImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskImage.h; sourceTree = "<group>"; };
+		8283B5D3166B781800C0A830 /* TaskImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskImage.m; sourceTree = "<group>"; };
+		8283B5DE166BA18300C0A830 /* ProjectPopOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectPopOverViewController.h; sourceTree = "<group>"; };
+		8283B5DF166BA18300C0A830 /* ProjectPopOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectPopOverViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,12 +112,17 @@
 			children = (
 				8283B5A5166A368D00C0A830 /* AppDelegate.h */,
 				8283B5A6166A368D00C0A830 /* AppDelegate.m */,
+				8283B5C2166A4E6A00C0A830 /* ProjectsViewController.h */,
+				8283B5C3166A4E6A00C0A830 /* ProjectsViewController.m */,
+				8283B5DE166BA18300C0A830 /* ProjectPopOverViewController.h */,
+				8283B5DF166BA18300C0A830 /* ProjectPopOverViewController.m */,
 				8283B5AE166A368E00C0A830 /* MainStoryboard.storyboard */,
 				8283B5B4166A368E00C0A830 /* MasterViewController.h */,
 				8283B5B5166A368E00C0A830 /* MasterViewController.m */,
 				8283B5B7166A368E00C0A830 /* DetailViewController.h */,
 				8283B5B8166A368E00C0A830 /* DetailViewController.m */,
-				8283B5B1166A368E00C0A830 /* ProjectBlocks.xcdatamodeld */,
+				8283B5BF166A36FD00C0A830 /* Model.xcdatamodeld */,
+				8283B5D5166B782300C0A830 /* Managed Objects */,
 				8283B59D166A368D00C0A830 /* Supporting Files */,
 			);
 			path = ProjectBlocks;
@@ -117,6 +140,22 @@
 				8283B5AC166A368E00C0A830 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8283B5D5166B782300C0A830 /* Managed Objects */ = {
+			isa = PBXGroup;
+			children = (
+				8283B5D2166B781800C0A830 /* TaskImage.h */,
+				8283B5D3166B781800C0A830 /* TaskImage.m */,
+				8283B5CF166B781800C0A830 /* Task.h */,
+				8283B5D0166B781800C0A830 /* Task.m */,
+				8283B5CC166B781700C0A830 /* Section.h */,
+				8283B5CD166B781800C0A830 /* Section.m */,
+				8283B5C9166B781600C0A830 /* Project.h */,
+				8283B5CA166B781600C0A830 /* Project.m */,
+			);
+			name = "Managed Objects";
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,9 +226,15 @@
 			files = (
 				8283B5A3166A368D00C0A830 /* main.m in Sources */,
 				8283B5A7166A368D00C0A830 /* AppDelegate.m in Sources */,
-				8283B5B3166A368E00C0A830 /* ProjectBlocks.xcdatamodeld in Sources */,
 				8283B5B6166A368E00C0A830 /* MasterViewController.m in Sources */,
 				8283B5B9166A368E00C0A830 /* DetailViewController.m in Sources */,
+				8283B5C1166A36FE00C0A830 /* Model.xcdatamodeld in Sources */,
+				8283B5C4166A4E6B00C0A830 /* ProjectsViewController.m in Sources */,
+				8283B5CB166B781600C0A830 /* Project.m in Sources */,
+				8283B5CE166B781800C0A830 /* Section.m in Sources */,
+				8283B5D1166B781800C0A830 /* Task.m in Sources */,
+				8283B5D4166B781800C0A830 /* TaskImage.m in Sources */,
+				8283B5E0166BA18400C0A830 /* ProjectPopOverViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,13 +356,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		8283B5B1166A368E00C0A830 /* ProjectBlocks.xcdatamodeld */ = {
+		8283B5BF166A36FD00C0A830 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				8283B5B2166A368E00C0A830 /* ProjectBlocks.xcdatamodel */,
+				8283B5C0166A36FE00C0A830 /* Model.xcdatamodel */,
 			);
-			currentVersion = 8283B5B2166A368E00C0A830 /* ProjectBlocks.xcdatamodel */;
-			path = ProjectBlocks.xcdatamodeld;
+			currentVersion = 8283B5C0166A36FE00C0A830 /* Model.xcdatamodel */;
+			name = Model.xcdatamodeld;
+			path = ../Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
