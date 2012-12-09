@@ -56,7 +56,17 @@
     UITapGestureRecognizer* tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     tapGestureRecognizer.numberOfTapsRequired = 2.0f;
     [self.collectionView addGestureRecognizer:tapGestureRecognizer];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button.frame = CGRectMake(20, 20, 80, 40);
+    [button setTitle:@"Back" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(handleBackButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
 
+}
+
+-(void)handleBackButton {
+    
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
