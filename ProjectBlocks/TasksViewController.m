@@ -6,18 +6,22 @@
 //  Copyright (c) 2012 Ian MacDonald. All rights reserved.
 //
 
-#import "CVViewController.h"
-#import "CVLayout.h"
-#import "CVCell.h"
+#import "TasksViewController.h"
+#import "TasksViewLayout.h"
+#import "TaskViewCell.h"
 
-@interface CVViewController ()
+@interface TasksViewController ()
 
 @end
 
-@implementation CVViewController {
+@implementation TasksViewController {
 //    NSMutableArray *arrayOfRows;
     NSMutableArray *arrayOfSections;
 }
+
+@synthesize fetchedResultsController;
+@synthesize managedObjectContext;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,7 +45,7 @@
         [arrayOfSections addObject:tempArray];
     }
     
-    [self.collectionView registerClass:[CVCell class] forCellWithReuseIdentifier:@"MY_CELL"];
+    [self.collectionView registerClass:[TaskViewCell class] forCellWithReuseIdentifier:@"MY_CELL"];
     [self.collectionView reloadData];
     
     self.collectionView.dataSource = self;
@@ -78,7 +82,7 @@
 }
 
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CVCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MY_CELL" forIndexPath:indexPath];
+    TaskViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MY_CELL" forIndexPath:indexPath];
     return cell;
 }
 

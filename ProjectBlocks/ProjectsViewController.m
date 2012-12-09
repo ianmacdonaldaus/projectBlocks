@@ -101,8 +101,15 @@
     label.textAlignment = NSTextAlignmentCenter;
     cell.layer.cornerRadius = 10;
     [cell addSubview:label];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoDark];
+    [button setCenter:CGPointMake(260, 20)];
+    [button setTag:indexPath.row];
+    
+    [button addTarget:self action:@selector(popOver:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [cell addSubview:button];
 }
-
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -136,6 +143,11 @@
 
 - (IBAction)popOver:(id)sender {
     ProjectPopOverViewController *controller = [[ProjectPopOverViewController alloc] init];
+    
+    
+    UIButton *button = sender;
+    int i = button.tag;
+    
     
     UIPopoverController *pop = [[UIPopoverController alloc] initWithContentViewController:controller];
     [pop presentPopoverFromRect:controller.view.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];

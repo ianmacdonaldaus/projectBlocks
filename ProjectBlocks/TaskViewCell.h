@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CVCell : UICollectionViewCell
+@interface TaskViewCell : UICollectionViewCell
 
 @end

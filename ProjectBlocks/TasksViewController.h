@@ -1,25 +1,23 @@
 //
-//  ProjectsViewController.h
-//  ProjectBlocks
+//  CVViewController.h
+//  BlocksCV
 //
-//  Created by Ian MacDonald on 01/12/2012.
+//  Created by Ian MacDonald on 24/11/2012.
 //  Copyright (c) 2012 Ian MacDonald. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreData/CoreData.h>
+#import "TasksViewLayout.h"
 
-@interface ProjectsViewController : UICollectionViewController <NSFetchedResultsControllerDelegate, UIPopoverControllerDelegate>
-{
+@interface TasksViewController : UICollectionViewController <CollectionViewDelegateTaskViewLayout, UIScrollViewDelegate, NSFetchedResultsControllerDelegate> {
+
     NSFetchedResultsController *fetchedResultsController;
     NSManagedObjectContext *managedObjectContext;
 }
 
-
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
-- (IBAction)popOver:(id)sender;
-
+@property (nonatomic, assign) NSInteger cellCount;
 
 @end

@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 //#import "CVViewController.h"
 
-@class CVLayout;
+@class TasksViewLayout;
 
-@protocol CollectionViewDelegateCVLayout <UICollectionViewDelegate>
+@protocol CollectionViewDelegateTaskViewLayout <UICollectionViewDelegate>
 @optional
 
 - (CGFloat)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout widthForItemAtIndexPath:(NSIndexPath*)indexPath;
@@ -20,6 +20,6 @@
 @end
 
 
-@interface CVLayout : UICollectionViewLayout
+@interface TasksViewLayout : UICollectionViewLayout
 
 @end

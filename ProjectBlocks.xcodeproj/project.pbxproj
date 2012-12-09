@@ -27,9 +27,9 @@
 		8283B5D1166B781800C0A830 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5D0166B781800C0A830 /* Task.m */; };
 		8283B5D4166B781800C0A830 /* TaskImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5D3166B781800C0A830 /* TaskImage.m */; };
 		8283B5E0166BA18400C0A830 /* ProjectPopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5DF166BA18300C0A830 /* ProjectPopOverViewController.m */; };
-		8283B5F9166D70B800C0A830 /* CVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5F4166D6C4900C0A830 /* CVViewController.m */; };
-		8283B5FA166D70BD00C0A830 /* CVLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5F2166D6C4700C0A830 /* CVLayout.m */; };
-		8283B5FB166D70C100C0A830 /* CVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5F0166D6C4600C0A830 /* CVCell.m */; };
+		8283B5F9166D70B800C0A830 /* TasksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5F4166D6C4900C0A830 /* TasksViewController.m */; };
+		8283B5FA166D70BD00C0A830 /* TasksViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5F2166D6C4700C0A830 /* TasksViewLayout.m */; };
+		8283B5FB166D70C100C0A830 /* TaskViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5F0166D6C4600C0A830 /* TaskViewCell.m */; };
 		8283B5FD166D710F00C0A830 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8283B5FC166D710F00C0A830 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,12 +66,12 @@
 		8283B5D3166B781800C0A830 /* TaskImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskImage.m; sourceTree = "<group>"; };
 		8283B5DE166BA18300C0A830 /* ProjectPopOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectPopOverViewController.h; sourceTree = "<group>"; };
 		8283B5DF166BA18300C0A830 /* ProjectPopOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectPopOverViewController.m; sourceTree = "<group>"; };
-		8283B5EF166D6C4600C0A830 /* CVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CVCell.h; sourceTree = "<group>"; };
-		8283B5F0166D6C4600C0A830 /* CVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CVCell.m; sourceTree = "<group>"; };
-		8283B5F1166D6C4700C0A830 /* CVLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CVLayout.h; sourceTree = "<group>"; };
-		8283B5F2166D6C4700C0A830 /* CVLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CVLayout.m; sourceTree = "<group>"; };
-		8283B5F3166D6C4800C0A830 /* CVViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CVViewController.h; sourceTree = "<group>"; };
-		8283B5F4166D6C4900C0A830 /* CVViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CVViewController.m; sourceTree = "<group>"; };
+		8283B5EF166D6C4600C0A830 /* TaskViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskViewCell.h; sourceTree = "<group>"; };
+		8283B5F0166D6C4600C0A830 /* TaskViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskViewCell.m; sourceTree = "<group>"; };
+		8283B5F1166D6C4700C0A830 /* TasksViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TasksViewLayout.h; sourceTree = "<group>"; };
+		8283B5F2166D6C4700C0A830 /* TasksViewLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TasksViewLayout.m; sourceTree = "<group>"; };
+		8283B5F3166D6C4800C0A830 /* TasksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TasksViewController.h; sourceTree = "<group>"; };
+		8283B5F4166D6C4900C0A830 /* TasksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TasksViewController.m; sourceTree = "<group>"; };
 		8283B5FC166D710F00C0A830 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -130,17 +130,14 @@
 				8283B5DE166BA18300C0A830 /* ProjectPopOverViewController.h */,
 				8283B5DF166BA18300C0A830 /* ProjectPopOverViewController.m */,
 				8283B5AE166A368E00C0A830 /* MainStoryboard.storyboard */,
-				8283B5B4166A368E00C0A830 /* MasterViewController.h */,
-				8283B5B5166A368E00C0A830 /* MasterViewController.m */,
-				8283B5B7166A368E00C0A830 /* DetailViewController.h */,
-				8283B5B8166A368E00C0A830 /* DetailViewController.m */,
 				8283B5BF166A36FD00C0A830 /* Model.xcdatamodeld */,
-				8283B5EF166D6C4600C0A830 /* CVCell.h */,
-				8283B5F0166D6C4600C0A830 /* CVCell.m */,
-				8283B5F1166D6C4700C0A830 /* CVLayout.h */,
-				8283B5F2166D6C4700C0A830 /* CVLayout.m */,
-				8283B5F3166D6C4800C0A830 /* CVViewController.h */,
-				8283B5F4166D6C4900C0A830 /* CVViewController.m */,
+				8283B5EF166D6C4600C0A830 /* TaskViewCell.h */,
+				8283B5F0166D6C4600C0A830 /* TaskViewCell.m */,
+				8283B5F1166D6C4700C0A830 /* TasksViewLayout.h */,
+				8283B5F2166D6C4700C0A830 /* TasksViewLayout.m */,
+				8283B5F3166D6C4800C0A830 /* TasksViewController.h */,
+				8283B5F4166D6C4900C0A830 /* TasksViewController.m */,
+				8295C3121674F4E6001FCCC3 /* OLD FILES */,
 				8283B5D5166B782300C0A830 /* Managed Objects */,
 				8283B59D166A368D00C0A830 /* Supporting Files */,
 			);
@@ -175,6 +172,17 @@
 			);
 			name = "Managed Objects";
 			path = ..;
+			sourceTree = "<group>";
+		};
+		8295C3121674F4E6001FCCC3 /* OLD FILES */ = {
+			isa = PBXGroup;
+			children = (
+				8283B5B4166A368E00C0A830 /* MasterViewController.h */,
+				8283B5B5166A368E00C0A830 /* MasterViewController.m */,
+				8283B5B7166A368E00C0A830 /* DetailViewController.h */,
+				8283B5B8166A368E00C0A830 /* DetailViewController.m */,
+			);
+			name = "OLD FILES";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,9 +262,9 @@
 				8283B5D1166B781800C0A830 /* Task.m in Sources */,
 				8283B5D4166B781800C0A830 /* TaskImage.m in Sources */,
 				8283B5E0166BA18400C0A830 /* ProjectPopOverViewController.m in Sources */,
-				8283B5F9166D70B800C0A830 /* CVViewController.m in Sources */,
-				8283B5FA166D70BD00C0A830 /* CVLayout.m in Sources */,
-				8283B5FB166D70C100C0A830 /* CVCell.m in Sources */,
+				8283B5F9166D70B800C0A830 /* TasksViewController.m in Sources */,
+				8283B5FA166D70BD00C0A830 /* TasksViewLayout.m in Sources */,
+				8283B5FB166D70C100C0A830 /* TaskViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +382,7 @@
 				8283B5BE166A368E00C0A830 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

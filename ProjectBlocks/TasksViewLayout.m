@@ -6,19 +6,19 @@
 //  Copyright (c) 2012 Ian MacDonald. All rights reserved.
 //
 
-#import "CVLayout.h"
+#import "TasksViewLayout.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define ITEM_SIZE 50
 
-@interface CVLayout();
+@interface TasksViewLayout();
 
 @property (nonatomic, strong) NSMutableArray *deleteIndexPaths;
 @property (nonatomic, strong) NSMutableArray *insertIndexPaths;
 
 @end
 
-@implementation CVLayout {
+@implementation TasksViewLayout {
     CGSize contentSize;
     
     NSMutableArray *sectionDurations;
@@ -51,7 +51,7 @@
     totalCount = 0;
     float sectionYOffset = 0;
     
-    id<CollectionViewDelegateCVLayout> delegate = (id<CollectionViewDelegateCVLayout>)self.collectionView.delegate;
+    id<CollectionViewDelegateTaskViewLayout> delegate = (id<CollectionViewDelegateTaskViewLayout>)self.collectionView.delegate;
 
     for (NSInteger section = 0; section < [self.collectionView numberOfSections]; section++){
         float sectionDuration = 0;
