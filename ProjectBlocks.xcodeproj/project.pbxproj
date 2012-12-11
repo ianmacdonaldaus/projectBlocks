@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		822C6924167763800065C9BF /* ProjectsMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 822C6923167763800065C9BF /* ProjectsMasterViewController.m */; };
+		822C6925167764410065C9BF /* CoreDataCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 822C6920167762530065C9BF /* CoreDataCollectionViewController.m */; };
+		822C6929167773B50065C9BF /* subtle-pattern-3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 822C6928167773B50065C9BF /* subtle-pattern-3.jpg */; };
+		822C692B167775980065C9BF /* paper-4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 822C692A167775980065C9BF /* paper-4.jpg */; };
+		822C692D1677789C0065C9BF /* subtle-pattern-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 822C692C1677789C0065C9BF /* subtle-pattern-1.jpg */; };
+		822C692F167778E80065C9BF /* subtle-pattern-7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 822C692E167778E80065C9BF /* subtle-pattern-7.jpg */; };
 		8283B595166A368D00C0A830 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8283B594166A368D00C0A830 /* UIKit.framework */; };
 		8283B597166A368D00C0A830 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8283B596166A368D00C0A830 /* Foundation.framework */; };
 		8283B599166A368D00C0A830 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8283B598166A368D00C0A830 /* CoreGraphics.framework */; };
@@ -37,6 +43,12 @@
 /* Begin PBXFileReference section */
 		822C691F167762530065C9BF /* CoreDataCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataCollectionViewController.h; sourceTree = "<group>"; };
 		822C6920167762530065C9BF /* CoreDataCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataCollectionViewController.m; sourceTree = "<group>"; };
+		822C6922167763800065C9BF /* ProjectsMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsMasterViewController.h; sourceTree = "<group>"; };
+		822C6923167763800065C9BF /* ProjectsMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsMasterViewController.m; sourceTree = "<group>"; };
+		822C6928167773B50065C9BF /* subtle-pattern-3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "subtle-pattern-3.jpg"; sourceTree = "<group>"; };
+		822C692A167775980065C9BF /* paper-4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "paper-4.jpg"; sourceTree = "<group>"; };
+		822C692C1677789C0065C9BF /* subtle-pattern-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "subtle-pattern-1.jpg"; sourceTree = "<group>"; };
+		822C692E167778E80065C9BF /* subtle-pattern-7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "subtle-pattern-7.jpg"; sourceTree = "<group>"; };
 		8283B590166A368D00C0A830 /* ProjectBlocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectBlocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8283B594166A368D00C0A830 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8283B596166A368D00C0A830 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -134,6 +146,10 @@
 				8295C3141674F9BE001FCCC3 /* task View Controller */,
 				8283B5AE166A368E00C0A830 /* MainStoryboard.storyboard */,
 				8283B5BF166A36FD00C0A830 /* Model.xcdatamodeld */,
+				822C6928167773B50065C9BF /* subtle-pattern-3.jpg */,
+				822C692A167775980065C9BF /* paper-4.jpg */,
+				822C692C1677789C0065C9BF /* subtle-pattern-1.jpg */,
+				822C692E167778E80065C9BF /* subtle-pattern-7.jpg */,
 				8295C3121674F4E6001FCCC3 /* OLD FILES */,
 				8283B5D5166B782300C0A830 /* Managed Objects */,
 				8283B59D166A368D00C0A830 /* Supporting Files */,
@@ -174,6 +190,8 @@
 		8295C3121674F4E6001FCCC3 /* OLD FILES */ = {
 			isa = PBXGroup;
 			children = (
+				8283B5C2166A4E6A00C0A830 /* ProjectsViewController.h */,
+				8283B5C3166A4E6A00C0A830 /* ProjectsViewController.m */,
 				8283B5B4166A368E00C0A830 /* MasterViewController.h */,
 				8283B5B5166A368E00C0A830 /* MasterViewController.m */,
 				8283B5B7166A368E00C0A830 /* DetailViewController.h */,
@@ -185,12 +203,12 @@
 		8295C3131674F9B1001FCCC3 /* Project View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				8283B5C2166A4E6A00C0A830 /* ProjectsViewController.h */,
-				8283B5C3166A4E6A00C0A830 /* ProjectsViewController.m */,
-				8283B5DE166BA18300C0A830 /* ProjectPopOverViewController.h */,
-				8283B5DF166BA18300C0A830 /* ProjectPopOverViewController.m */,
+				822C6922167763800065C9BF /* ProjectsMasterViewController.h */,
+				822C6923167763800065C9BF /* ProjectsMasterViewController.m */,
 				8295C32E16769489001FCCC3 /* ProjectViewCell.h */,
 				8295C32F16769489001FCCC3 /* ProjectViewCell.m */,
+				8283B5DE166BA18300C0A830 /* ProjectPopOverViewController.h */,
+				8283B5DF166BA18300C0A830 /* ProjectPopOverViewController.m */,
 				822C691F167762530065C9BF /* CoreDataCollectionViewController.h */,
 				822C6920167762530065C9BF /* CoreDataCollectionViewController.m */,
 			);
@@ -266,6 +284,10 @@
 				8283B5AB166A368E00C0A830 /* Default@2x.png in Resources */,
 				8283B5AD166A368E00C0A830 /* Default-568h@2x.png in Resources */,
 				8283B5B0166A368E00C0A830 /* MainStoryboard.storyboard in Resources */,
+				822C6929167773B50065C9BF /* subtle-pattern-3.jpg in Resources */,
+				822C692B167775980065C9BF /* paper-4.jpg in Resources */,
+				822C692D1677789C0065C9BF /* subtle-pattern-1.jpg in Resources */,
+				822C692F167778E80065C9BF /* subtle-pattern-7.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +313,8 @@
 				8283B5FA166D70BD00C0A830 /* TasksViewLayout.m in Sources */,
 				8283B5FB166D70C100C0A830 /* TaskViewCell.m in Sources */,
 				8295C33016769489001FCCC3 /* ProjectViewCell.m in Sources */,
+				822C6924167763800065C9BF /* ProjectsMasterViewController.m in Sources */,
+				822C6925167764410065C9BF /* CoreDataCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -48,8 +48,10 @@
 
 -(void)viewDidDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.project setValue:nameTextField.text forKey:@"name"];
-    [self.managedObjectContext save:nil];
+    if (![nameTextField.text isEqualToString:project.name]) {
+        [self.project setValue:nameTextField.text forKey:@"name"];
+        [self.managedObjectContext save:nil];
+    }
 }
 
 @end
