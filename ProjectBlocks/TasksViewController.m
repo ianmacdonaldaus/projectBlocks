@@ -70,7 +70,7 @@
 }
 
 -(void)handleBackButton {
-    
+    [super removeFromParentViewController];
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {

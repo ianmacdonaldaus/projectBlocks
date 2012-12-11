@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Project.h"
 
-@interface ProjectPopOverViewController : UIViewController <UIPopoverControllerDelegate>
+@interface ProjectPopOverViewController : UIViewController <UIPopoverControllerDelegate, UITextFieldDelegate>
+
+@property (nonatomic, strong) Project* project;
+@property (nonatomic, strong) IBOutlet UITextField* nameTextField;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @end

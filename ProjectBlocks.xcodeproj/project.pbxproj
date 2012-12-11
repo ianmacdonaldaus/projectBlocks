@@ -31,9 +31,12 @@
 		8283B5FA166D70BD00C0A830 /* TasksViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5F2166D6C4700C0A830 /* TasksViewLayout.m */; };
 		8283B5FB166D70C100C0A830 /* TaskViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5F0166D6C4600C0A830 /* TaskViewCell.m */; };
 		8283B5FD166D710F00C0A830 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8283B5FC166D710F00C0A830 /* QuartzCore.framework */; };
+		8295C33016769489001FCCC3 /* ProjectViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8295C32F16769489001FCCC3 /* ProjectViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		822C691F167762530065C9BF /* CoreDataCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataCollectionViewController.h; sourceTree = "<group>"; };
+		822C6920167762530065C9BF /* CoreDataCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataCollectionViewController.m; sourceTree = "<group>"; };
 		8283B590166A368D00C0A830 /* ProjectBlocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectBlocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8283B594166A368D00C0A830 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8283B596166A368D00C0A830 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -73,6 +76,8 @@
 		8283B5F3166D6C4800C0A830 /* TasksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TasksViewController.h; sourceTree = "<group>"; };
 		8283B5F4166D6C4900C0A830 /* TasksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TasksViewController.m; sourceTree = "<group>"; };
 		8283B5FC166D710F00C0A830 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8295C32E16769489001FCCC3 /* ProjectViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectViewCell.h; sourceTree = "<group>"; };
+		8295C32F16769489001FCCC3 /* ProjectViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,18 +130,10 @@
 			children = (
 				8283B5A5166A368D00C0A830 /* AppDelegate.h */,
 				8283B5A6166A368D00C0A830 /* AppDelegate.m */,
-				8283B5C2166A4E6A00C0A830 /* ProjectsViewController.h */,
-				8283B5C3166A4E6A00C0A830 /* ProjectsViewController.m */,
-				8283B5DE166BA18300C0A830 /* ProjectPopOverViewController.h */,
-				8283B5DF166BA18300C0A830 /* ProjectPopOverViewController.m */,
+				8295C3131674F9B1001FCCC3 /* Project View Controller */,
+				8295C3141674F9BE001FCCC3 /* task View Controller */,
 				8283B5AE166A368E00C0A830 /* MainStoryboard.storyboard */,
 				8283B5BF166A36FD00C0A830 /* Model.xcdatamodeld */,
-				8283B5EF166D6C4600C0A830 /* TaskViewCell.h */,
-				8283B5F0166D6C4600C0A830 /* TaskViewCell.m */,
-				8283B5F1166D6C4700C0A830 /* TasksViewLayout.h */,
-				8283B5F2166D6C4700C0A830 /* TasksViewLayout.m */,
-				8283B5F3166D6C4800C0A830 /* TasksViewController.h */,
-				8283B5F4166D6C4900C0A830 /* TasksViewController.m */,
 				8295C3121674F4E6001FCCC3 /* OLD FILES */,
 				8283B5D5166B782300C0A830 /* Managed Objects */,
 				8283B59D166A368D00C0A830 /* Supporting Files */,
@@ -183,6 +180,34 @@
 				8283B5B8166A368E00C0A830 /* DetailViewController.m */,
 			);
 			name = "OLD FILES";
+			sourceTree = "<group>";
+		};
+		8295C3131674F9B1001FCCC3 /* Project View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8283B5C2166A4E6A00C0A830 /* ProjectsViewController.h */,
+				8283B5C3166A4E6A00C0A830 /* ProjectsViewController.m */,
+				8283B5DE166BA18300C0A830 /* ProjectPopOverViewController.h */,
+				8283B5DF166BA18300C0A830 /* ProjectPopOverViewController.m */,
+				8295C32E16769489001FCCC3 /* ProjectViewCell.h */,
+				8295C32F16769489001FCCC3 /* ProjectViewCell.m */,
+				822C691F167762530065C9BF /* CoreDataCollectionViewController.h */,
+				822C6920167762530065C9BF /* CoreDataCollectionViewController.m */,
+			);
+			name = "Project View Controller";
+			sourceTree = "<group>";
+		};
+		8295C3141674F9BE001FCCC3 /* task View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8283B5F3166D6C4800C0A830 /* TasksViewController.h */,
+				8283B5F4166D6C4900C0A830 /* TasksViewController.m */,
+				8283B5EF166D6C4600C0A830 /* TaskViewCell.h */,
+				8283B5F0166D6C4600C0A830 /* TaskViewCell.m */,
+				8283B5F1166D6C4700C0A830 /* TasksViewLayout.h */,
+				8283B5F2166D6C4700C0A830 /* TasksViewLayout.m */,
+			);
+			name = "task View Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,6 +290,7 @@
 				8283B5F9166D70B800C0A830 /* TasksViewController.m in Sources */,
 				8283B5FA166D70BD00C0A830 /* TasksViewLayout.m in Sources */,
 				8283B5FB166D70C100C0A830 /* TaskViewCell.m in Sources */,
+				8295C33016769489001FCCC3 /* ProjectViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

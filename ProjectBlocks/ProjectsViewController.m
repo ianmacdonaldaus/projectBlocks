@@ -11,6 +11,7 @@
 
 #import "ProjectsViewController.h"
 #import "ProjectPopOverViewController.h"
+#import "ProjectViewCell.h"
 #import "Project.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -18,10 +19,15 @@
 
 @end
 
-@implementation ProjectsViewController
+@implementation ProjectsViewController {
+    ProjectPopOverViewController* popOver;
+}
 
 @synthesize fetchedResultsController;
 @synthesize managedObjectContext;
+@synthesize detailPopOver;
+@synthesize suspendAutomaticTrackingOfChangesInManagedObjectContext = _suspendAutomaticTrackingOfChangesInManagedObjectContext;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,24 +41,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //[self loadStartupData];
     
-    UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    deleteButton.frame = CGRectMake(20 , 20, 70 , 30);
-    [deleteButton setTitle:@"Delete" forState:UIControlStateNormal];
-    [deleteButton addTarget:self action:@selector(deleteProject) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:deleteButton];
-
     UIButton *newButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     newButton.frame = CGRectMake(100 , 20, 70 , 30);
     [newButton setTitle:@"Add new" forState:UIControlStateNormal];
     [newButton addTarget:self action:@selector(addProject) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:newButton];
-
-    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteProject:)];
-    [gestureRecognizer setNumberOfTapsRequired:2];
-    [self.collectionView addGestureRecognizer:gestureRecognizer];
     
+    popOver = [[ProjectPopOverViewController alloc] init];
+    popOver.managedObjectContext = self.managedObjectContext;
+    detailPopOver = [[UIPopoverController alloc] initWithContentViewController:popOver];
+    detailPopOver.popoverContentSize = CGSizeMake(240., 320.);
+	detailPopOver.delegate = self;
+	
     
     NSError *error = nil;
     if (![[self fetchedResultsController] performFetch:&error])
@@ -60,19 +61,16 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-}
 
--(void)deleteProject:(UITapGestureRecognizer *)gesture {
-    NSManagedObject *project = [[NSManagedObject alloc] init];
-    project = [fetchedResultsController objectAtIndexPath:[self.collectionView indexPathForItemAtPoint:[gesture locationOfTouch:0 inView:self.collectionView]]];
-    [managedObjectContext deleteObject:project];
+    [self loadStartupData];
+
 }
 
 -(void)addProject {
     Project* project = [NSEntityDescription insertNewObjectForEntityForName:@"Project" inManagedObjectContext:managedObjectContext];
     project.name = @"Next Task";
     [managedObjectContext save:nil];
-    [self.collectionView reloadData];
+    //[self.collectionView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -89,31 +87,50 @@
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 1;
+    return [fetchedResultsController sections].count;
 }
-
 
 - (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     Project *project = [fetchedResultsController objectAtIndexPath:indexPath];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
     
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 280, 40)];
     label.text = project.name;
-    label.textAlignment = NSTextAlignmentCenter;
-    cell.layer.cornerRadius = 10;
+    label.textAlignment = NSTextAlignmentLeft;
+    label.font = [UIFont fontWithName:@"Futura-Medium" size:20];
     [cell addSubview:label];
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoDark];
-    [button setCenter:CGPointMake(260, 20)];
-    [button setTag:indexPath.row];
+    cell.layer.cornerRadius = 10;
     
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoDark];
+    [button setCenter:CGPointMake(280, 25)];
+    [button showsTouchWhenHighlighted];
+    [button setTag:indexPath.row];
     [button addTarget:self action:@selector(popOver:) forControlEvents:UIControlEventTouchUpInside];
     
+    UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
+    containerView.layer.cornerRadius = 10;
+    containerView.clipsToBounds = YES;
+    [cell addSubview:containerView];
+    
+    UIView *colourView = [[UIView alloc] initWithFrame:CGRectMake(0, 50, 300, 250)];
+    colourView.backgroundColor = [UIColor colorWithHue:(0.07 * indexPath.row) saturation:0.8 brightness:0.9 alpha:1.0];
+    
+    cell.layer.shadowOpacity = 0.3;
+    cell.layer.shadowRadius = 10;
+    cell.layer.shadowOffset = CGSizeMake(7, 7);
+    cell.layer.shadowColor = [[UIColor blackColor] CGColor];
+    cell.layer.shouldRasterize = YES;
+    cell.layer.rasterizationScale = [[UIScreen mainScreen] scale];
+    
+    [containerView addSubview:colourView];
+    
+    cell.clipsToBounds = NO;
     [cell addSubview:button];
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"ProjectCell";
     
     UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     
@@ -142,16 +159,13 @@
 }
 
 - (IBAction)popOver:(id)sender {
-    ProjectPopOverViewController *controller = [[ProjectPopOverViewController alloc] init];
     
+    UIButton *button = (UIButton *)sender;
+    CGPoint newPoint = [button convertPoint:button.bounds.origin toView:self.view];
+    // Project *selectedProject = [fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForItem:button.tag inSection:0]];
+    popOver.project = [fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForItem:button.tag inSection:0]];
     
-    UIButton *button = sender;
-    int i = button.tag;
-    
-    
-    UIPopoverController *pop = [[UIPopoverController alloc] initWithContentViewController:controller];
-    [pop presentPopoverFromRect:controller.view.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
-    
+    [detailPopOver presentPopoverFromRect:CGRectMake(newPoint.x + 20, newPoint.y + button.frame.size.height / 2, 1, 1) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
     
 }
 
@@ -247,6 +261,20 @@
         case NSFetchedResultsChangeDelete:
             [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]];
             break;
+    }
+}
+
+- (void)endSuspensionOfUpdatesDueToContextChanges
+{
+    _suspendAutomaticTrackingOfChangesInManagedObjectContext = NO;
+}
+
+- (void)setSuspendAutomaticTrackingOfChangesInManagedObjectContext:(BOOL)suspend
+{
+    if (suspend) {
+        _suspendAutomaticTrackingOfChangesInManagedObjectContext = YES;
+    } else {
+        [self performSelector:@selector(endSuspensionOfUpdatesDueToContextChanges) withObject:0 afterDelay:0];
     }
 }
 

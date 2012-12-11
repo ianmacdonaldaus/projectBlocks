@@ -9,17 +9,17 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@interface ProjectsViewController : UICollectionViewController <NSFetchedResultsControllerDelegate, UIPopoverControllerDelegate>
+@interface ProjectsViewController : UICollectionViewController <NSFetchedResultsControllerDelegate, UIPopoverControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 {
     NSFetchedResultsController *fetchedResultsController;
     NSManagedObjectContext *managedObjectContext;
+    UIPopoverController *detailPopOver;
 }
 
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-
-- (IBAction)popOver:(id)sender;
-
+@property (strong, nonatomic) UIPopoverController *detailPopOver;
+@property (nonatomic) BOOL suspendAutomaticTrackingOfChangesInManagedObjectContext;
 
 @end
