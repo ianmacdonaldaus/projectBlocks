@@ -32,13 +32,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0];
     nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(20, 40, 200, 30)];
     nameTextField.backgroundColor = [UIColor whiteColor];
     nameTextField.textColor = [UIColor blackColor];
+    nameTextField.clearButtonMode = UITextFieldViewModeAlways;
     nameTextField.borderStyle = UITextBorderStyleRoundedRect;
     [self.view addSubview:nameTextField];
     
+    UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(72, 120, 32, 32)];
+    [deleteButton setImage:[UIImage imageNamed:@"delete_32x32b.png"] forState:UIControlStateNormal];
+    [deleteButton setImage:[UIImage imageNamed:@"delete_32x32.png"] forState:UIControlStateHighlighted];
+    [deleteButton addTarget:self action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:deleteButton];
+  
+ }
+
+-(void)delete:(id)sender {
+    [managedObjectContext deleteObject:project];
  }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -46,7 +57,7 @@
     nameTextField.text = project.name;    
 }
 
--(void)viewDidDisappear:(BOOL)animated {
+-(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     if (![nameTextField.text isEqualToString:project.name]) {
         [self.project setValue:nameTextField.text forKey:@"name"];

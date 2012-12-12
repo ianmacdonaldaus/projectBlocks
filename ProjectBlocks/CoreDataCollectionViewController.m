@@ -7,7 +7,6 @@
 //
 
 #import "CoreDataCollectionViewController.h"
-//#import "AFCollectionViewCell.h"
 
 static NSString *CellIdentifier = @"CollectionViewCell";
 
@@ -149,7 +148,6 @@ static NSString *CellIdentifier = @"CollectionViewCell";
             }
         } completion:nil];
     }
-    
     [_sectionChanges removeAllObjects];
     [_objectChanges removeAllObjects];
 }

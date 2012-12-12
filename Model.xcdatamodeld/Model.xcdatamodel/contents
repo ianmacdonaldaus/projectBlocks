@@ -8,6 +8,7 @@
     <entity name="Section" representedClassName="Section" syncable="YES">
         <attribute name="colourEnd" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="colourStart" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="index" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="project" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="section" inverseEntity="Project" syncable="YES"/>
         <relationship name="task" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="section" inverseEntity="Task" syncable="YES"/>
@@ -15,6 +16,7 @@
     <entity name="Task" representedClassName="Task" syncable="YES">
         <attribute name="completed" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="index" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="sequential" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="timeToFinish" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -28,8 +30,8 @@
     </entity>
     <elements>
         <element name="Project" positionX="-3564" positionY="-1611" width="128" height="88"/>
-        <element name="Section" positionX="-3377" positionY="-1593" width="128" height="118"/>
-        <element name="Task" positionX="-3177" positionY="-1593" width="128" height="163"/>
+        <element name="Section" positionX="-3377" positionY="-1593" width="128" height="133"/>
+        <element name="Task" positionX="-3177" positionY="-1593" width="128" height="178"/>
         <element name="TaskImage" positionX="-2988" positionY="-1521" width="128" height="75"/>
     </elements>
 </model>

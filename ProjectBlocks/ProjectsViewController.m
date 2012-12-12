@@ -142,21 +142,7 @@
 #pragma mark -
 #pragma mark Dummy data
 
--(void)loadStartupData {
-    if ([[fetchedResultsController fetchedObjects] count] > 0) {
-        return;
-    }
-    Project* project = [NSEntityDescription insertNewObjectForEntityForName:@"Project" inManagedObjectContext:managedObjectContext];
-    project.name = @"Christmas Roast";
-    
-    project = [NSEntityDescription insertNewObjectForEntityForName:@"Project" inManagedObjectContext:managedObjectContext];
-    project.name = @"Home renovations";
-    
-    project = [NSEntityDescription insertNewObjectForEntityForName:@"Project" inManagedObjectContext:managedObjectContext];
-    project.name = @"Plan the 2013 holiday";
-    
-    [managedObjectContext save:nil];
-}
+
 
 - (IBAction)popOver:(id)sender {
     
@@ -276,6 +262,22 @@
     } else {
         [self performSelector:@selector(endSuspensionOfUpdatesDueToContextChanges) withObject:0 afterDelay:0];
     }
+}
+
+-(void)loadStartupData {
+    if ([[fetchedResultsController fetchedObjects] count] > 0) {
+        return;
+    }
+    Project* project = [NSEntityDescription insertNewObjectForEntityForName:@"Project" inManagedObjectContext:managedObjectContext];
+    project.name = @"Christmas Roast";
+    
+    project = [NSEntityDescription insertNewObjectForEntityForName:@"Project" inManagedObjectContext:managedObjectContext];
+    project.name = @"Home renovations";
+    
+    project = [NSEntityDescription insertNewObjectForEntityForName:@"Project" inManagedObjectContext:managedObjectContext];
+    project.name = @"Plan the 2013 holiday";
+    
+    [managedObjectContext save:nil];
 }
 
 

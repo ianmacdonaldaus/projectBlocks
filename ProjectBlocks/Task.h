@@ -2,7 +2,7 @@
 //  Task.h
 //  ProjectBlocks
 //
-//  Created by Ian MacDonald on 02/12/2012.
+//  Created by Ian MacDonald on 12/12/2012.
 //  Copyright (c) 2012 Ian MacDonald. All rights reserved.
 //
 
@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSDate * timeToFinish;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * titleDetail;
+@property (nonatomic, retain) NSNumber * index;
 @property (nonatomic, retain) Section *section;
 @property (nonatomic, retain) TaskImage *taskImage;
 

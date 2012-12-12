@@ -1,0 +1,6 @@
+
+Bugs
+- ProjectView ScrollView - scrolling in more than one direction, not updating the collection view when adding projects. Followed a fresh delete / install on the simulator (reproduceable)
+- ProjectView Scrollview - when dragged past first/last project there is a jerk as it snaps back to one cell being central
+- ProjectView Popover - update the screen following the popover so that text and colours are updated
+ 

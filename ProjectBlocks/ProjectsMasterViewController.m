@@ -7,8 +7,10 @@
 //
 
 #import "ProjectsMasterViewController.h"
-#import "Project.h"
 #import "ProjectPopOverViewController.h"
+#import "Project.h"
+#import "ProjectsViewLayout.h"
+#import "TasksViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface ProjectsMasterViewController ()
@@ -27,7 +29,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -36,20 +38,31 @@
 {
     [super viewDidLoad];
     self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
     
+    //Backgrounds
     UIImageView* backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"subtle-pattern-7.jpg"]];
     backgroundView.frame = self.view.bounds;
-    backgroundView.layer.opacity = 0.5;
+    backgroundView.layer.opacity = 0.8;
     backgroundView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor blackColor];
     [self.view insertSubview:backgroundView atIndex:0];
     
+    self.collectionView.decelerationRate = UIScrollViewDecelerationRateFast;
     
+    // Buttons
+    UIButton *addButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 10, 32, 32)];
+    [addButton setImage:[UIImage imageNamed:@"add_32x32b.png"] forState:UIControlStateNormal];
+    [addButton setImage:[UIImage imageNamed:@"add_32x32.png"] forState:UIControlStateHighlighted];
+    [addButton addTarget:self action:@selector(addProject) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:addButton];
+        
+    // Editing Popover
     popOver = [[ProjectPopOverViewController alloc] init];
     popOver.managedObjectContext = self.managedObjectContext;
     _detailPopOver = [[UIPopoverController alloc] initWithContentViewController:popOver];
-    _detailPopOver.popoverContentSize = CGSizeMake(240., 320.);
+    _detailPopOver.popoverContentSize = CGSizeMake(240., 240.);
 	_detailPopOver.delegate = self;
 	
     NSError *error = nil;
@@ -58,7 +71,14 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
+    [self loadStartupData];
+
 }
+
+-(void) popoverDone:(id)sender {
+    NSLog(@"popover done");
+}
+
 
 - (void)popOver:(id)sender {
     
@@ -68,6 +88,12 @@
     
     [_detailPopOver presentPopoverFromRect:CGRectMake(newPoint.x + 20, newPoint.y + button.frame.size.height / 2, 1, 1) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
     
+}
+
+-(void)addProject {
+    Project* project = [NSEntityDescription insertNewObjectForEntityForName:@"Project" inManagedObjectContext:_managedObjectContext];
+    project.name = @"New Project";
+    [_managedObjectContext save:nil];
 }
 
 - (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
@@ -93,7 +119,7 @@
     [cell addSubview:containerView];
     
     UIView *colourView = [[UIView alloc] initWithFrame:CGRectMake(0, 50, 300, 250)];
-    colourView.backgroundColor = [UIColor colorWithHue:(0.07 * indexPath.row) saturation:0.8 brightness:0.9 alpha:1.0];
+    colourView.backgroundColor = [UIColor colorWithHue:(0.08 * indexPath.row) saturation:0.8 brightness:0.9 alpha:1.0];
     
     cell.layer.shadowOpacity = 0.3;
     cell.layer.shadowRadius = 10;
@@ -180,6 +206,32 @@
     {
         
         [_managedObjectContext deleteObject:[_fetchedResultsController objectAtIndexPath:indexPath]];
+        
+    }
+}
+
+-(void)loadStartupData {
+    if ([[_fetchedResultsController fetchedObjects] count] > 0) {
+        return;
+    }
+    Project* project = [NSEntityDescription insertNewObjectForEntityForName:@"Project" inManagedObjectContext:_managedObjectContext];
+    project.name = @"Christmas Roast";
+    
+    project = [NSEntityDescription insertNewObjectForEntityForName:@"Project" inManagedObjectContext:_managedObjectContext];
+    project.name = @"Home renovations";
+    
+    project = [NSEntityDescription insertNewObjectForEntityForName:@"Project" inManagedObjectContext:_managedObjectContext];
+    project.name = @"Plan the 2013 holiday";
+    
+    [_managedObjectContext save:nil];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"taskViewSegue"] ) {
+        TasksViewController *tasksViewController = (TasksViewController *)[segue destinationViewController];
+        tasksViewController.managedObjectContext = self.managedObjectContext;
+        NSIndexPath *index = [self.collectionView indexPathForCell:sender];
+        tasksViewController.project = (Project *)[_fetchedResultsController objectAtIndexPath:index];
         
     }
 }

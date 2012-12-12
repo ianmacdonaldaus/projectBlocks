@@ -2,7 +2,7 @@
 //  Section.h
 //  ProjectBlocks
 //
-//  Created by Ian MacDonald on 02/12/2012.
+//  Created by Ian MacDonald on 12/12/2012.
 //  Copyright (c) 2012 Ian MacDonald. All rights reserved.
 //
 
@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSNumber * colourEnd;
 @property (nonatomic, retain) NSNumber * colourStart;
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSNumber * index;
 @property (nonatomic, retain) Project *project;
 @property (nonatomic, retain) NSSet *task;
 @end

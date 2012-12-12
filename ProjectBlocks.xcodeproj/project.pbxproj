@@ -7,11 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		821A22F01677B25800CAA3EF /* add_32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 821A22EF1677B25800CAA3EF /* add_32x32.png */; };
+		821A22F31677B26400CAA3EF /* delete_32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 821A22F21677B26400CAA3EF /* delete_32x32.png */; };
+		821A22F61677B3AB00CAA3EF /* add_32x32b.png in Resources */ = {isa = PBXBuildFile; fileRef = 821A22F51677B3AB00CAA3EF /* add_32x32b.png */; };
+		821A22F81677B3C300CAA3EF /* delete_32x32b.png in Resources */ = {isa = PBXBuildFile; fileRef = 821A22F71677B3C300CAA3EF /* delete_32x32b.png */; };
+		821A22FB1677E2B100CAA3EF /* ProjectsViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 821A22FA1677E2B000CAA3EF /* ProjectsViewLayout.m */; };
+		821A23021678633A00CAA3EF /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 821A23011678633A00CAA3EF /* Task.m */; };
+		821A23051678633B00CAA3EF /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 821A23041678633B00CAA3EF /* Project.m */; };
+		821A23081678633D00CAA3EF /* TaskImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 821A23071678633C00CAA3EF /* TaskImage.m */; };
+		821A230B1678633E00CAA3EF /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 821A230A1678633D00CAA3EF /* Section.m */; };
+		821A230D16787B8400CAA3EF /* ToDoList in Resources */ = {isa = PBXBuildFile; fileRef = 821A230C16787B8400CAA3EF /* ToDoList */; };
 		822C6924167763800065C9BF /* ProjectsMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 822C6923167763800065C9BF /* ProjectsMasterViewController.m */; };
 		822C6925167764410065C9BF /* CoreDataCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 822C6920167762530065C9BF /* CoreDataCollectionViewController.m */; };
-		822C6929167773B50065C9BF /* subtle-pattern-3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 822C6928167773B50065C9BF /* subtle-pattern-3.jpg */; };
-		822C692B167775980065C9BF /* paper-4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 822C692A167775980065C9BF /* paper-4.jpg */; };
-		822C692D1677789C0065C9BF /* subtle-pattern-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 822C692C1677789C0065C9BF /* subtle-pattern-1.jpg */; };
 		822C692F167778E80065C9BF /* subtle-pattern-7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 822C692E167778E80065C9BF /* subtle-pattern-7.jpg */; };
 		8283B595166A368D00C0A830 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8283B594166A368D00C0A830 /* UIKit.framework */; };
 		8283B597166A368D00C0A830 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8283B596166A368D00C0A830 /* Foundation.framework */; };
@@ -28,10 +35,6 @@
 		8283B5B9166A368E00C0A830 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5B8166A368E00C0A830 /* DetailViewController.m */; };
 		8283B5C1166A36FE00C0A830 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5BF166A36FD00C0A830 /* Model.xcdatamodeld */; };
 		8283B5C4166A4E6B00C0A830 /* ProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5C3166A4E6A00C0A830 /* ProjectsViewController.m */; };
-		8283B5CB166B781600C0A830 /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5CA166B781600C0A830 /* Project.m */; };
-		8283B5CE166B781800C0A830 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5CD166B781800C0A830 /* Section.m */; };
-		8283B5D1166B781800C0A830 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5D0166B781800C0A830 /* Task.m */; };
-		8283B5D4166B781800C0A830 /* TaskImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5D3166B781800C0A830 /* TaskImage.m */; };
 		8283B5E0166BA18400C0A830 /* ProjectPopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5DF166BA18300C0A830 /* ProjectPopOverViewController.m */; };
 		8283B5F9166D70B800C0A830 /* TasksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5F4166D6C4900C0A830 /* TasksViewController.m */; };
 		8283B5FA166D70BD00C0A830 /* TasksViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5F2166D6C4700C0A830 /* TasksViewLayout.m */; };
@@ -41,14 +44,26 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		821A22EF1677B25800CAA3EF /* add_32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = add_32x32.png; path = ProjectBlocks/add_32x32.png; sourceTree = "<group>"; };
+		821A22F21677B26400CAA3EF /* delete_32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = delete_32x32.png; path = ProjectBlocks/delete_32x32.png; sourceTree = "<group>"; };
+		821A22F51677B3AB00CAA3EF /* add_32x32b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_32x32b.png; sourceTree = "<group>"; };
+		821A22F71677B3C300CAA3EF /* delete_32x32b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_32x32b.png; sourceTree = "<group>"; };
+		821A22F91677E2B000CAA3EF /* ProjectsViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsViewLayout.h; sourceTree = "<group>"; };
+		821A22FA1677E2B000CAA3EF /* ProjectsViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsViewLayout.m; sourceTree = "<group>"; };
+		821A23001678633900CAA3EF /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Task.h; path = ProjectBlocks/Task.h; sourceTree = "<group>"; };
+		821A23011678633A00CAA3EF /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Task.m; path = ProjectBlocks/Task.m; sourceTree = "<group>"; };
+		821A23031678633A00CAA3EF /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Project.h; path = ProjectBlocks/Project.h; sourceTree = "<group>"; };
+		821A23041678633B00CAA3EF /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Project.m; path = ProjectBlocks/Project.m; sourceTree = "<group>"; };
+		821A23061678633B00CAA3EF /* TaskImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskImage.h; path = ProjectBlocks/TaskImage.h; sourceTree = "<group>"; };
+		821A23071678633C00CAA3EF /* TaskImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskImage.m; path = ProjectBlocks/TaskImage.m; sourceTree = "<group>"; };
+		821A23091678633D00CAA3EF /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Section.h; path = ProjectBlocks/Section.h; sourceTree = "<group>"; };
+		821A230A1678633D00CAA3EF /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Section.m; path = ProjectBlocks/Section.m; sourceTree = "<group>"; };
+		821A230C16787B8400CAA3EF /* ToDoList */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDoList; sourceTree = "<group>"; };
 		822C691F167762530065C9BF /* CoreDataCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataCollectionViewController.h; sourceTree = "<group>"; };
 		822C6920167762530065C9BF /* CoreDataCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataCollectionViewController.m; sourceTree = "<group>"; };
 		822C6922167763800065C9BF /* ProjectsMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsMasterViewController.h; sourceTree = "<group>"; };
 		822C6923167763800065C9BF /* ProjectsMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsMasterViewController.m; sourceTree = "<group>"; };
-		822C6928167773B50065C9BF /* subtle-pattern-3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "subtle-pattern-3.jpg"; sourceTree = "<group>"; };
-		822C692A167775980065C9BF /* paper-4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "paper-4.jpg"; sourceTree = "<group>"; };
-		822C692C1677789C0065C9BF /* subtle-pattern-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "subtle-pattern-1.jpg"; sourceTree = "<group>"; };
-		822C692E167778E80065C9BF /* subtle-pattern-7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "subtle-pattern-7.jpg"; sourceTree = "<group>"; };
+		822C692E167778E80065C9BF /* subtle-pattern-7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "subtle-pattern-7.jpg"; path = "ProjectBlocks/subtle-pattern-7.jpg"; sourceTree = "<group>"; };
 		8283B590166A368D00C0A830 /* ProjectBlocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectBlocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8283B594166A368D00C0A830 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8283B596166A368D00C0A830 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -71,14 +86,6 @@
 		8283B5C0166A36FE00C0A830 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		8283B5C2166A4E6A00C0A830 /* ProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsViewController.h; sourceTree = "<group>"; };
 		8283B5C3166A4E6A00C0A830 /* ProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsViewController.m; sourceTree = "<group>"; };
-		8283B5C9166B781600C0A830 /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Project.h; sourceTree = "<group>"; };
-		8283B5CA166B781600C0A830 /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Project.m; sourceTree = "<group>"; };
-		8283B5CC166B781700C0A830 /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
-		8283B5CD166B781800C0A830 /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Section.m; sourceTree = "<group>"; };
-		8283B5CF166B781800C0A830 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
-		8283B5D0166B781800C0A830 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
-		8283B5D2166B781800C0A830 /* TaskImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskImage.h; sourceTree = "<group>"; };
-		8283B5D3166B781800C0A830 /* TaskImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskImage.m; sourceTree = "<group>"; };
 		8283B5DE166BA18300C0A830 /* ProjectPopOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectPopOverViewController.h; sourceTree = "<group>"; };
 		8283B5DF166BA18300C0A830 /* ProjectPopOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectPopOverViewController.m; sourceTree = "<group>"; };
 		8283B5EF166D6C4600C0A830 /* TaskViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskViewCell.h; sourceTree = "<group>"; };
@@ -108,9 +115,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		821A22F41677B28500CAA3EF /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				822C692E167778E80065C9BF /* subtle-pattern-7.jpg */,
+				821A22EF1677B25800CAA3EF /* add_32x32.png */,
+				821A22F51677B3AB00CAA3EF /* add_32x32b.png */,
+				821A22F21677B26400CAA3EF /* delete_32x32.png */,
+				821A22F71677B3C300CAA3EF /* delete_32x32b.png */,
+			);
+			name = Images;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		8283B585166A368D00C0A830 = {
 			isa = PBXGroup;
 			children = (
+				821A230C16787B8400CAA3EF /* ToDoList */,
 				8283B59C166A368D00C0A830 /* ProjectBlocks */,
 				8283B593166A368D00C0A830 /* Frameworks */,
 				8283B591166A368D00C0A830 /* Products */,
@@ -140,17 +161,13 @@
 		8283B59C166A368D00C0A830 /* ProjectBlocks */ = {
 			isa = PBXGroup;
 			children = (
-				8283B5A5166A368D00C0A830 /* AppDelegate.h */,
-				8283B5A6166A368D00C0A830 /* AppDelegate.m */,
 				8295C3131674F9B1001FCCC3 /* Project View Controller */,
-				8295C3141674F9BE001FCCC3 /* task View Controller */,
+				8295C3141674F9BE001FCCC3 /* Task View Controller */,
 				8283B5AE166A368E00C0A830 /* MainStoryboard.storyboard */,
 				8283B5BF166A36FD00C0A830 /* Model.xcdatamodeld */,
-				822C6928167773B50065C9BF /* subtle-pattern-3.jpg */,
-				822C692A167775980065C9BF /* paper-4.jpg */,
-				822C692C1677789C0065C9BF /* subtle-pattern-1.jpg */,
-				822C692E167778E80065C9BF /* subtle-pattern-7.jpg */,
-				8295C3121674F4E6001FCCC3 /* OLD FILES */,
+				822C691F167762530065C9BF /* CoreDataCollectionViewController.h */,
+				822C6920167762530065C9BF /* CoreDataCollectionViewController.m */,
+				821A22F41677B28500CAA3EF /* Images */,
 				8283B5D5166B782300C0A830 /* Managed Objects */,
 				8283B59D166A368D00C0A830 /* Supporting Files */,
 			);
@@ -160,6 +177,8 @@
 		8283B59D166A368D00C0A830 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8283B5A5166A368D00C0A830 /* AppDelegate.h */,
+				8283B5A6166A368D00C0A830 /* AppDelegate.m */,
 				8283B59E166A368D00C0A830 /* ProjectBlocks-Info.plist */,
 				8283B59F166A368D00C0A830 /* InfoPlist.strings */,
 				8283B5A2166A368D00C0A830 /* main.m */,
@@ -167,6 +186,7 @@
 				8283B5A8166A368D00C0A830 /* Default.png */,
 				8283B5AA166A368E00C0A830 /* Default@2x.png */,
 				8283B5AC166A368E00C0A830 /* Default-568h@2x.png */,
+				8295C3121674F4E6001FCCC3 /* OLD FILES */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -174,14 +194,14 @@
 		8283B5D5166B782300C0A830 /* Managed Objects */ = {
 			isa = PBXGroup;
 			children = (
-				8283B5D2166B781800C0A830 /* TaskImage.h */,
-				8283B5D3166B781800C0A830 /* TaskImage.m */,
-				8283B5CF166B781800C0A830 /* Task.h */,
-				8283B5D0166B781800C0A830 /* Task.m */,
-				8283B5CC166B781700C0A830 /* Section.h */,
-				8283B5CD166B781800C0A830 /* Section.m */,
-				8283B5C9166B781600C0A830 /* Project.h */,
-				8283B5CA166B781600C0A830 /* Project.m */,
+				821A23091678633D00CAA3EF /* Section.h */,
+				821A230A1678633D00CAA3EF /* Section.m */,
+				821A23061678633B00CAA3EF /* TaskImage.h */,
+				821A23071678633C00CAA3EF /* TaskImage.m */,
+				821A23031678633A00CAA3EF /* Project.h */,
+				821A23041678633B00CAA3EF /* Project.m */,
+				821A23001678633900CAA3EF /* Task.h */,
+				821A23011678633A00CAA3EF /* Task.m */,
 			);
 			name = "Managed Objects";
 			path = ..;
@@ -209,13 +229,13 @@
 				8295C32F16769489001FCCC3 /* ProjectViewCell.m */,
 				8283B5DE166BA18300C0A830 /* ProjectPopOverViewController.h */,
 				8283B5DF166BA18300C0A830 /* ProjectPopOverViewController.m */,
-				822C691F167762530065C9BF /* CoreDataCollectionViewController.h */,
-				822C6920167762530065C9BF /* CoreDataCollectionViewController.m */,
+				821A22F91677E2B000CAA3EF /* ProjectsViewLayout.h */,
+				821A22FA1677E2B000CAA3EF /* ProjectsViewLayout.m */,
 			);
 			name = "Project View Controller";
 			sourceTree = "<group>";
 		};
-		8295C3141674F9BE001FCCC3 /* task View Controller */ = {
+		8295C3141674F9BE001FCCC3 /* Task View Controller */ = {
 			isa = PBXGroup;
 			children = (
 				8283B5F3166D6C4800C0A830 /* TasksViewController.h */,
@@ -225,7 +245,7 @@
 				8283B5F1166D6C4700C0A830 /* TasksViewLayout.h */,
 				8283B5F2166D6C4700C0A830 /* TasksViewLayout.m */,
 			);
-			name = "task View Controller";
+			name = "Task View Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,10 +304,12 @@
 				8283B5AB166A368E00C0A830 /* Default@2x.png in Resources */,
 				8283B5AD166A368E00C0A830 /* Default-568h@2x.png in Resources */,
 				8283B5B0166A368E00C0A830 /* MainStoryboard.storyboard in Resources */,
-				822C6929167773B50065C9BF /* subtle-pattern-3.jpg in Resources */,
-				822C692B167775980065C9BF /* paper-4.jpg in Resources */,
-				822C692D1677789C0065C9BF /* subtle-pattern-1.jpg in Resources */,
 				822C692F167778E80065C9BF /* subtle-pattern-7.jpg in Resources */,
+				821A22F01677B25800CAA3EF /* add_32x32.png in Resources */,
+				821A22F31677B26400CAA3EF /* delete_32x32.png in Resources */,
+				821A22F61677B3AB00CAA3EF /* add_32x32b.png in Resources */,
+				821A22F81677B3C300CAA3EF /* delete_32x32b.png in Resources */,
+				821A230D16787B8400CAA3EF /* ToDoList in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,10 +326,6 @@
 				8283B5B9166A368E00C0A830 /* DetailViewController.m in Sources */,
 				8283B5C1166A36FE00C0A830 /* Model.xcdatamodeld in Sources */,
 				8283B5C4166A4E6B00C0A830 /* ProjectsViewController.m in Sources */,
-				8283B5CB166B781600C0A830 /* Project.m in Sources */,
-				8283B5CE166B781800C0A830 /* Section.m in Sources */,
-				8283B5D1166B781800C0A830 /* Task.m in Sources */,
-				8283B5D4166B781800C0A830 /* TaskImage.m in Sources */,
 				8283B5E0166BA18400C0A830 /* ProjectPopOverViewController.m in Sources */,
 				8283B5F9166D70B800C0A830 /* TasksViewController.m in Sources */,
 				8283B5FA166D70BD00C0A830 /* TasksViewLayout.m in Sources */,
@@ -315,6 +333,11 @@
 				8295C33016769489001FCCC3 /* ProjectViewCell.m in Sources */,
 				822C6924167763800065C9BF /* ProjectsMasterViewController.m in Sources */,
 				822C6925167764410065C9BF /* CoreDataCollectionViewController.m in Sources */,
+				821A22FB1677E2B100CAA3EF /* ProjectsViewLayout.m in Sources */,
+				821A23021678633A00CAA3EF /* Task.m in Sources */,
+				821A23051678633B00CAA3EF /* Project.m in Sources */,
+				821A23081678633D00CAA3EF /* TaskImage.m in Sources */,
+				821A230B1678633E00CAA3EF /* Section.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

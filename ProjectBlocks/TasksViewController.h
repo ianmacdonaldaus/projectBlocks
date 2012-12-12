@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "TasksViewLayout.h"
+#import "CoreDataCollectionViewController.h"
+#import "Project.h"
 
-@interface TasksViewController : UICollectionViewController <CollectionViewDelegateTaskViewLayout, UIScrollViewDelegate, NSFetchedResultsControllerDelegate> {
+@interface TasksViewController : CoreDataCollectionViewController <CollectionViewDelegateTaskViewLayout, UIScrollViewDelegate, NSFetchedResultsControllerDelegate> {
 
     NSFetchedResultsController *fetchedResultsController;
     NSManagedObjectContext *managedObjectContext;
@@ -17,7 +19,7 @@
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-
+@property (strong, nonatomic) Project* project;
 @property (nonatomic, assign) NSInteger cellCount;
 
 @end
