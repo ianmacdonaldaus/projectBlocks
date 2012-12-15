@@ -9,15 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Project, Task;
+@class Task;
 
 @interface Section : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * colourEnd;
 @property (nonatomic, retain) NSNumber * colourStart;
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSNumber * index;
-@property (nonatomic, retain) Project *project;
 @property (nonatomic, retain) NSSet *task;
 @end
 

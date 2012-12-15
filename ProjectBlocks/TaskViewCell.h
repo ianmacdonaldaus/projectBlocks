@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Task.h"
 
 @interface TaskViewCell : UICollectionViewCell
+
+@property (nonatomic, retain) UILabel* taskLabel;
+@property  (nonatomic, retain) UILabel* durationLabel;
 
 @end

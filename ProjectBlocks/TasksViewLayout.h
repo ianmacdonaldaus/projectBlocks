@@ -14,7 +14,8 @@
 @protocol CollectionViewDelegateTaskViewLayout <UICollectionViewDelegate>
 @optional
 
-- (CGFloat)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout widthForItemAtIndexPath:(NSIndexPath*)indexPath;
+- (CGFloat)widthForItemAtIndexPath:(NSIndexPath*)indexPath;
+- (BOOL)sequentialForItemAtIndexPath:(NSIndexPath*)indexPath;
 
 
 @end

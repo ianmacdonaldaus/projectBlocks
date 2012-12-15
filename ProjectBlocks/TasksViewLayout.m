@@ -9,7 +9,7 @@
 #import "TasksViewLayout.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define ITEM_SIZE 50
+#define ITEM_SIZE 40
 
 @interface TasksViewLayout();
 
@@ -54,57 +54,82 @@
     id<CollectionViewDelegateTaskViewLayout> delegate = (id<CollectionViewDelegateTaskViewLayout>)self.collectionView.delegate;
 
     for (NSInteger section = 0; section < [self.collectionView numberOfSections]; section++){
-        float sectionDuration = 0;
-        float sectionCount = 0;
+        float lastPosition = 0;
+        float countInSection = 0;
+        float currentCellWidth = 0;
+        float lastCellWidth = 0;
+        float startPosition = 0;
         NSMutableArray* array = [NSMutableArray arrayWithCapacity:[self.collectionView numberOfItemsInSection:section]];
         
         // Find total duration for each section
-        for (NSInteger row = 0; row < [self.collectionView numberOfItemsInSection:section] ; row++) {
-            float width = [delegate collectionView:self.collectionView layout:self widthForItemAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
+        for (NSInteger item = 0; item < [self.collectionView numberOfItemsInSection:section] ; item++) {
+           
+            // Get whether current cell is sequential
+            BOOL sequential = [delegate sequentialForItemAtIndexPath:[NSIndexPath indexPathForItem:item inSection:section]];
 
-            //set center point
-            CGRect rect = CGRectMake(sectionDuration, sectionCount * ITEM_SIZE, width, ITEM_SIZE);
+            // Get current cell width
+            currentCellWidth = [delegate widthForItemAtIndexPath:[NSIndexPath indexPathForItem:item inSection:section]];
+            
+            // Set start position of current cell
+            if (!sequential) {
+                if (currentCellWidth > lastCellWidth) {
+                    startPosition = lastPosition - lastCellWidth;
+                    lastPosition = lastPosition + (currentCellWidth - lastCellWidth);
+                } else {
+                    startPosition = lastPosition - currentCellWidth;
+                }
+            } else {
+                startPosition = lastPosition;
+            }
+            
+            // Create the cell frame and add to array
+            CGRect rect = CGRectMake(startPosition, countInSection * ITEM_SIZE, currentCellWidth, ITEM_SIZE);
             NSValue* tempValue = [NSValue valueWithCGRect:rect];
             [array addObject:tempValue];
-
-            sectionDuration += width;
-            sectionCount += 1;
             
+//            currentCellWidth = MAX(currentCellWidth, lastCellWidth);
+            lastPosition = !(sequential) ? lastPosition :  lastPosition + currentCellWidth;
+            lastCellWidth = currentCellWidth;
+            countInSection += 1;
+            
+            
+            if (!sequential) {
+            //    lastCellWidth = MIN(currentCellWidth, lastCellWidth);
+            }
             
         }
-        // add array of centerpoints
+        // add array of frame rects
         [cellRects addObject:array];
 
-        totalCount += sectionCount;
+        totalCount += countInSection;
         
         // find maximum section duration
-        maximumDuration = MAX(sectionDuration, maximumDuration);
+        maximumDuration = MAX(lastPosition, maximumDuration);
         
         //add section duration to array of durations
-        NSNumber* tempDuration = [NSNumber numberWithFloat:sectionDuration];
+        NSNumber* tempDuration = [NSNumber numberWithFloat:lastPosition];
         [sectionDurations addObject:tempDuration];
         
         //add section count to array of counts
-        NSNumber* tempCount = [NSNumber numberWithFloat:sectionCount];
+        NSNumber* tempCount = [NSNumber numberWithFloat:countInSection];
         [sectionCounts addObject:tempCount];
         
         //add section rect to array of rects
-        CGRect rect = CGRectMake(0, sectionYOffset + ITEM_SIZE, sectionDuration * durationScale, ITEM_SIZE * sectionCount);
-        sectionYOffset += ITEM_SIZE * sectionCount + ITEM_SIZE;
+        CGRect rect = CGRectMake(0, sectionYOffset + ITEM_SIZE, lastPosition * durationScale, ITEM_SIZE * countInSection);
+        sectionYOffset += ITEM_SIZE * countInSection + ITEM_SIZE;
         
         NSValue* tempRect = [NSValue valueWithCGRect:rect];
         [sectionRects addObject:tempRect];
         
-        NSLog(@"%@", tempDuration);
-        NSLog(@"%@", tempCount);
-        NSLog(@"%@", tempRect
-);
+//        NSLog(@"%@", tempDuration);
+//        NSLog(@"%@", tempCount);
+//        NSLog(@"%@", tempRect);
         
         
     }
     //set total content size
     contentSize = CGSizeMake(MAX(durationScale * maximumDuration , self.collectionView.frame.size.width), (ITEM_SIZE * totalCount + [self.collectionView numberOfSections] * ITEM_SIZE));
-    NSLog(@"content Size %f",contentSize.width);
+//    NSLog(@"content Size %f",contentSize.width);
     
     for (int section = 0; section < sectionRects.count; section++) {
         CGRect tempRect = [[sectionRects objectAtIndex:section] CGRectValue];
@@ -147,6 +172,7 @@
     return attributes;
 }
 
+/*
 - (void)prepareForCollectionViewUpdates:(NSArray *)updateItems
 {
     // Keep track of insert and delete index paths
@@ -221,5 +247,5 @@
     
     return attributes;
 }
-
+*/
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "Task.h"
+#import "Project.h"
 #import "Section.h"
 #import "TaskImage.h"
 
@@ -15,11 +16,13 @@
 
 @dynamic completed;
 @dynamic duration;
+@dynamic index;
 @dynamic sequential;
 @dynamic timeToFinish;
 @dynamic title;
 @dynamic titleDetail;
-@dynamic index;
+@dynamic durationMinutes;
+@dynamic project;
 @dynamic section;
 @dynamic taskImage;
 

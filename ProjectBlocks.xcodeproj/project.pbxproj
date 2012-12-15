@@ -12,10 +12,6 @@
 		821A22F61677B3AB00CAA3EF /* add_32x32b.png in Resources */ = {isa = PBXBuildFile; fileRef = 821A22F51677B3AB00CAA3EF /* add_32x32b.png */; };
 		821A22F81677B3C300CAA3EF /* delete_32x32b.png in Resources */ = {isa = PBXBuildFile; fileRef = 821A22F71677B3C300CAA3EF /* delete_32x32b.png */; };
 		821A22FB1677E2B100CAA3EF /* ProjectsViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 821A22FA1677E2B000CAA3EF /* ProjectsViewLayout.m */; };
-		821A23021678633A00CAA3EF /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 821A23011678633A00CAA3EF /* Task.m */; };
-		821A23051678633B00CAA3EF /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 821A23041678633B00CAA3EF /* Project.m */; };
-		821A23081678633D00CAA3EF /* TaskImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 821A23071678633C00CAA3EF /* TaskImage.m */; };
-		821A230B1678633E00CAA3EF /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 821A230A1678633D00CAA3EF /* Section.m */; };
 		821A230D16787B8400CAA3EF /* ToDoList in Resources */ = {isa = PBXBuildFile; fileRef = 821A230C16787B8400CAA3EF /* ToDoList */; };
 		822C6924167763800065C9BF /* ProjectsMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 822C6923167763800065C9BF /* ProjectsMasterViewController.m */; };
 		822C6925167764410065C9BF /* CoreDataCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 822C6920167762530065C9BF /* CoreDataCollectionViewController.m */; };
@@ -41,6 +37,13 @@
 		8283B5FB166D70C100C0A830 /* TaskViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283B5F0166D6C4600C0A830 /* TaskViewCell.m */; };
 		8283B5FD166D710F00C0A830 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8283B5FC166D710F00C0A830 /* QuartzCore.framework */; };
 		8295C33016769489001FCCC3 /* ProjectViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8295C32F16769489001FCCC3 /* ProjectViewCell.m */; };
+		82D125481678BFF90073D5B9 /* TaskDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D125471678BFF90073D5B9 /* TaskDetailView.m */; };
+		82D125581678CC910073D5B9 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D125571678CC910073D5B9 /* Section.m */; };
+		82D1255B1678CC920073D5B9 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D1255A1678CC920073D5B9 /* Task.m */; };
+		82D1255E1678CC920073D5B9 /* TaskImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D1255D1678CC920073D5B9 /* TaskImage.m */; };
+		82D125611678CC920073D5B9 /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D125601678CC920073D5B9 /* Project.m */; };
+		82D1257216790DF10073D5B9 /* RotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D1256F16790BEE0073D5B9 /* RotationView.m */; };
+		82D1257316790DF60073D5B9 /* OneFingerRotationGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D1257116790BEE0073D5B9 /* OneFingerRotationGestureRecognizer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,14 +53,6 @@
 		821A22F71677B3C300CAA3EF /* delete_32x32b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_32x32b.png; sourceTree = "<group>"; };
 		821A22F91677E2B000CAA3EF /* ProjectsViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsViewLayout.h; sourceTree = "<group>"; };
 		821A22FA1677E2B000CAA3EF /* ProjectsViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsViewLayout.m; sourceTree = "<group>"; };
-		821A23001678633900CAA3EF /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Task.h; path = ProjectBlocks/Task.h; sourceTree = "<group>"; };
-		821A23011678633A00CAA3EF /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Task.m; path = ProjectBlocks/Task.m; sourceTree = "<group>"; };
-		821A23031678633A00CAA3EF /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Project.h; path = ProjectBlocks/Project.h; sourceTree = "<group>"; };
-		821A23041678633B00CAA3EF /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Project.m; path = ProjectBlocks/Project.m; sourceTree = "<group>"; };
-		821A23061678633B00CAA3EF /* TaskImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskImage.h; path = ProjectBlocks/TaskImage.h; sourceTree = "<group>"; };
-		821A23071678633C00CAA3EF /* TaskImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskImage.m; path = ProjectBlocks/TaskImage.m; sourceTree = "<group>"; };
-		821A23091678633D00CAA3EF /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Section.h; path = ProjectBlocks/Section.h; sourceTree = "<group>"; };
-		821A230A1678633D00CAA3EF /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Section.m; path = ProjectBlocks/Section.m; sourceTree = "<group>"; };
 		821A230C16787B8400CAA3EF /* ToDoList */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDoList; sourceTree = "<group>"; };
 		822C691F167762530065C9BF /* CoreDataCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataCollectionViewController.h; sourceTree = "<group>"; };
 		822C6920167762530065C9BF /* CoreDataCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataCollectionViewController.m; sourceTree = "<group>"; };
@@ -97,6 +92,20 @@
 		8283B5FC166D710F00C0A830 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8295C32E16769489001FCCC3 /* ProjectViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectViewCell.h; sourceTree = "<group>"; };
 		8295C32F16769489001FCCC3 /* ProjectViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectViewCell.m; sourceTree = "<group>"; };
+		82D125461678BFF90073D5B9 /* TaskDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDetailView.h; sourceTree = "<group>"; };
+		82D125471678BFF90073D5B9 /* TaskDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailView.m; sourceTree = "<group>"; };
+		82D125561678CC910073D5B9 /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
+		82D125571678CC910073D5B9 /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Section.m; sourceTree = "<group>"; };
+		82D125591678CC920073D5B9 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		82D1255A1678CC920073D5B9 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		82D1255C1678CC920073D5B9 /* TaskImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskImage.h; sourceTree = "<group>"; };
+		82D1255D1678CC920073D5B9 /* TaskImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskImage.m; sourceTree = "<group>"; };
+		82D1255F1678CC920073D5B9 /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Project.h; sourceTree = "<group>"; };
+		82D125601678CC920073D5B9 /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Project.m; sourceTree = "<group>"; };
+		82D1256E16790BED0073D5B9 /* RotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RotationView.h; sourceTree = "<group>"; };
+		82D1256F16790BEE0073D5B9 /* RotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RotationView.m; sourceTree = "<group>"; };
+		82D1257016790BEE0073D5B9 /* OneFingerRotationGestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneFingerRotationGestureRecognizer.h; sourceTree = "<group>"; };
+		82D1257116790BEE0073D5B9 /* OneFingerRotationGestureRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneFingerRotationGestureRecognizer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,14 +203,14 @@
 		8283B5D5166B782300C0A830 /* Managed Objects */ = {
 			isa = PBXGroup;
 			children = (
-				821A23091678633D00CAA3EF /* Section.h */,
-				821A230A1678633D00CAA3EF /* Section.m */,
-				821A23061678633B00CAA3EF /* TaskImage.h */,
-				821A23071678633C00CAA3EF /* TaskImage.m */,
-				821A23031678633A00CAA3EF /* Project.h */,
-				821A23041678633B00CAA3EF /* Project.m */,
-				821A23001678633900CAA3EF /* Task.h */,
-				821A23011678633A00CAA3EF /* Task.m */,
+				82D1255F1678CC920073D5B9 /* Project.h */,
+				82D125601678CC920073D5B9 /* Project.m */,
+				82D1255C1678CC920073D5B9 /* TaskImage.h */,
+				82D1255D1678CC920073D5B9 /* TaskImage.m */,
+				82D125591678CC920073D5B9 /* Task.h */,
+				82D1255A1678CC920073D5B9 /* Task.m */,
+				82D125561678CC910073D5B9 /* Section.h */,
+				82D125571678CC910073D5B9 /* Section.m */,
 			);
 			name = "Managed Objects";
 			path = ..;
@@ -244,6 +253,12 @@
 				8283B5F0166D6C4600C0A830 /* TaskViewCell.m */,
 				8283B5F1166D6C4700C0A830 /* TasksViewLayout.h */,
 				8283B5F2166D6C4700C0A830 /* TasksViewLayout.m */,
+				82D125461678BFF90073D5B9 /* TaskDetailView.h */,
+				82D125471678BFF90073D5B9 /* TaskDetailView.m */,
+				82D1256E16790BED0073D5B9 /* RotationView.h */,
+				82D1256F16790BEE0073D5B9 /* RotationView.m */,
+				82D1257016790BEE0073D5B9 /* OneFingerRotationGestureRecognizer.h */,
+				82D1257116790BEE0073D5B9 /* OneFingerRotationGestureRecognizer.m */,
 			);
 			name = "Task View Controller";
 			sourceTree = "<group>";
@@ -334,10 +349,13 @@
 				822C6924167763800065C9BF /* ProjectsMasterViewController.m in Sources */,
 				822C6925167764410065C9BF /* CoreDataCollectionViewController.m in Sources */,
 				821A22FB1677E2B100CAA3EF /* ProjectsViewLayout.m in Sources */,
-				821A23021678633A00CAA3EF /* Task.m in Sources */,
-				821A23051678633B00CAA3EF /* Project.m in Sources */,
-				821A23081678633D00CAA3EF /* TaskImage.m in Sources */,
-				821A230B1678633E00CAA3EF /* Section.m in Sources */,
+				82D125481678BFF90073D5B9 /* TaskDetailView.m in Sources */,
+				82D125581678CC910073D5B9 /* Section.m in Sources */,
+				82D1255B1678CC920073D5B9 /* Task.m in Sources */,
+				82D1255E1678CC920073D5B9 /* TaskImage.m in Sources */,
+				82D125611678CC920073D5B9 /* Project.m in Sources */,
+				82D1257216790DF10073D5B9 /* RotationView.m in Sources */,
+				82D1257316790DF60073D5B9 /* OneFingerRotationGestureRecognizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

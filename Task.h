@@ -9,17 +9,19 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Section, TaskImage;
+@class Project, Section, TaskImage;
 
 @interface Task : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * completed;
 @property (nonatomic, retain) NSDate * duration;
+@property (nonatomic, retain) NSNumber * index;
 @property (nonatomic, retain) NSNumber * sequential;
 @property (nonatomic, retain) NSDate * timeToFinish;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * titleDetail;
-@property (nonatomic, retain) NSNumber * index;
+@property (nonatomic, retain) NSNumber * durationMinutes;
+@property (nonatomic, retain) Project *project;
 @property (nonatomic, retain) Section *section;
 @property (nonatomic, retain) TaskImage *taskImage;
 

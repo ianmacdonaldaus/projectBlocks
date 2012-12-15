@@ -9,20 +9,20 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Section;
+@class Task;
 
 @interface Project : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSData * thumbnail;
-@property (nonatomic, retain) NSSet *section;
+@property (nonatomic, retain) NSSet *task;
 @end
 
 @interface Project (CoreDataGeneratedAccessors)
 
-- (void)addSectionObject:(Section *)value;
-- (void)removeSectionObject:(Section *)value;
-- (void)addSection:(NSSet *)values;
-- (void)removeSection:(NSSet *)values;
+- (void)addTaskObject:(Task *)value;
+- (void)removeTaskObject:(Task *)value;
+- (void)addTask:(NSSet *)values;
+- (void)removeTask:(NSSet *)values;
 
 @end

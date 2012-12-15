@@ -7,7 +7,6 @@
 //
 
 #import "Section.h"
-#import "Project.h"
 #import "Task.h"
 
 
@@ -16,8 +15,6 @@
 @dynamic colourEnd;
 @dynamic colourStart;
 @dynamic name;
-@dynamic index;
-@dynamic project;
 @dynamic task;
 
 @end

@@ -280,5 +280,38 @@
     [managedObjectContext save:nil];
 }
 
+//Code snippets - Dates
+
+/*    NSDate *date = task.duration;
+ NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+ NSDateComponents *secondsComponent = [gregorian components:NSSecondCalendarUnit fromDate:date];
+ NSDateComponents *minuteComponent = [gregorian components:NSMinuteCalendarUnit fromDate:date];
+ NSDateComponents *hourComponent = [gregorian components:NSHourCalendarUnit fromDate:date];
+ int seconds = [secondsComponent second] * [minuteComponent minute] * [hourComponent hour] ;
+ NSLog(@"Seconds: %i", seconds);
+ NSLog(@"%@", date);
+ /*NSNumber* number = (NSNumber*)[[arrayOfSections objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+ return [number floatValue];
+ */
+
+/*            float randomWidth = 10.0f + 100.0f * (float)random()/RAND_MAX;
+ NSNumber* number = [NSNumber numberWithFloat:randomWidth];
+ [[arrayOfSections objectAtIndex:0] addObject:number];
+ 
+ [self.collectionView performBatchUpdates:^{
+ [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:([self.collectionView numberOfItemsInSection:0]) inSection:0]]];
+ } completion:nil];
+ */
+
+
+/*
+ NSDate* result;
+ NSDateComponents *comps =[[NSDateComponents alloc] init];
+ [comps setMinute:0];
+ [comps setHour:1];
+ NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+ result = [gregorian dateFromComponents:comps];
+ NSLog(@"Result: %@",result);
+ */
 
     @end

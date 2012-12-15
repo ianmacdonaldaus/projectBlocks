@@ -66,12 +66,13 @@
 	_detailPopOver.delegate = self;
 	
     NSError *error = nil;
+    
     if (![[self fetchedResultsController] performFetch:&error])
     {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-    [self loadStartupData];
+//    [self loadStartupData];
 
 }
 
@@ -94,21 +95,22 @@
     Project* project = [NSEntityDescription insertNewObjectForEntityForName:@"Project" inManagedObjectContext:_managedObjectContext];
     project.name = @"New Project";
     [_managedObjectContext save:nil];
+    [self.collectionView reloadData];
 }
 
 - (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     Project *project = [_fetchedResultsController objectAtIndexPath:indexPath];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 280, 40)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, cell.frame.size.width - 20, 40)];
     label.text = project.name;
     label.textAlignment = NSTextAlignmentLeft;
-    label.font = [UIFont fontWithName:@"Futura-Medium" size:20];
+    label.font = [UIFont fontWithName:@"AvenirNextCondensed-DemiBold" size:24];
     [cell addSubview:label];
     
     cell.layer.cornerRadius = 15;
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoDark];
-    [button setCenter:CGPointMake(280, 25)];
+    [button setCenter:CGPointMake(cell.frame.size.width - 20, 25)];
     [button showsTouchWhenHighlighted];
     [button setTag:indexPath.row];
     [button addTarget:self action:@selector(popOver:) forControlEvents:UIControlEventTouchUpInside];
@@ -118,7 +120,7 @@
     containerView.clipsToBounds = YES;
     [cell addSubview:containerView];
     
-    UIView *colourView = [[UIView alloc] initWithFrame:CGRectMake(0, 50, 300, 250)];
+    UIView *colourView = [[UIView alloc] initWithFrame:CGRectMake(0, 50, cell.frame.size.width, cell.frame.size.height - 50)];
     colourView.backgroundColor = [UIColor colorWithHue:(0.08 * indexPath.row) saturation:0.8 brightness:0.9 alpha:1.0];
     
     cell.layer.shadowOpacity = 0.3;
@@ -208,22 +210,6 @@
         [_managedObjectContext deleteObject:[_fetchedResultsController objectAtIndexPath:indexPath]];
         
     }
-}
-
--(void)loadStartupData {
-    if ([[_fetchedResultsController fetchedObjects] count] > 0) {
-        return;
-    }
-    Project* project = [NSEntityDescription insertNewObjectForEntityForName:@"Project" inManagedObjectContext:_managedObjectContext];
-    project.name = @"Christmas Roast";
-    
-    project = [NSEntityDescription insertNewObjectForEntityForName:@"Project" inManagedObjectContext:_managedObjectContext];
-    project.name = @"Home renovations";
-    
-    project = [NSEntityDescription insertNewObjectForEntityForName:@"Project" inManagedObjectContext:_managedObjectContext];
-    project.name = @"Plan the 2013 holiday";
-    
-    [_managedObjectContext save:nil];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
