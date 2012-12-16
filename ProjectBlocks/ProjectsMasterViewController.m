@@ -12,6 +12,7 @@
 #import "ProjectsViewLayout.h"
 #import "TasksViewController.h"
 #import "ProjectViewCell.h"
+#import "BackgroundView.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface ProjectsMasterViewController ()
@@ -38,16 +39,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.collectionView registerClass:[ProjectViewCell class] forCellWithReuseIdentifier:@"ProjectCell"];
+
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
     //Backgrounds
-    UIImageView* backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"subtle-pattern-7.jpg"]];
-    backgroundView.frame = self.view.bounds;
-    backgroundView.layer.opacity = 0.8;
-    backgroundView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     
-    self.view.backgroundColor = [UIColor blackColor];
+    BackgroundView *backgroundView = [[BackgroundView alloc] initWithFrame:self.view.bounds];
+    backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view insertSubview:backgroundView atIndex:0];
     
     self.collectionView.decelerationRate = UIScrollViewDecelerationRateFast;
@@ -77,6 +78,14 @@
 
 }
 
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    
+}
+
+-(void)viewWillLayoutSubviews {
+}
+
 -(void) popoverDone:(id)sender {
     NSLog(@"popover done");
 }
@@ -102,20 +111,9 @@
 - (void)configureCell:(ProjectViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     Project *project = [_fetchedResultsController objectAtIndexPath:indexPath];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, cell.frame.size.width - 20, 40)];
-    label.text = project.name;
-    label.textAlignment = NSTextAlignmentLeft;
-    label.font = [UIFont fontWithName:@"AvenirNextCondensed-DemiBold" size:24];
-    [cell addSubview:label];
+    cell.projectTitle.text = project.name;
     
-    cell.layer.cornerRadius = 15;
-    
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoDark];
-    [button setCenter:CGPointMake(cell.frame.size.width - 20, 25)];
-    [button showsTouchWhenHighlighted];
-    [button setTag:indexPath.row];
-    [button addTarget:self action:@selector(popOver:) forControlEvents:UIControlEventTouchUpInside];
-    
+
     UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
     containerView.layer.cornerRadius = 15;
     containerView.clipsToBounds = YES;
@@ -134,14 +132,12 @@
     //[containerView addSubview:colourView];
     
     cell.clipsToBounds = NO;
-    [cell addSubview:button];
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ProjectCell";
-    
-    ProjectViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+     
+    ProjectViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ProjectCell" forIndexPath:indexPath];
     
     [self configureCell:cell atIndexPath:indexPath];
     
@@ -222,5 +218,10 @@
         
     }
 }
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+   [self performSegueWithIdentifier:@"taskViewSegue" sender:[self.collectionView cellForItemAtIndexPath:indexPath]];
+}
+
 
 @end

@@ -10,4 +10,5 @@
 
 @interface ProjectViewCell : UICollectionViewCell
 
+@property (strong, nonatomic) UILabel *projectTitle;
 @end

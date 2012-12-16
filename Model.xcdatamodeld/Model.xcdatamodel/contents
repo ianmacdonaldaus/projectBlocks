@@ -45,6 +45,6 @@
         <element name="Section" positionX="-3152" positionY="-1602" width="128" height="103"/>
         <element name="Task" positionX="-3359" positionY="-1597" width="128" height="208"/>
         <element name="TaskImage" positionX="-3152" positionY="-1467" width="128" height="75"/>
-        <element name="ColorPalette" positionX="-3530" positionY="-1453" width="128" height="148"/>
+        <element name="ColorPalette" positionX="-3728" positionY="-1570" width="128" height="148"/>
     </elements>
 </model>

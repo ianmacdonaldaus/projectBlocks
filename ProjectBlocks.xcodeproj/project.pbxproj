@@ -45,6 +45,8 @@
 		82D125611678CC920073D5B9 /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D125601678CC920073D5B9 /* Project.m */; };
 		82D1257216790DF10073D5B9 /* RotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D1256F16790BEE0073D5B9 /* RotationView.m */; };
 		82D1257316790DF60073D5B9 /* OneFingerRotationGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D1257116790BEE0073D5B9 /* OneFingerRotationGestureRecognizer.m */; };
+		82F22CC6167E273C009ECC8F /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F22CC5167E273C009ECC8F /* CoreDataHelper.m */; };
+		82F22CCA167E3C48009ECC8F /* BackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F22CC9167E3C48009ECC8F /* BackgroundView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,6 +111,10 @@
 		82D1256F16790BEE0073D5B9 /* RotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RotationView.m; sourceTree = "<group>"; };
 		82D1257016790BEE0073D5B9 /* OneFingerRotationGestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneFingerRotationGestureRecognizer.h; sourceTree = "<group>"; };
 		82D1257116790BEE0073D5B9 /* OneFingerRotationGestureRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneFingerRotationGestureRecognizer.m; sourceTree = "<group>"; };
+		82F22CC4167E273C009ECC8F /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
+		82F22CC5167E273C009ECC8F /* CoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
+		82F22CC8167E3C47009ECC8F /* BackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundView.h; sourceTree = "<group>"; };
+		82F22CC9167E3C48009ECC8F /* BackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +185,8 @@
 				82275F09167CE3160000866B /* DismissingView.h */,
 				82275F0A167CE3160000866B /* DismissingView.m */,
 				8283B5BF166A36FD00C0A830 /* Model.xcdatamodeld */,
+				82F22CC4167E273C009ECC8F /* CoreDataHelper.h */,
+				82F22CC5167E273C009ECC8F /* CoreDataHelper.m */,
 				822C691F167762530065C9BF /* CoreDataCollectionViewController.h */,
 				822C6920167762530065C9BF /* CoreDataCollectionViewController.m */,
 				821A22F41677B28500CAA3EF /* Images */,
@@ -245,6 +253,8 @@
 				8283B5DF166BA18300C0A830 /* ProjectPopOverViewController.m */,
 				821A22F91677E2B000CAA3EF /* ProjectsViewLayout.h */,
 				821A22FA1677E2B000CAA3EF /* ProjectsViewLayout.m */,
+				82F22CC8167E3C47009ECC8F /* BackgroundView.h */,
+				82F22CC9167E3C48009ECC8F /* BackgroundView.m */,
 			);
 			name = "Project View Controller";
 			sourceTree = "<group>";
@@ -362,6 +372,8 @@
 				82D1257216790DF10073D5B9 /* RotationView.m in Sources */,
 				82D1257316790DF60073D5B9 /* OneFingerRotationGestureRecognizer.m in Sources */,
 				82275F0B167CE3160000866B /* DismissingView.m in Sources */,
+				82F22CC6167E273C009ECC8F /* CoreDataHelper.m in Sources */,
+				82F22CCA167E3C48009ECC8F /* BackgroundView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

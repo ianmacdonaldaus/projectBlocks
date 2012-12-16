@@ -14,18 +14,18 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <collectionViewLayout key="collectionViewLayout" id="2Bc-sz-dq8" customClass="ProjectsViewLayout"/>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProjectCell" id="lEP-0y-FX8">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProjectCell" id="z6Y-uB-6GS" customClass="ProjectViewCell">
                                 <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.69312021680000002" green="0.038124497209999997" blue="0.063751352139999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="customSize" width="250" height="250"/>
                                 <connections>
-                                    <segue destination="EnH-up-JjP" kind="modal" identifier="taskViewSegue" modalTransitionStyle="flipHorizontal" id="X7Y-IT-wKu"/>
+                                    <segue destination="EnH-up-JjP" kind="modal" identifier="taskViewSegue" modalTransitionStyle="flipHorizontal" id="dR6-qi-MAb"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -49,17 +49,18 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <collectionViewLayout key="collectionViewLayout" id="6QU-vk-KTk" customClass="TasksViewLayout"/>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="TaskCell" reuseIdentifier="TaskCell" id="KPI-LS-iOS" customClass="TaskViewCell">
-                                <rect key="frame" x="0.0" y="0.0" width="209" height="197"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TaskCell" id="dF5-tx-oe5" customClass="TaskViewCell">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="209" height="197"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <size key="customSize" width="209" height="197"/>
+                                <color key="backgroundColor" red="0.69312021680000002" green="0.038124497209999997" blue="0.063751352139999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <size key="customSize" width="200" height="50"/>
                                 <connections>
-                                    <segue destination="ZFX-fx-ODS" kind="modal" identifier="editTask" modalPresentationStyle="formSheet" modalTransitionStyle="crossDissolve" animates="NO" id="HGW-Fd-tPB"/>
+                                    <segue destination="ZFX-fx-ODS" kind="modal" identifier="editTask" modalPresentationStyle="formSheet" modalTransitionStyle="crossDissolve" animates="NO" id="68q-6g-HXx"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -153,6 +154,9 @@
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="ProjectViewCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProjectViewCell.h"/>
         </class>
         <class className="ProjectsMasterViewController" superclassName="CoreDataCollectionViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ProjectsMasterViewController.h"/>

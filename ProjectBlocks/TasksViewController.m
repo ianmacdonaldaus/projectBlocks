@@ -14,6 +14,7 @@
 #import "Section.h"
 #import "RotationView.h"
 #import "OneFingerRotationGestureRecognizer.h"
+#import "BackgroundView.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define MINSCALE 1
@@ -50,13 +51,14 @@
     return self;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     durationScale = 3.0f;
     
-    [self.collectionView registerClass:[TaskViewCell class] forCellWithReuseIdentifier:@"MY_CELL"];
+    [self.collectionView registerClass:[TaskViewCell class] forCellWithReuseIdentifier:@"TaskCell"];
     [self.collectionView reloadData];
     self.collectionView.frame = CGRectMake(0, 50, self.view.bounds.size.width, self.view.bounds.size.height - 50);
     self.collectionView.dataSource = self;
@@ -66,14 +68,13 @@
     self.collectionView.maximumZoomScale = 1.0f;
     self.collectionView.zoomScale = 0.5f;
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.view.backgroundColor = [UIColor clearColor];
     
     // Create the background view
-    UIImageView* backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"subtle-pattern-7.jpg"]];
-    backgroundView.frame = CGRectMake(0, 50, self.view.bounds.size.width, self.view.bounds.size.height - 50);
-    backgroundView.layer.opacity = 0.8;
+    BackgroundView *backgroundView = [[BackgroundView alloc] initWithFrame:self.collectionView.bounds];
     backgroundView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    [self.view insertSubview:backgroundView atIndex:0];
+    [self.collectionView insertSubview:backgroundView atIndex:-1];
 
     // Create the topBar
     UIView* topBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAX(self.view.bounds.size.width,self.view.bounds.size.height), 50)];
@@ -142,7 +143,7 @@
 }
 
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    TaskViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MY_CELL" forIndexPath:indexPath];
+    TaskViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TaskCell" forIndexPath:indexPath];
     Task* task = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     // Add Task Title Label
