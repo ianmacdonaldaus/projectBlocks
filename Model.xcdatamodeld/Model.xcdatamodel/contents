@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1810" systemVersion="12C60" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="ColorPalette" syncable="YES">
+        <attribute name="color1" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="color2" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="color3" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="color4" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="color5" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="index" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="project" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Project" inverseName="colorPalette" inverseEntity="Project" syncable="YES"/>
+    </entity>
     <entity name="Project" representedClassName="Project" syncable="YES">
+        <attribute name="index" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnail" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="colorPalette" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ColorPalette" inverseName="project" inverseEntity="ColorPalette" syncable="YES"/>
         <relationship name="task" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Task" inverseName="project" inverseEntity="Task" syncable="YES"/>
     </entity>
     <entity name="Section" representedClassName="Section" syncable="YES">
@@ -30,9 +41,10 @@
     </entity>
     <fetchRequest name="FetchRequest" entity="Task" predicateString="TRUEPREDICATE"/>
     <elements>
-        <element name="Project" positionX="-3564" positionY="-1591" width="128" height="88"/>
+        <element name="Project" positionX="-3537" positionY="-1602" width="128" height="118"/>
         <element name="Section" positionX="-3152" positionY="-1602" width="128" height="103"/>
         <element name="Task" positionX="-3359" positionY="-1597" width="128" height="208"/>
         <element name="TaskImage" positionX="-3152" positionY="-1467" width="128" height="75"/>
+        <element name="ColorPalette" positionX="-3530" positionY="-1453" width="128" height="148"/>
     </elements>
 </model>

@@ -11,7 +11,7 @@
 #import "CoreDataCollectionViewController.h"
 #import "Project.h"
 
-@interface TasksViewController : CoreDataCollectionViewController <CollectionViewDelegateTaskViewLayout, UIScrollViewDelegate, NSFetchedResultsControllerDelegate> {
+@interface TasksViewController : CoreDataCollectionViewController <CollectionViewDelegateTaskViewLayout, UIScrollViewDelegate, NSFetchedResultsControllerDelegate, UICollectionViewDelegate> {
 
     NSFetchedResultsController *fetchedResultsController;
     NSManagedObjectContext *managedObjectContext;

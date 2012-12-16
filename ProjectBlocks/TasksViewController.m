@@ -9,6 +9,7 @@
 #import "TasksViewController.h"
 #import "TasksViewLayout.h"
 #import "TaskViewCell.h"
+#import "TaskDetailView.h"
 #import "Task.h"
 #import "Section.h"
 #import "RotationView.h"
@@ -376,7 +377,21 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSLog(@"segueing");
+    if ([segue.identifier isEqualToString:@"editTask"] ) {
+        TaskDetailView *taskDetailView = (TaskDetailView *)[segue destinationViewController];
+        TaskViewCell *cell = (TaskViewCell *)sender;
+        taskDetailView.detailViewColor = cell.contentView.backgroundColor;
+        taskDetailView.managedObjectContext = _managedObjectContext;
+        NSIndexPath *index = [self.collectionView indexPathForCell:sender];
+        taskDetailView.task = (Task *)[self.fetchedResultsController objectAtIndexPath:index];
+        
+    }
+    
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [self performSegueWithIdentifier:@"editTask" sender:[self.collectionView cellForItemAtIndexPath:indexPath]];
 }
 
 

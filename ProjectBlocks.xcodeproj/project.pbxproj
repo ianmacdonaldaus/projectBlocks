@@ -13,6 +13,7 @@
 		821A22F81677B3C300CAA3EF /* delete_32x32b.png in Resources */ = {isa = PBXBuildFile; fileRef = 821A22F71677B3C300CAA3EF /* delete_32x32b.png */; };
 		821A22FB1677E2B100CAA3EF /* ProjectsViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 821A22FA1677E2B000CAA3EF /* ProjectsViewLayout.m */; };
 		821A230D16787B8400CAA3EF /* ToDoList in Resources */ = {isa = PBXBuildFile; fileRef = 821A230C16787B8400CAA3EF /* ToDoList */; };
+		82275F0B167CE3160000866B /* DismissingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82275F0A167CE3160000866B /* DismissingView.m */; };
 		822C6924167763800065C9BF /* ProjectsMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 822C6923167763800065C9BF /* ProjectsMasterViewController.m */; };
 		822C6925167764410065C9BF /* CoreDataCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 822C6920167762530065C9BF /* CoreDataCollectionViewController.m */; };
 		822C692F167778E80065C9BF /* subtle-pattern-7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 822C692E167778E80065C9BF /* subtle-pattern-7.jpg */; };
@@ -54,6 +55,8 @@
 		821A22F91677E2B000CAA3EF /* ProjectsViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsViewLayout.h; sourceTree = "<group>"; };
 		821A22FA1677E2B000CAA3EF /* ProjectsViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsViewLayout.m; sourceTree = "<group>"; };
 		821A230C16787B8400CAA3EF /* ToDoList */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDoList; sourceTree = "<group>"; };
+		82275F09167CE3160000866B /* DismissingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissingView.h; sourceTree = "<group>"; };
+		82275F0A167CE3160000866B /* DismissingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DismissingView.m; sourceTree = "<group>"; };
 		822C691F167762530065C9BF /* CoreDataCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataCollectionViewController.h; sourceTree = "<group>"; };
 		822C6920167762530065C9BF /* CoreDataCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataCollectionViewController.m; sourceTree = "<group>"; };
 		822C6922167763800065C9BF /* ProjectsMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsMasterViewController.h; sourceTree = "<group>"; };
@@ -173,6 +176,8 @@
 				8295C3131674F9B1001FCCC3 /* Project View Controller */,
 				8295C3141674F9BE001FCCC3 /* Task View Controller */,
 				8283B5AE166A368E00C0A830 /* MainStoryboard.storyboard */,
+				82275F09167CE3160000866B /* DismissingView.h */,
+				82275F0A167CE3160000866B /* DismissingView.m */,
 				8283B5BF166A36FD00C0A830 /* Model.xcdatamodeld */,
 				822C691F167762530065C9BF /* CoreDataCollectionViewController.h */,
 				822C6920167762530065C9BF /* CoreDataCollectionViewController.m */,
@@ -356,6 +361,7 @@
 				82D125611678CC920073D5B9 /* Project.m in Sources */,
 				82D1257216790DF10073D5B9 /* RotationView.m in Sources */,
 				82D1257316790DF60073D5B9 /* OneFingerRotationGestureRecognizer.m in Sources */,
+				82275F0B167CE3160000866B /* DismissingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

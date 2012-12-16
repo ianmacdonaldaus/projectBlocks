@@ -11,6 +11,7 @@
 #import "Project.h"
 #import "ProjectsViewLayout.h"
 #import "TasksViewController.h"
+#import "ProjectViewCell.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface ProjectsMasterViewController ()
@@ -98,7 +99,7 @@
     [self.collectionView reloadData];
 }
 
-- (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureCell:(ProjectViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     Project *project = [_fetchedResultsController objectAtIndexPath:indexPath];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, cell.frame.size.width - 20, 40)];
@@ -118,7 +119,7 @@
     UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
     containerView.layer.cornerRadius = 15;
     containerView.clipsToBounds = YES;
-    [cell addSubview:containerView];
+//    [cell addSubview:containerView];
     
     UIView *colourView = [[UIView alloc] initWithFrame:CGRectMake(0, 50, cell.frame.size.width, cell.frame.size.height - 50)];
     colourView.backgroundColor = [UIColor colorWithHue:(0.08 * indexPath.row) saturation:0.8 brightness:0.9 alpha:1.0];
@@ -130,7 +131,7 @@
     cell.layer.shouldRasterize = YES;
     cell.layer.rasterizationScale = [[UIScreen mainScreen] scale];
     
-    [containerView addSubview:colourView];
+    //[containerView addSubview:colourView];
     
     cell.clipsToBounds = NO;
     [cell addSubview:button];
@@ -140,7 +141,7 @@
 {
     static NSString *CellIdentifier = @"ProjectCell";
     
-    UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+    ProjectViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     
     [self configureCell:cell atIndexPath:indexPath];
     
