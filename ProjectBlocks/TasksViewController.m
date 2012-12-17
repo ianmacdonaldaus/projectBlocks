@@ -15,6 +15,7 @@
 #import "RotationView.h"
 #import "OneFingerRotationGestureRecognizer.h"
 #import "BackgroundView.h"
+#import "ColorPalette.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define MINSCALE 1
@@ -72,9 +73,9 @@
     self.view.backgroundColor = [UIColor clearColor];
     
     // Create the background view
-    BackgroundView *backgroundView = [[BackgroundView alloc] initWithFrame:self.collectionView.bounds];
+    BackgroundView *backgroundView = [[BackgroundView alloc] initWithFrame:self.view.bounds];
     backgroundView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    [self.collectionView insertSubview:backgroundView atIndex:-1];
+    [self.view insertSubview:backgroundView atIndex:0];
 
     // Create the topBar
     UIView* topBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAX(self.view.bounds.size.width,self.view.bounds.size.height), 50)];
@@ -84,7 +85,7 @@
     topBar.layer.shadowOffset = CGSizeMake(0, 2);
     topBar.layer.shouldRasterize = YES;
     topBar.layer.rasterizationScale = [[UIScreen mainScreen] scale];
-    
+    topBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
     [self.view addSubview:topBar];
     
@@ -317,6 +318,7 @@
     //Set sequential boolean
     float randomNumber = (float)random()/RAND_MAX;
     task.sequential = randomNumber > 0.7 ? [NSNumber numberWithBool:NO] : [NSNumber numberWithBool:YES];
+    
 
     //Set title
     task.title = _project.name;
@@ -390,10 +392,30 @@
     
 }
 
+-(BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (BOOL)collectionView:(UICollectionView*)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath*)indexPath withSender:(id)sender
+{
+    return([NSStringFromSelector(action) isEqualToString:@"cut:"]);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath*)indexPath withSender:(id)sender
+{
+    if([NSStringFromSelector(action) isEqualToString:@"cut:"])
+    {
+        
+        [_managedObjectContext deleteObject:[_fetchedResultsController objectAtIndexPath:indexPath]];
+        
+    }
+}
+
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     [self performSegueWithIdentifier:@"editTask" sender:[self.collectionView cellForItemAtIndexPath:indexPath]];
 }
+
 
 
 @end

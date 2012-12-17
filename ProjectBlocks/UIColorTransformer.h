@@ -1,18 +1,13 @@
 //
-//  TaskImage.m
+//  UIColorTransformer.h
 //  ProjectBlocks
 //
 //  Created by Ian MacDonald on 16/12/2012.
 //  Copyright (c) 2012 Ian MacDonald. All rights reserved.
 //
 
-#import "TaskImage.h"
-#import "Task.h"
+#import <Foundation/Foundation.h>
 
-
-@implementation TaskImage
-
-@dynamic image;
-@dynamic task;
+@interface UIColorTransformer : NSValueTransformer
 
 @end

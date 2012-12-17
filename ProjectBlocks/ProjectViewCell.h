@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ColorPalette.h"
 
 @interface ProjectViewCell : UICollectionViewCell
 
 @property (strong, nonatomic) UILabel *projectTitle;
+@property (strong, nonatomic) ColorPalette *colorPalette;
+
 @end

@@ -39,12 +39,14 @@
 		8283B5FD166D710F00C0A830 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8283B5FC166D710F00C0A830 /* QuartzCore.framework */; };
 		8295C33016769489001FCCC3 /* ProjectViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8295C32F16769489001FCCC3 /* ProjectViewCell.m */; };
 		82D125481678BFF90073D5B9 /* TaskDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D125471678BFF90073D5B9 /* TaskDetailView.m */; };
-		82D125581678CC910073D5B9 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D125571678CC910073D5B9 /* Section.m */; };
-		82D1255B1678CC920073D5B9 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D1255A1678CC920073D5B9 /* Task.m */; };
-		82D1255E1678CC920073D5B9 /* TaskImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D1255D1678CC920073D5B9 /* TaskImage.m */; };
-		82D125611678CC920073D5B9 /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D125601678CC920073D5B9 /* Project.m */; };
 		82D1257216790DF10073D5B9 /* RotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D1256F16790BEE0073D5B9 /* RotationView.m */; };
 		82D1257316790DF60073D5B9 /* OneFingerRotationGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D1257116790BEE0073D5B9 /* OneFingerRotationGestureRecognizer.m */; };
+		82ED6076167E501400FC2B47 /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ED6075167E501400FC2B47 /* Project.m */; };
+		82ED6079167E501500FC2B47 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ED6078167E501500FC2B47 /* Section.m */; };
+		82ED607C167E501500FC2B47 /* ColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ED607B167E501500FC2B47 /* ColorPalette.m */; };
+		82ED607F167E501500FC2B47 /* TaskImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ED607E167E501500FC2B47 /* TaskImage.m */; };
+		82ED6082167E501500FC2B47 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ED6081167E501500FC2B47 /* Task.m */; };
+		82ED6085167E840B00FC2B47 /* UIColorTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ED6084167E840B00FC2B47 /* UIColorTransformer.m */; };
 		82F22CC6167E273C009ECC8F /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F22CC5167E273C009ECC8F /* CoreDataHelper.m */; };
 		82F22CCA167E3C48009ECC8F /* BackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F22CC9167E3C48009ECC8F /* BackgroundView.m */; };
 /* End PBXBuildFile section */
@@ -99,18 +101,22 @@
 		8295C32F16769489001FCCC3 /* ProjectViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectViewCell.m; sourceTree = "<group>"; };
 		82D125461678BFF90073D5B9 /* TaskDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDetailView.h; sourceTree = "<group>"; };
 		82D125471678BFF90073D5B9 /* TaskDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailView.m; sourceTree = "<group>"; };
-		82D125561678CC910073D5B9 /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
-		82D125571678CC910073D5B9 /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Section.m; sourceTree = "<group>"; };
-		82D125591678CC920073D5B9 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
-		82D1255A1678CC920073D5B9 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
-		82D1255C1678CC920073D5B9 /* TaskImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskImage.h; sourceTree = "<group>"; };
-		82D1255D1678CC920073D5B9 /* TaskImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskImage.m; sourceTree = "<group>"; };
-		82D1255F1678CC920073D5B9 /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Project.h; sourceTree = "<group>"; };
-		82D125601678CC920073D5B9 /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Project.m; sourceTree = "<group>"; };
 		82D1256E16790BED0073D5B9 /* RotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RotationView.h; sourceTree = "<group>"; };
 		82D1256F16790BEE0073D5B9 /* RotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RotationView.m; sourceTree = "<group>"; };
 		82D1257016790BEE0073D5B9 /* OneFingerRotationGestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneFingerRotationGestureRecognizer.h; sourceTree = "<group>"; };
 		82D1257116790BEE0073D5B9 /* OneFingerRotationGestureRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneFingerRotationGestureRecognizer.m; sourceTree = "<group>"; };
+		82ED6074167E501400FC2B47 /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Project.h; sourceTree = "<group>"; };
+		82ED6075167E501400FC2B47 /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Project.m; sourceTree = "<group>"; };
+		82ED6077167E501500FC2B47 /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
+		82ED6078167E501500FC2B47 /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Section.m; sourceTree = "<group>"; };
+		82ED607A167E501500FC2B47 /* ColorPalette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPalette.h; sourceTree = "<group>"; };
+		82ED607B167E501500FC2B47 /* ColorPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPalette.m; sourceTree = "<group>"; };
+		82ED607D167E501500FC2B47 /* TaskImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskImage.h; sourceTree = "<group>"; };
+		82ED607E167E501500FC2B47 /* TaskImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskImage.m; sourceTree = "<group>"; };
+		82ED6080167E501500FC2B47 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		82ED6081167E501500FC2B47 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		82ED6083167E840B00FC2B47 /* UIColorTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIColorTransformer.h; sourceTree = "<group>"; };
+		82ED6084167E840B00FC2B47 /* UIColorTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColorTransformer.m; sourceTree = "<group>"; };
 		82F22CC4167E273C009ECC8F /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
 		82F22CC5167E273C009ECC8F /* CoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
 		82F22CC8167E3C47009ECC8F /* BackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundView.h; sourceTree = "<group>"; };
@@ -182,13 +188,7 @@
 				8295C3131674F9B1001FCCC3 /* Project View Controller */,
 				8295C3141674F9BE001FCCC3 /* Task View Controller */,
 				8283B5AE166A368E00C0A830 /* MainStoryboard.storyboard */,
-				82275F09167CE3160000866B /* DismissingView.h */,
-				82275F0A167CE3160000866B /* DismissingView.m */,
 				8283B5BF166A36FD00C0A830 /* Model.xcdatamodeld */,
-				82F22CC4167E273C009ECC8F /* CoreDataHelper.h */,
-				82F22CC5167E273C009ECC8F /* CoreDataHelper.m */,
-				822C691F167762530065C9BF /* CoreDataCollectionViewController.h */,
-				822C6920167762530065C9BF /* CoreDataCollectionViewController.m */,
 				821A22F41677B28500CAA3EF /* Images */,
 				8283B5D5166B782300C0A830 /* Managed Objects */,
 				8283B59D166A368D00C0A830 /* Supporting Files */,
@@ -201,6 +201,16 @@
 			children = (
 				8283B5A5166A368D00C0A830 /* AppDelegate.h */,
 				8283B5A6166A368D00C0A830 /* AppDelegate.m */,
+				82ED6083167E840B00FC2B47 /* UIColorTransformer.h */,
+				82ED6084167E840B00FC2B47 /* UIColorTransformer.m */,
+				82F22CC4167E273C009ECC8F /* CoreDataHelper.h */,
+				82F22CC5167E273C009ECC8F /* CoreDataHelper.m */,
+				82275F09167CE3160000866B /* DismissingView.h */,
+				82275F0A167CE3160000866B /* DismissingView.m */,
+				82F22CC8167E3C47009ECC8F /* BackgroundView.h */,
+				82F22CC9167E3C48009ECC8F /* BackgroundView.m */,
+				822C691F167762530065C9BF /* CoreDataCollectionViewController.h */,
+				822C6920167762530065C9BF /* CoreDataCollectionViewController.m */,
 				8283B59E166A368D00C0A830 /* ProjectBlocks-Info.plist */,
 				8283B59F166A368D00C0A830 /* InfoPlist.strings */,
 				8283B5A2166A368D00C0A830 /* main.m */,
@@ -216,14 +226,16 @@
 		8283B5D5166B782300C0A830 /* Managed Objects */ = {
 			isa = PBXGroup;
 			children = (
-				82D1255F1678CC920073D5B9 /* Project.h */,
-				82D125601678CC920073D5B9 /* Project.m */,
-				82D1255C1678CC920073D5B9 /* TaskImage.h */,
-				82D1255D1678CC920073D5B9 /* TaskImage.m */,
-				82D125591678CC920073D5B9 /* Task.h */,
-				82D1255A1678CC920073D5B9 /* Task.m */,
-				82D125561678CC910073D5B9 /* Section.h */,
-				82D125571678CC910073D5B9 /* Section.m */,
+				82ED6080167E501500FC2B47 /* Task.h */,
+				82ED6081167E501500FC2B47 /* Task.m */,
+				82ED607D167E501500FC2B47 /* TaskImage.h */,
+				82ED607E167E501500FC2B47 /* TaskImage.m */,
+				82ED607A167E501500FC2B47 /* ColorPalette.h */,
+				82ED607B167E501500FC2B47 /* ColorPalette.m */,
+				82ED6077167E501500FC2B47 /* Section.h */,
+				82ED6078167E501500FC2B47 /* Section.m */,
+				82ED6074167E501400FC2B47 /* Project.h */,
+				82ED6075167E501400FC2B47 /* Project.m */,
 			);
 			name = "Managed Objects";
 			path = ..;
@@ -253,8 +265,6 @@
 				8283B5DF166BA18300C0A830 /* ProjectPopOverViewController.m */,
 				821A22F91677E2B000CAA3EF /* ProjectsViewLayout.h */,
 				821A22FA1677E2B000CAA3EF /* ProjectsViewLayout.m */,
-				82F22CC8167E3C47009ECC8F /* BackgroundView.h */,
-				82F22CC9167E3C48009ECC8F /* BackgroundView.m */,
 			);
 			name = "Project View Controller";
 			sourceTree = "<group>";
@@ -365,15 +375,17 @@
 				822C6925167764410065C9BF /* CoreDataCollectionViewController.m in Sources */,
 				821A22FB1677E2B100CAA3EF /* ProjectsViewLayout.m in Sources */,
 				82D125481678BFF90073D5B9 /* TaskDetailView.m in Sources */,
-				82D125581678CC910073D5B9 /* Section.m in Sources */,
-				82D1255B1678CC920073D5B9 /* Task.m in Sources */,
-				82D1255E1678CC920073D5B9 /* TaskImage.m in Sources */,
-				82D125611678CC920073D5B9 /* Project.m in Sources */,
 				82D1257216790DF10073D5B9 /* RotationView.m in Sources */,
 				82D1257316790DF60073D5B9 /* OneFingerRotationGestureRecognizer.m in Sources */,
 				82275F0B167CE3160000866B /* DismissingView.m in Sources */,
 				82F22CC6167E273C009ECC8F /* CoreDataHelper.m in Sources */,
 				82F22CCA167E3C48009ECC8F /* BackgroundView.m in Sources */,
+				82ED6076167E501400FC2B47 /* Project.m in Sources */,
+				82ED6079167E501500FC2B47 /* Section.m in Sources */,
+				82ED607C167E501500FC2B47 /* ColorPalette.m in Sources */,
+				82ED607F167E501500FC2B47 /* TaskImage.m in Sources */,
+				82ED6082167E501500FC2B47 /* Task.m in Sources */,
+				82ED6085167E840B00FC2B47 /* UIColorTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

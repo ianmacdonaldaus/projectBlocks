@@ -2,7 +2,7 @@
 //  Task.m
 //  ProjectBlocks
 //
-//  Created by Ian MacDonald on 12/12/2012.
+//  Created by Ian MacDonald on 16/12/2012.
 //  Copyright (c) 2012 Ian MacDonald. All rights reserved.
 //
 
@@ -16,12 +16,12 @@
 
 @dynamic completed;
 @dynamic duration;
+@dynamic durationMinutes;
 @dynamic index;
 @dynamic sequential;
 @dynamic timeToFinish;
 @dynamic title;
 @dynamic titleDetail;
-@dynamic durationMinutes;
 @dynamic project;
 @dynamic section;
 @dynamic taskImage;

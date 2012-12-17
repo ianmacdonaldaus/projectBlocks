@@ -9,10 +9,12 @@
 #import "ProjectsMasterViewController.h"
 #import "ProjectPopOverViewController.h"
 #import "Project.h"
+#import "Section.h"
 #import "ProjectsViewLayout.h"
 #import "TasksViewController.h"
 #import "ProjectViewCell.h"
 #import "BackgroundView.h"
+#import "CoreDataHelper.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface ProjectsMasterViewController ()
@@ -78,14 +80,6 @@
 
 }
 
-
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    
-}
-
--(void)viewWillLayoutSubviews {
-}
-
 -(void) popoverDone:(id)sender {
     NSLog(@"popover done");
 }
@@ -104,34 +98,31 @@
 -(void)addProject {
     Project* project = [NSEntityDescription insertNewObjectForEntityForName:@"Project" inManagedObjectContext:_managedObjectContext];
     project.name = @"New Project";
+    int index = [[self.fetchedResultsController fetchedObjects] count];
+ 
+    project.index = [NSNumber numberWithInt:index];
+    if (index >= [CoreDataHelper countForEntity:@"ColorPalette" andContext:self.managedObjectContext]) {
+        index = 0;
+    }
+    ColorPalette *colorPalette = [[CoreDataHelper getObjectsForEntity:@"ColorPalette" withSortKey:@"index" andSortAscending:YES andContext:self.managedObjectContext] objectAtIndex:index];
+    project.colorPalette = colorPalette;
+    
+    for (int i = 0; i < 5; i++) {
+        Section *section = [NSEntityDescription insertNewObjectForEntityForName:@"Section" inManagedObjectContext:self.managedObjectContext];
+        section.i
+    }
+    
     [_managedObjectContext save:nil];
     [self.collectionView reloadData];
 }
 
 - (void)configureCell:(ProjectViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     Project *project = [_fetchedResultsController objectAtIndexPath:indexPath];
-    
     cell.projectTitle.text = project.name;
-    
-
-    UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
-    containerView.layer.cornerRadius = 15;
-    containerView.clipsToBounds = YES;
-//    [cell addSubview:containerView];
-    
-    UIView *colourView = [[UIView alloc] initWithFrame:CGRectMake(0, 50, cell.frame.size.width, cell.frame.size.height - 50)];
-    colourView.backgroundColor = [UIColor colorWithHue:(0.08 * indexPath.row) saturation:0.8 brightness:0.9 alpha:1.0];
-    
-    cell.layer.shadowOpacity = 0.3;
-    cell.layer.shadowRadius = 10;
-    cell.layer.shadowOffset = CGSizeMake(7, 7);
-    cell.layer.shadowColor = [[UIColor blackColor] CGColor];
-    cell.layer.shouldRasterize = YES;
-    cell.layer.rasterizationScale = [[UIScreen mainScreen] scale];
-    
-    //[containerView addSubview:colourView];
-    
-    cell.clipsToBounds = NO;
+    [CATransaction begin];
+    [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+    cell.colorPalette = project.colorPalette;
+    [CATransaction commit];
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -168,7 +159,7 @@
     //[fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"index" ascending:YES];
     NSArray *sortDescriptors = @[sortDescriptor];
     
     [fetchRequest setSortDescriptors:sortDescriptors];

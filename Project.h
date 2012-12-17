@@ -2,19 +2,21 @@
 //  Project.h
 //  ProjectBlocks
 //
-//  Created by Ian MacDonald on 12/12/2012.
+//  Created by Ian MacDonald on 16/12/2012.
 //  Copyright (c) 2012 Ian MacDonald. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Task;
+@class ColorPalette, Task;
 
 @interface Project : NSManagedObject
 
+@property (nonatomic, retain) NSNumber * index;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSData * thumbnail;
+@property (nonatomic, retain) ColorPalette *colorPalette;
 @property (nonatomic, retain) NSSet *task;
 @end
 

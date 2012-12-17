@@ -1,22 +1,23 @@
 //
-//  Project.m
+//  ColorPalette.m
 //  ProjectBlocks
 //
 //  Created by Ian MacDonald on 16/12/2012.
 //  Copyright (c) 2012 Ian MacDonald. All rights reserved.
 //
 
-#import "Project.h"
 #import "ColorPalette.h"
-#import "Task.h"
+#import "Project.h"
 
 
-@implementation Project
+@implementation ColorPalette
 
+@dynamic color1;
+@dynamic color2;
+@dynamic color3;
+@dynamic color4;
+@dynamic color5;
 @dynamic index;
-@dynamic name;
-@dynamic thumbnail;
-@dynamic colorPalette;
-@dynamic task;
+@dynamic project;
 
 @end
