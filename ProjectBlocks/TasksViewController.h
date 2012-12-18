@@ -10,6 +10,8 @@
 #import "TasksViewLayout.h"
 #import "CoreDataCollectionViewController.h"
 #import "Project.h"
+#import "ColorPalette.h"
+
 
 @interface TasksViewController : CoreDataCollectionViewController <CollectionViewDelegateTaskViewLayout, UIScrollViewDelegate, NSFetchedResultsControllerDelegate, UICollectionViewDelegate> {
 
@@ -20,6 +22,7 @@
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) Project* project;
+@property (strong, nonatomic) ColorPalette* colorPalette;
 @property (nonatomic, assign) NSInteger cellCount;
 
 @end

@@ -11,15 +11,14 @@
 #import "TaskViewCell.h"
 #import "TaskDetailView.h"
 #import "Task.h"
-#import "Section.h"
 #import "RotationView.h"
 #import "OneFingerRotationGestureRecognizer.h"
 #import "BackgroundView.h"
-#import "ColorPalette.h"
+#import "CoreDataHelper.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define MINSCALE 1
-#define MAXSCALE 5
+#define MAXSCALE 10
 
 @interface TasksViewController ()
 
@@ -37,11 +36,13 @@
     
     Task* selectedTask;
 
+
 }
 
 @synthesize fetchedResultsController = _fetchedResultsController;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize project = _project;
+@synthesize colorPalette = _colorPalette;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -126,19 +127,6 @@
 
 }
 
--(void)loadStartupData {
-//    arrayOfSections = [NSMutableArray array];
-    for (int s=0; s<3; s++) {
-        NSMutableArray *tempArray = [NSMutableArray array];
-        for (int i = 0; i < 10; i++) {
-            float randomWidth = 10.0f + 100.0f * (float)random()/RAND_MAX;
-            NSNumber* number = [NSNumber numberWithFloat:randomWidth];
-            [tempArray addObject:number];
-        }
-  //      [arrayOfSections addObject:tempArray];
-    }
-}
-
 -(void)handleBackButton {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -155,11 +143,15 @@
     float durationMinutes = [task.durationMinutes floatValue] - (durationHours * 60);
     NSString *duration = [NSString stringWithFormat:@" %1.0fh %1.0fm",durationHours, durationMinutes];
     cell.durationLabel.text = duration;
+    
+    //Add color Palette
+    UIColor *defaultColor = self.colorPalette.color1;
+    cell.contentView.backgroundColor = defaultColor;
     float steps = [[self.fetchedResultsController fetchedObjects] count];
     float hue = 0.1 - (0.1 / steps) * indexPath.row;
     float saturation = 1.0 + (0.1 / steps ) * indexPath.row;
     float brightness = 1.0 + (0.6 / steps ) * indexPath.row;
-    cell.contentView.backgroundColor = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1.0];
+    //cell.contentView.backgroundColor = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1.0];
     
     return cell;
 }
@@ -188,8 +180,8 @@
 - (void)handleSingleTap:(UITapGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateEnded)
     {
-        CGPoint initialPinchPoint = [sender locationInView:self.collectionView];
-        NSIndexPath* tappedCellPath = [self.collectionView indexPathForItemAtPoint:initialPinchPoint];
+        CGPoint initialTapPoint = [sender locationInView:self.collectionView];
+        NSIndexPath* tappedCellPath = [self.collectionView indexPathForItemAtPoint:initialTapPoint];
         selectedTask = [self.fetchedResultsController objectAtIndexPath:tappedCellPath];
         //selectedTask.title = @"I've been clicked";
         [self.collectionView reloadData];
@@ -211,11 +203,6 @@
                 }
     }
 }
-
-/* Code for delete object
- Task* task = [self.fetchedResultsController objectAtIndexPath:tappedCellPath];
- [self.managedObjectContext deleteObject:task];
-*/
 
 -(void)handlePinchGesture:(UIPinchGestureRecognizer *)sender {
     
@@ -319,6 +306,13 @@
     float randomNumber = (float)random()/RAND_MAX;
     task.sequential = randomNumber > 0.7 ? [NSNumber numberWithBool:NO] : [NSNumber numberWithBool:YES];
     
+    if (randomNumber < 0.5) {
+        task.section = [NSNumber numberWithInt:0];
+    } else if (randomNumber < 0.8) {
+        task.section = [NSNumber numberWithInt:1];
+    } else if (randomNumber < 2.0 ) {
+    task.section = [NSNumber numberWithInt:2];
+    }
 
     //Set title
     task.title = _project.name;
@@ -326,6 +320,7 @@
     //Set index
     task.index = [NSNumber numberWithInteger:[[self.fetchedResultsController fetchedObjects] count]];
 
+//    [self.collectionView reloadData];
 }
 
 #pragma mark -

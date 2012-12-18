@@ -46,7 +46,6 @@
     
     _gradientLayer = [CAGradientLayer layer];
     _gradientLayer.frame = self.view.frame;
-    NSLog(@"%@",NSStringFromCGRect( _gradientLayer.bounds));
     _gradientLayer.colors = @[(id)[[UIColor colorWithWhite:1.0f alpha:0.4f] CGColor],
     (id)[[UIColor colorWithWhite:1.0f alpha:0.2f] CGColor],
     (id)[[UIColor clearColor] CGColor],
@@ -58,7 +57,13 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.view.superview.bounds = CGRectMake(200, 0, 420, 300);
+//    CGRect frame = self.view.superview.bounds;
+//    frame.origin.x += 400;
+//    frame.origin.y -= 20;
+//    frame.size.width = 420;
+//    frame.size.height = 300;
+//    self.view.superview.bounds = frame;
+        self.view.superview.bounds = CGRectMake(0, 0, 420, 300);
 
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     DismissingView *dismiss = [[DismissingView alloc] initWithFrame:window.frame target:self selector:@selector(dismissView:)];

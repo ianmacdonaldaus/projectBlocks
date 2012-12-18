@@ -9,7 +9,6 @@
 #import "ProjectsMasterViewController.h"
 #import "ProjectPopOverViewController.h"
 #import "Project.h"
-#import "Section.h"
 #import "ProjectsViewLayout.h"
 #import "TasksViewController.h"
 #import "ProjectViewCell.h"
@@ -106,12 +105,7 @@
     }
     ColorPalette *colorPalette = [[CoreDataHelper getObjectsForEntity:@"ColorPalette" withSortKey:@"index" andSortAscending:YES andContext:self.managedObjectContext] objectAtIndex:index];
     project.colorPalette = colorPalette;
-    
-    for (int i = 0; i < 5; i++) {
-        Section *section = [NSEntityDescription insertNewObjectForEntityForName:@"Section" inManagedObjectContext:self.managedObjectContext];
-        section.i
-    }
-    
+        
     [_managedObjectContext save:nil];
     [self.collectionView reloadData];
 }
@@ -204,8 +198,13 @@
     if ([segue.identifier isEqualToString:@"taskViewSegue"] ) {
         TasksViewController *tasksViewController = (TasksViewController *)[segue destinationViewController];
         tasksViewController.managedObjectContext = self.managedObjectContext;
+        
         NSIndexPath *index = [self.collectionView indexPathForCell:sender];
-        tasksViewController.project = (Project *)[_fetchedResultsController objectAtIndexPath:index];
+        
+        Project *project = (Project *)[_fetchedResultsController objectAtIndexPath:index];
+
+        tasksViewController.project = project;
+        tasksViewController.colorPalette = project.colorPalette;
         
     }
 }

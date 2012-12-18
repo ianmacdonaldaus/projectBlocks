@@ -25,20 +25,24 @@
     UIColorTransformer *transformer = [[UIColorTransformer alloc] init];
     [UIColorTransformer setValueTransformer:transformer forName:(NSString *)@"UIColorTransformerName"];
     
+    
+    //Check for and load if necessary default color palettes
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"ColorPalette"];
     if (![self.managedObjectContext countForFetchRequest:request error:nil]> 0 ) {
         [self loadDefaultColorPalettes];
     }
     NSLog(@"number of ColorPalettes %i",[self.managedObjectContext countForFetchRequest:request error:nil]);
 
+    
+    //Check for and load if necessary default Projects
     request = [[NSFetchRequest alloc] initWithEntityName:@"Project"];
     if (![self.managedObjectContext countForFetchRequest:request error:nil]> 0 ) {
         [self loadDefaultProjects];
     }
     NSLog(@"number of Projects %i",[self.managedObjectContext countForFetchRequest:request error:nil]);
-    
-    
-    
+
+
+    //Set view controller
     ProjectsViewController *controller = (ProjectsViewController *)self.window.rootViewController;
     controller.managedObjectContext = self.managedObjectContext;
 

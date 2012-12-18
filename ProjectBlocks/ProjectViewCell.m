@@ -77,18 +77,15 @@
     return self;
 }
 
--(void)setColorPalette:(ColorPalette *)colorPalette{
-    NSLog(@" access palette: %@",colorPalette.index);
-    NSLog(@"%@", colorPalette);
-    
-    int i = 0;
+-(void)setColorPalette:(ColorPalette *)colorPalette{    
+    int i = 4;
     for (CALayer *layer in self.contentView.layer.sublayers) {
         NSString *string = [NSString stringWithFormat:@"color%i",i+1];
         SEL s = NSSelectorFromString(string);
         if ([colorPalette respondsToSelector:s]) {
             layer.backgroundColor = [[colorPalette performSelector:s] CGColor];
         }
-        i += 1;
+        i -= 1;
 
     }
     

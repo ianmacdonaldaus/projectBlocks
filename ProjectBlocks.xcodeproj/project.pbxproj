@@ -17,6 +17,10 @@
 		822C6924167763800065C9BF /* ProjectsMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 822C6923167763800065C9BF /* ProjectsMasterViewController.m */; };
 		822C6925167764410065C9BF /* CoreDataCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 822C6920167762530065C9BF /* CoreDataCollectionViewController.m */; };
 		822C692F167778E80065C9BF /* subtle-pattern-7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 822C692E167778E80065C9BF /* subtle-pattern-7.jpg */; };
+		8260411816805F5E00CED610 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 8260411716805F5D00CED610 /* Task.m */; };
+		8260411B16805F6500CED610 /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 8260411A16805F6200CED610 /* Project.m */; };
+		8260411E16805F7100CED610 /* ColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 8260411D16805F6B00CED610 /* ColorPalette.m */; };
+		8260412116805F8800CED610 /* TaskImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8260412016805F7E00CED610 /* TaskImage.m */; };
 		8283B595166A368D00C0A830 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8283B594166A368D00C0A830 /* UIKit.framework */; };
 		8283B597166A368D00C0A830 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8283B596166A368D00C0A830 /* Foundation.framework */; };
 		8283B599166A368D00C0A830 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8283B598166A368D00C0A830 /* CoreGraphics.framework */; };
@@ -41,11 +45,6 @@
 		82D125481678BFF90073D5B9 /* TaskDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D125471678BFF90073D5B9 /* TaskDetailView.m */; };
 		82D1257216790DF10073D5B9 /* RotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D1256F16790BEE0073D5B9 /* RotationView.m */; };
 		82D1257316790DF60073D5B9 /* OneFingerRotationGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D1257116790BEE0073D5B9 /* OneFingerRotationGestureRecognizer.m */; };
-		82ED6076167E501400FC2B47 /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ED6075167E501400FC2B47 /* Project.m */; };
-		82ED6079167E501500FC2B47 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ED6078167E501500FC2B47 /* Section.m */; };
-		82ED607C167E501500FC2B47 /* ColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ED607B167E501500FC2B47 /* ColorPalette.m */; };
-		82ED607F167E501500FC2B47 /* TaskImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ED607E167E501500FC2B47 /* TaskImage.m */; };
-		82ED6082167E501500FC2B47 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ED6081167E501500FC2B47 /* Task.m */; };
 		82ED6085167E840B00FC2B47 /* UIColorTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ED6084167E840B00FC2B47 /* UIColorTransformer.m */; };
 		82F22CC6167E273C009ECC8F /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F22CC5167E273C009ECC8F /* CoreDataHelper.m */; };
 		82F22CCA167E3C48009ECC8F /* BackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F22CC9167E3C48009ECC8F /* BackgroundView.m */; };
@@ -66,6 +65,14 @@
 		822C6922167763800065C9BF /* ProjectsMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsMasterViewController.h; sourceTree = "<group>"; };
 		822C6923167763800065C9BF /* ProjectsMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsMasterViewController.m; sourceTree = "<group>"; };
 		822C692E167778E80065C9BF /* subtle-pattern-7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "subtle-pattern-7.jpg"; path = "ProjectBlocks/subtle-pattern-7.jpg"; sourceTree = "<group>"; };
+		8260411616805F5C00CED610 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Task.h; path = ProjectBlocks/Task.h; sourceTree = "<group>"; };
+		8260411716805F5D00CED610 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Task.m; path = ProjectBlocks/Task.m; sourceTree = "<group>"; };
+		8260411916805F5F00CED610 /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Project.h; path = ProjectBlocks/Project.h; sourceTree = "<group>"; };
+		8260411A16805F6200CED610 /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Project.m; path = ProjectBlocks/Project.m; sourceTree = "<group>"; };
+		8260411C16805F6600CED610 /* ColorPalette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorPalette.h; path = ProjectBlocks/ColorPalette.h; sourceTree = "<group>"; };
+		8260411D16805F6B00CED610 /* ColorPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColorPalette.m; path = ProjectBlocks/ColorPalette.m; sourceTree = "<group>"; };
+		8260411F16805F7500CED610 /* TaskImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskImage.h; path = ProjectBlocks/TaskImage.h; sourceTree = "<group>"; };
+		8260412016805F7E00CED610 /* TaskImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskImage.m; path = ProjectBlocks/TaskImage.m; sourceTree = "<group>"; };
 		8283B590166A368D00C0A830 /* ProjectBlocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectBlocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8283B594166A368D00C0A830 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8283B596166A368D00C0A830 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -105,16 +112,6 @@
 		82D1256F16790BEE0073D5B9 /* RotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RotationView.m; sourceTree = "<group>"; };
 		82D1257016790BEE0073D5B9 /* OneFingerRotationGestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneFingerRotationGestureRecognizer.h; sourceTree = "<group>"; };
 		82D1257116790BEE0073D5B9 /* OneFingerRotationGestureRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneFingerRotationGestureRecognizer.m; sourceTree = "<group>"; };
-		82ED6074167E501400FC2B47 /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Project.h; sourceTree = "<group>"; };
-		82ED6075167E501400FC2B47 /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Project.m; sourceTree = "<group>"; };
-		82ED6077167E501500FC2B47 /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
-		82ED6078167E501500FC2B47 /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Section.m; sourceTree = "<group>"; };
-		82ED607A167E501500FC2B47 /* ColorPalette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPalette.h; sourceTree = "<group>"; };
-		82ED607B167E501500FC2B47 /* ColorPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPalette.m; sourceTree = "<group>"; };
-		82ED607D167E501500FC2B47 /* TaskImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskImage.h; sourceTree = "<group>"; };
-		82ED607E167E501500FC2B47 /* TaskImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskImage.m; sourceTree = "<group>"; };
-		82ED6080167E501500FC2B47 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
-		82ED6081167E501500FC2B47 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		82ED6083167E840B00FC2B47 /* UIColorTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIColorTransformer.h; sourceTree = "<group>"; };
 		82ED6084167E840B00FC2B47 /* UIColorTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColorTransformer.m; sourceTree = "<group>"; };
 		82F22CC4167E273C009ECC8F /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
@@ -226,16 +223,14 @@
 		8283B5D5166B782300C0A830 /* Managed Objects */ = {
 			isa = PBXGroup;
 			children = (
-				82ED6080167E501500FC2B47 /* Task.h */,
-				82ED6081167E501500FC2B47 /* Task.m */,
-				82ED607D167E501500FC2B47 /* TaskImage.h */,
-				82ED607E167E501500FC2B47 /* TaskImage.m */,
-				82ED607A167E501500FC2B47 /* ColorPalette.h */,
-				82ED607B167E501500FC2B47 /* ColorPalette.m */,
-				82ED6077167E501500FC2B47 /* Section.h */,
-				82ED6078167E501500FC2B47 /* Section.m */,
-				82ED6074167E501400FC2B47 /* Project.h */,
-				82ED6075167E501400FC2B47 /* Project.m */,
+				8260411F16805F7500CED610 /* TaskImage.h */,
+				8260412016805F7E00CED610 /* TaskImage.m */,
+				8260411C16805F6600CED610 /* ColorPalette.h */,
+				8260411D16805F6B00CED610 /* ColorPalette.m */,
+				8260411916805F5F00CED610 /* Project.h */,
+				8260411A16805F6200CED610 /* Project.m */,
+				8260411616805F5C00CED610 /* Task.h */,
+				8260411716805F5D00CED610 /* Task.m */,
 			);
 			name = "Managed Objects";
 			path = ..;
@@ -380,12 +375,11 @@
 				82275F0B167CE3160000866B /* DismissingView.m in Sources */,
 				82F22CC6167E273C009ECC8F /* CoreDataHelper.m in Sources */,
 				82F22CCA167E3C48009ECC8F /* BackgroundView.m in Sources */,
-				82ED6076167E501400FC2B47 /* Project.m in Sources */,
-				82ED6079167E501500FC2B47 /* Section.m in Sources */,
-				82ED607C167E501500FC2B47 /* ColorPalette.m in Sources */,
-				82ED607F167E501500FC2B47 /* TaskImage.m in Sources */,
-				82ED6082167E501500FC2B47 /* Task.m in Sources */,
 				82ED6085167E840B00FC2B47 /* UIColorTransformer.m in Sources */,
+				8260411816805F5E00CED610 /* Task.m in Sources */,
+				8260411B16805F6500CED610 /* Project.m in Sources */,
+				8260411E16805F7100CED610 /* ColorPalette.m in Sources */,
+				8260412116805F8800CED610 /* TaskImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -40,6 +40,7 @@ static NSString *CellIdentifier = @"CollectionViewCell";
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
+    NSLog(@"CV - number of sections: %i",[[self.fetchedResultsController sections] count] );
     return [[self.fetchedResultsController sections] count];
 }
 
@@ -47,6 +48,7 @@ static NSString *CellIdentifier = @"CollectionViewCell";
 {
     
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+    NSLog(@"CV - number of items in section: %i",[sectionInfo numberOfObjects]);
     return [sectionInfo numberOfObjects];
 }
 
