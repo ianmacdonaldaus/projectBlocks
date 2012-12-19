@@ -147,7 +147,12 @@
     
     NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES]];
     NSArray *sortedColors = [[self.colorPalette.colors allObjects] sortedArrayUsingDescriptors:sortDescriptors];
-    Colors *colors = [sortedColors objectAtIndex:indexPath.section];
+    
+    float colorIndex = indexPath.section;
+    if (colorIndex > 4) {
+        colorIndex =  ( (colorIndex) / 5 - floorf((colorIndex)/5) ) * 5;
+    }
+    Colors *colors = [sortedColors objectAtIndex:colorIndex];
     UIColor *color = colors.color;
     float hue;
     float saturation;
@@ -169,16 +174,14 @@
         cell.durationLabel.textColor = [UIColor blackColor];
         }
     }
-    
-    //float steps = [[self.fetchedResultsController fetchedObjects] ];
+   
     float countOfItems = [self.collectionView numberOfItemsInSection:indexPath.section];
+    
     float differenceToLastItem = countOfItems - (indexPath.row + 1);
     float proportionToLastItem = differenceToLastItem / countOfItems;
     brightness = brightness - (0.4 * proportionToLastItem);
     cell.contentView.backgroundColor = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1.0];
-    NSLog(@"hue: %f saturation: %f brightness %f",hue,saturation,brightness);
-    
-    
+        
     return cell;
 }
 
@@ -210,7 +213,7 @@
         NSIndexPath* tappedCellPath = [self.collectionView indexPathForItemAtPoint:initialTapPoint];
         selectedTask = [self.fetchedResultsController objectAtIndexPath:tappedCellPath];
         //selectedTask.title = @"I've been clicked";
-        [self.collectionView reloadData];
+        //[self.collectionView reloadData];
     }
 }
 
@@ -292,7 +295,7 @@
     [CATransaction begin];
     [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
         selectedTask.durationMinutes = [NSNumber numberWithFloat:newDurationLength];
-        [self.collectionView reloadData];
+       // [self.collectionView reloadData];
     [CATransaction commit];
     
     //_rotationText.text = [NSString stringWithFormat:@"%f",_selectedCell.bounds.size.width];
@@ -331,8 +334,12 @@
     //Set sequential boolean
     float randomNumber = (float)random()/RAND_MAX;
     task.sequential = randomNumber > 0.7 ? [NSNumber numberWithBool:NO] : [NSNumber numberWithBool:YES];
+    float sectionIndex = floorf(randomNumber * 5);
+    task.section = [NSNumber numberWithFloat:sectionIndex];
+
     
-    if (randomNumber < 0.3) {
+    
+    /*    if (randomNumber < 0.3) {
         task.section = [NSNumber numberWithInt:0];
     } else if (randomNumber < 0.5) {
         task.section = [NSNumber numberWithInt:1];
@@ -341,7 +348,8 @@
     } else if  (randomNumber < 1.1) {
         task.section = [NSNumber numberWithInt:3];
     }
-
+*/
+    
     //Set title
     task.title = _project.name;
     
@@ -349,6 +357,11 @@
     task.index = [NSNumber numberWithInteger:[[self.fetchedResultsController fetchedObjects] count]];
 
 //    [self.collectionView reloadData];
+    [self.managedObjectContext save:nil];
+    [self.fetchedResultsController performFetch:nil];
+    [self.collectionView reloadData];
+    
+
 }
 
 #pragma mark -
@@ -377,7 +390,7 @@
     //[fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"index" ascending:YES];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"section" ascending:YES];
     NSArray *sortDescriptors = @[sortDescriptor];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -387,8 +400,8 @@
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-    aFetchedResultsController.delegate = self;
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"section" cacheName:nil];
+    aFetchedResultsController.delegate = nil;
     self.fetchedResultsController = aFetchedResultsController;
     
 	NSError *error = nil;

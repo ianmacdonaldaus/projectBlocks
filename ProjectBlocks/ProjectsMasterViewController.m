@@ -7,7 +7,6 @@
 //
 
 #import "ProjectsMasterViewController.h"
-#import "ProjectPopOverViewController.h"
 #import "ProjectEditModalView.h"
 #import "Project.h"
 #import "ProjectsViewLayout.h"
@@ -22,7 +21,6 @@
 @end
 
 @implementation ProjectsMasterViewController {
-    ProjectPopOverViewController* popOver;
 }
 
 @synthesize fetchedResultsController = _fetchedResultsController;
@@ -47,6 +45,15 @@
     self.collectionView.decelerationRate = UIScrollViewDecelerationRateFast;
     
     // Buttons
+/*    UILabel *addButtonTextField = [[UILabel alloc] initWithFrame:CGRectMake(50, 10, 50, 50)];
+    addButtonTextField.text = @"+";
+    addButtonTextField.font = [UIFont fontWithName:@"GillSans-Bold" size:100];
+    addButtonTextField.textColor = [UIColor lightGrayColor];
+    addButtonTextField.backgroundColor = [UIColor whiteColor];
+    addButtonTextField.layer.cornerRadius = 25;
+    [self.view addSubview:addButtonTextField];
+ */
+    
     UIButton *addButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 10, 32, 32)];
     [addButton setImage:[UIImage imageNamed:@"add_32x32b.png"] forState:UIControlStateNormal];
     [addButton setImage:[UIImage imageNamed:@"add_32x32.png"] forState:UIControlStateHighlighted];
@@ -58,14 +65,8 @@
     layout.itemSize = CGSizeMake(200, 200);
     layout.minimumInteritemSpacing = 0;
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    popOver = [[ProjectPopOverViewController alloc] initWithCollectionViewLayout:layout];
-    popOver.managedObjectContext = self.managedObjectContext;
-    
-    
-    //_detailPopOver = [[UIPopoverController alloc] initWithContentViewController:popOver];
-    //_detailPopOver.popoverContentSize = CGSizeMake(240.0, 300.0);
-	//_detailPopOver.delegate = self;
-	
+
+	// Initialise fetchedResultsController
     NSError *error = nil;
     
     if (![[self fetchedResultsController] performFetch:&error])
@@ -76,9 +77,6 @@
 
 }
 
--(void) popoverDone:(id)sender {
-    NSLog(@"popover done");
-}
 
 -(void)handleProjectInfoButton:(id)sender {
     UIButton *button = sender;
@@ -96,11 +94,9 @@
     
     [self.view addSubview:view];
     
-    [UIView animateWithDuration:0.2 animations:^{
+    [UIView animateWithDuration:0.25 animations:^{
         [view.layer setOpacity:1.0];
-    } completion:^(BOOL finished) {
-        NSLog(@"bark");
-    }];
+    } completion:^(BOOL finished) { nil; }];
     
 }
 

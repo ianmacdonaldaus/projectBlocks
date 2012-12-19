@@ -2,7 +2,7 @@
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1810" systemVersion="12C60" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="ColorPalette" representedClassName="ColorPalette" syncable="YES">
         <attribute name="index" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <relationship name="colors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Colors" inverseName="colorPalette" inverseEntity="Colors" syncable="YES"/>
+        <relationship name="colors" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Colors" inverseName="colorPalette" inverseEntity="Colors" syncable="YES"/>
         <relationship name="project" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Project" inverseName="colorPalette" inverseEntity="Project" syncable="YES"/>
     </entity>
     <entity name="Colors" representedClassName="Colors" syncable="YES">

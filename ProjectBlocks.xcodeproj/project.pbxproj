@@ -215,6 +215,8 @@
 				82275F0A167CE3160000866B /* DismissingView.m */,
 				82F22CC8167E3C47009ECC8F /* BackgroundView.h */,
 				82F22CC9167E3C48009ECC8F /* BackgroundView.m */,
+				8228D6AC1680DFD30016020C /* ModalView.h */,
+				8228D6AD1680DFD30016020C /* ModalView.m */,
 				822C691F167762530065C9BF /* CoreDataCollectionViewController.h */,
 				822C6920167762530065C9BF /* CoreDataCollectionViewController.m */,
 				8283B59E166A368D00C0A830 /* ProjectBlocks-Info.plist */,
@@ -250,6 +252,8 @@
 		8295C3121674F4E6001FCCC3 /* OLD FILES */ = {
 			isa = PBXGroup;
 			children = (
+				8283B5DE166BA18300C0A830 /* ProjectPopOverViewController.h */,
+				8283B5DF166BA18300C0A830 /* ProjectPopOverViewController.m */,
 				8283B5C2166A4E6A00C0A830 /* ProjectsViewController.h */,
 				8283B5C3166A4E6A00C0A830 /* ProjectsViewController.m */,
 				8283B5B4166A368E00C0A830 /* MasterViewController.h */,
@@ -267,12 +271,8 @@
 				822C6923167763800065C9BF /* ProjectsMasterViewController.m */,
 				8295C32E16769489001FCCC3 /* ProjectViewCell.h */,
 				8295C32F16769489001FCCC3 /* ProjectViewCell.m */,
-				8283B5DE166BA18300C0A830 /* ProjectPopOverViewController.h */,
-				8283B5DF166BA18300C0A830 /* ProjectPopOverViewController.m */,
 				8228D6A91680C9FE0016020C /* ProjectEditModalView.h */,
 				8228D6AA1680C9FE0016020C /* ProjectEditModalView.m */,
-				8228D6AC1680DFD30016020C /* ModalView.h */,
-				8228D6AD1680DFD30016020C /* ModalView.m */,
 				821A22F91677E2B000CAA3EF /* ProjectsViewLayout.h */,
 				821A22FA1677E2B000CAA3EF /* ProjectsViewLayout.m */,
 			);

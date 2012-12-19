@@ -67,7 +67,7 @@ static float cornerRadius = 15;
     myAnimation.
     [self.layer addAnimation:myAnimation forKey:@"myAnimation"];
     */
-    [UIView animateWithDuration:0.2 animations:^{
+    [UIView animateWithDuration:0.25 animations:^{
         [self.layer setOpacity:0.0];
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
