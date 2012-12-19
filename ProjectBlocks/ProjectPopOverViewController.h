@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoreDataCollectionViewController.h"
 #import "Project.h"
 
-@interface ProjectPopOverViewController : UIViewController <UIPopoverControllerDelegate, UITextFieldDelegate>
+@interface ProjectPopOverViewController : CoreDataCollectionViewController <UIPopoverControllerDelegate, UITextFieldDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) Project* project;
 @property (nonatomic, strong) IBOutlet UITextField* nameTextField;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSFetchedResultsController *FetchedResultsController;
 
 @end

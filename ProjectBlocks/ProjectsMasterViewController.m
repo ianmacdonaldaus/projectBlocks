@@ -8,6 +8,7 @@
 
 #import "ProjectsMasterViewController.h"
 #import "ProjectPopOverViewController.h"
+#import "ProjectEditModalView.h"
 #import "Project.h"
 #import "ProjectsViewLayout.h"
 #import "TasksViewController.h"
@@ -27,15 +28,6 @@
 @synthesize fetchedResultsController = _fetchedResultsController;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize detailPopOver = _detailPopOver;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -62,11 +54,17 @@
     [self.view addSubview:addButton];
         
     // Editing Popover
-    popOver = [[ProjectPopOverViewController alloc] init];
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.itemSize = CGSizeMake(200, 200);
+    layout.minimumInteritemSpacing = 0;
+    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    popOver = [[ProjectPopOverViewController alloc] initWithCollectionViewLayout:layout];
     popOver.managedObjectContext = self.managedObjectContext;
-    _detailPopOver = [[UIPopoverController alloc] initWithContentViewController:popOver];
-    _detailPopOver.popoverContentSize = CGSizeMake(240., 240.);
-	_detailPopOver.delegate = self;
+    
+    
+    //_detailPopOver = [[UIPopoverController alloc] initWithContentViewController:popOver];
+    //_detailPopOver.popoverContentSize = CGSizeMake(240.0, 300.0);
+	//_detailPopOver.delegate = self;
 	
     NSError *error = nil;
     
@@ -75,7 +73,6 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-//    [self loadStartupData];
 
 }
 
@@ -83,18 +80,32 @@
     NSLog(@"popover done");
 }
 
+-(void)handleProjectInfoButton:(id)sender {
+    UIButton *button = sender;
+    CGPoint buttonCenter = [self.collectionView convertPoint:button.center fromView:[button superview]];
+    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:buttonCenter];
+    [self showProjectEditModalView:indexPath];
+    
+}
 
-- (void)popOver:(id)sender {
+- (void)showProjectEditModalView:(NSIndexPath*)indexPath {
+    ProjectEditModalView *view = [[ProjectEditModalView alloc] initWithFrame:self.view.bounds];
+    view.managedObjectContext  = self.managedObjectContext;
+    view.project = [_fetchedResultsController objectAtIndexPath:indexPath];
+    [view.layer setOpacity:0.0];
     
-    UIButton *button = (UIButton *)sender;
-    CGPoint newPoint = [button convertPoint:button.bounds.origin toView:self.view];
-    popOver.project = [_fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForItem:button.tag inSection:0]];
+    [self.view addSubview:view];
     
-    [_detailPopOver presentPopoverFromRect:CGRectMake(newPoint.x + 20, newPoint.y + button.frame.size.height / 2, 1, 1) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    [UIView animateWithDuration:0.2 animations:^{
+        [view.layer setOpacity:1.0];
+    } completion:^(BOOL finished) {
+        NSLog(@"bark");
+    }];
     
 }
 
 -(void)addProject {
+    
     Project* project = [NSEntityDescription insertNewObjectForEntityForName:@"Project" inManagedObjectContext:_managedObjectContext];
     project.name = @"New Project";
     int index = [[self.fetchedResultsController fetchedObjects] count];
@@ -105,18 +116,29 @@
     }
     ColorPalette *colorPalette = [[CoreDataHelper getObjectsForEntity:@"ColorPalette" withSortKey:@"index" andSortAscending:YES andContext:self.managedObjectContext] objectAtIndex:index];
     project.colorPalette = colorPalette;
-        
+    
     [_managedObjectContext save:nil];
     [self.collectionView reloadData];
+
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.collectionView numberOfItemsInSection:0]-1 inSection:0];
+    [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+    [self showProjectEditModalView:indexPath];
 }
 
 - (void)configureCell:(ProjectViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     Project *project = [_fetchedResultsController objectAtIndexPath:indexPath];
     cell.projectTitle.text = project.name;
+    
     [CATransaction begin];
     [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
     cell.colorPalette = project.colorPalette;
     [CATransaction commit];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    button.frame = CGRectMake(cell.contentView.bounds.size.width - 30, 15, button.frame.size.width, button.frame.size.height);
+    [button addTarget:self action:@selector(handleProjectInfoButton:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.contentView addSubview:button];
+    
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -160,7 +182,7 @@
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     

@@ -17,11 +17,11 @@
 @dynamic duration;
 @dynamic durationMinutes;
 @dynamic index;
+@dynamic section;
 @dynamic sequential;
 @dynamic timeToFinish;
 @dynamic title;
 @dynamic titleDetail;
-@dynamic section;
 @dynamic project;
 @dynamic taskImage;
 

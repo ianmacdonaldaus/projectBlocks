@@ -7,6 +7,7 @@
 //
 
 #import "ProjectViewCell.h"
+#import "Colors.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation ProjectViewCell {
@@ -62,7 +63,8 @@
         //cell.clipsToBounds = NO;
         float startHeight = 0;
         float layerHeight[5] = {40,15,15,15,15};
-
+        _arrayOfColourLayers = [NSMutableArray array];
+        
         for (int i = 0; i<5; i++) {
             CALayer *colorPaletteLayer = [CALayer layer];
             colorPaletteLayer.frame = CGRectMake(0, startHeight, self.frame.size.width, self.frame.size.height * layerHeight[i]/100);
@@ -78,17 +80,16 @@
 }
 
 -(void)setColorPalette:(ColorPalette *)colorPalette{    
-    int i = 4;
-    for (CALayer *layer in self.contentView.layer.sublayers) {
-        NSString *string = [NSString stringWithFormat:@"color%i",i+1];
-        SEL s = NSSelectorFromString(string);
-        if ([colorPalette respondsToSelector:s]) {
-            layer.backgroundColor = [[colorPalette performSelector:s] CGColor];
-        }
-        i -= 1;
 
+    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES]];
+    NSArray *sortedColors = [[colorPalette.colors allObjects] sortedArrayUsingDescriptors:sortDescriptors];
+
+    int i = 5;
+    for (CALayer *layer in _arrayOfColourLayers) {
+        Colors *colors = [sortedColors objectAtIndex:[_arrayOfColourLayers indexOfObject:layer]];
+        layer.backgroundColor = [colors.color CGColor];
+        i -= 1;
     }
-    
 }
 
 @end

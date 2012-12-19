@@ -11,6 +11,7 @@
 #import "ProjectsViewController.h"
 #import "Project.h"
 #import "ColorPalette.h"
+#import "Colors.h"
 #import "CoreDataHelper.h"
 #import "UIColorTransformer.h"
 
@@ -31,7 +32,9 @@
     if (![self.managedObjectContext countForFetchRequest:request error:nil]> 0 ) {
         [self loadDefaultColorPalettes];
     }
-    NSLog(@"number of ColorPalettes %i",[self.managedObjectContext countForFetchRequest:request error:nil]);
+    NSLog(@"number of ColorPalettes: %i",[self.managedObjectContext countForFetchRequest:request error:nil]);
+    request = [[NSFetchRequest alloc] initWithEntityName:@"Colors"];
+    NSLog(@"number of Colors: %i",[self.managedObjectContext countForFetchRequest:request error:nil]);
 
     
     //Check for and load if necessary default Projects
@@ -39,7 +42,7 @@
     if (![self.managedObjectContext countForFetchRequest:request error:nil]> 0 ) {
         [self loadDefaultProjects];
     }
-    NSLog(@"number of Projects %i",[self.managedObjectContext countForFetchRequest:request error:nil]);
+    NSLog(@"number of Projects: %i",[self.managedObjectContext countForFetchRequest:request error:nil]);
 
 
     //Set view controller
@@ -72,169 +75,274 @@
 }
 
 -(void)loadDefaultColorPalettes {
-    UIColor *color = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
     
-    //Palette 1
     
     ColorPalette* colorPalette = [NSEntityDescription insertNewObjectForEntityForName:@"ColorPalette" inManagedObjectContext:_managedObjectContext];
 
     colorPalette.index = [NSNumber numberWithInt:0];
-    color = [UIColor colorWithRed:0.0392 green:0.0745 blue:0.2392 alpha:1.0];
-    colorPalette.color1 = color;
-    color = [UIColor colorWithRed:0.1098 green:0.5020 blue:0.5294 alpha:1.0];
-    colorPalette.color2 = color;
-    color = [UIColor colorWithRed:0.9882 green:0.9686 blue:0.8784 alpha:1.0];
-    colorPalette.color3 = color;
-    color = [UIColor colorWithRed:0.9843 green:0.9255 blue:0.1961 alpha:1.0];
-    colorPalette.color4 = color;
-    color = [UIColor colorWithRed:0.7922 green:0.6627 blue:0.1373 alpha:1.0];
-    colorPalette.color5 = color;
+
+    //Palette 1
+    Colors *colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.0392 green:0.0745 blue:0.2392 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:0];
+    [colorPalette addColorsObject:colors];
+
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.1098 green:0.5020 blue:0.5294 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:1];
+    [colorPalette addColorsObject:colors];
+
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.9882 green:0.9686 blue:0.8784 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:2];
+    [colorPalette addColorsObject:colors];
+
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.9843 green:0.9255 blue:0.1961 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:3];
+    [colorPalette addColorsObject:colors];
+    
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.7922 green:0.6627 blue:0.1373 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:4];
+    [colorPalette addColorsObject:colors];
     
     //Palette 2
     
     colorPalette = [NSEntityDescription insertNewObjectForEntityForName:@"ColorPalette" inManagedObjectContext:_managedObjectContext];
 
     colorPalette.index = [NSNumber numberWithInt:1];
-    color = [UIColor colorWithRed:0.3255 green:0.4392 blue:0.5882 alpha:1.0];
-    colorPalette.color1 = color;
-    color = [UIColor colorWithRed:0.5882 green:0.4392 blue:0.1412 alpha:1.0];
-    colorPalette.color2 = color;
-    color = [UIColor colorWithRed:0.0824 green:0.2118 blue:0.3686 alpha:1.0];
-    colorPalette.color3 = color;
-    color = [UIColor colorWithRed:0.6706 green:0.6980 blue:0.7608 alpha:1.0];
-    colorPalette.color4 = color;
-    color = [UIColor colorWithRed:0.5490 green:0.1333 blue:0.1569 alpha:1.0];
-    colorPalette.color5 = color;
+    
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.3255 green:0.4392 blue:0.5882 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:0];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.5882 green:0.4392 blue:0.1412 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:1];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.0824 green:0.2118 blue:0.3686 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:2];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.6706 green:0.6980 blue:0.7608 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:3];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.5490 green:0.1333 blue:0.1569 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:4];
+    [colorPalette addColorsObject:colors];
 
     //Palette 3
     
     colorPalette = [NSEntityDescription insertNewObjectForEntityForName:@"ColorPalette" inManagedObjectContext:_managedObjectContext];
 
     colorPalette.index = [NSNumber numberWithInt:2];
-    color = [UIColor colorWithRed:0.8235 green:0.1843 blue:0.2000 alpha:1.0];
-    colorPalette.color1 = color;
-    color = [UIColor colorWithRed:0.9333 green:0.3059 blue:0.2706 alpha:1.0];
-    colorPalette.color2 = color;
-    color = [UIColor colorWithRed:0.9804 green:0.7882 blue:0.5882 alpha:1.0];
-    colorPalette.color3 = color;
-    color = [UIColor colorWithRed:0.1882 green:0.1725 blue:0.1451 alpha:1.0];
-    colorPalette.color4 = color;
-    color = [UIColor colorWithRed:0.5294 green:0.5137 blue:0.2510 alpha:1.0];
-    colorPalette.color5 = color;
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.8235 green:0.1843 blue:0.2000 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:0];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.9333 green:0.3059 blue:0.2706 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:1];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.9804 green:0.7882 blue:0.5882 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:2];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.1882 green:0.1725 blue:0.1451 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:3];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.5294 green:0.5137 blue:0.2510 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:4];
+    [colorPalette addColorsObject:colors];
 
     //Palette 4
     
     colorPalette = [NSEntityDescription insertNewObjectForEntityForName:@"ColorPalette" inManagedObjectContext:_managedObjectContext];
 
     colorPalette.index = [NSNumber numberWithInt:3];
-    color = [UIColor colorWithRed:0.7922 green:0.5020 blue:0.1255 alpha:1.0];
-    colorPalette.color1 = color;
-    color = [UIColor colorWithRed:0.4275 green:0.4353 blue:0.4784 alpha:1.0];
-    colorPalette.color2 = color;
-    color = [UIColor colorWithRed:0.8902 green:0.8118 blue:0.7020 alpha:1.0];
-    colorPalette.color3 = color;
-    color = [UIColor colorWithRed:0.5882 green:0.4824 blue:0.3961 alpha:1.0];
-    colorPalette.color4 = color;
-    color = [UIColor colorWithRed:0.1373 green:0.1373 blue:0.1059 alpha:1.0];
-    colorPalette.color5 = color;
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.7922 green:0.5020 blue:0.1255 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:0];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.4275 green:0.4353 blue:0.4784 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:1];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.8902 green:0.8118 blue:0.7020 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:2];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.5882 green:0.4824 blue:0.3961 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:3];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.1373 green:0.1373 blue:0.1059 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:4];
+    [colorPalette addColorsObject:colors];
 
     //Palette 5
     
     colorPalette = [NSEntityDescription insertNewObjectForEntityForName:@"ColorPalette" inManagedObjectContext:_managedObjectContext];
 
     colorPalette.index = [NSNumber numberWithInt:4];
-    color = [UIColor colorWithRed:0.5020 green:0.5373 blue:0.2431 alpha:1.0];
-    colorPalette.color1 = color;
-    color = [UIColor colorWithRed:0.8588 green:0.6000 blue:0.2824 alpha:1.0];
-    colorPalette.color2 = color;
-    color = [UIColor colorWithRed:0.5176 green:0.4196 blue:0.4588 alpha:1.0];
-    colorPalette.color3 = color;
-    color = [UIColor colorWithRed:0.7294 green:0.4000 blue:0.2353 alpha:1.0];
-    colorPalette.color4 = color;
-    color = [UIColor colorWithRed:0.1765 green:0.1059 blue:0.1059 alpha:1.0];
-    colorPalette.color5 = color;
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.5020 green:0.5373 blue:0.2431 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:0];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.8588 green:0.6000 blue:0.2824 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:1];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.5176 green:0.4196 blue:0.4588 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:2];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.7294 green:0.4000 blue:0.2353 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:3];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.1765 green:0.1059 blue:0.1059 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:4];
+    [colorPalette addColorsObject:colors];
 
     //Palette 6
     
     colorPalette = [NSEntityDescription insertNewObjectForEntityForName:@"ColorPalette" inManagedObjectContext:_managedObjectContext];
 
     colorPalette.index = [NSNumber numberWithInt:5];
-    color = [UIColor colorWithRed:0.6353 green:0.2549 blue:0.0000 alpha:1.0];
-    colorPalette.color1 = color;
-    color = [UIColor colorWithRed:0.6353 green:0.4157 blue:0.0000 alpha:1.0];
-    colorPalette.color2 = color;
-    color = [UIColor colorWithRed:0.6353 green:0.5725 blue:0.0000 alpha:1.0];
-    colorPalette.color3 = color;
-    color = [UIColor colorWithRed:0.4902 green:0.4510 blue:0.1020 alpha:1.0];
-    colorPalette.color4 = color;
-    color = [UIColor colorWithRed:0.3020 green:0.2784 blue:0.0941 alpha:1.0];
-    colorPalette.color5 = color;
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.6353 green:0.2549 blue:0.0000 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:0];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.6353 green:0.4157 blue:0.0000 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:1];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.6353 green:0.5725 blue:0.0000 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:2];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.4902 green:0.4510 blue:0.1020 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:3];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.3020 green:0.2784 blue:0.0941 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:4];
+    [colorPalette addColorsObject:colors];
 
     //Palette 7
     
     colorPalette = [NSEntityDescription insertNewObjectForEntityForName:@"ColorPalette" inManagedObjectContext:_managedObjectContext];
 
     colorPalette.index = [NSNumber numberWithInt:6];
-    color = [UIColor colorWithRed:0.2863 green:0.0392 blue:0.2392 alpha:1.0];
-    colorPalette.color1 = color;
-    color = [UIColor colorWithRed:0.7412 green:0.0824 blue:0.3137 alpha:1.0];
-    colorPalette.color2 = color;
-    color = [UIColor colorWithRed:0.9137 green:0.4980 blue:0.0078 alpha:1.0];
-    colorPalette.color3 = color;
-    color = [UIColor colorWithRed:0.9725 green:0.7922 blue:0.0000 alpha:1.0];
-    colorPalette.color4 = color;
-    color = [UIColor colorWithRed:0.5412 green:0.6078 blue:0.0588 alpha:1.0];
-    colorPalette.color5 = color;
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.2863 green:0.0392 blue:0.2392 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:0];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.7412 green:0.0824 blue:0.3137 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:1];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.9137 green:0.4980 blue:0.0078 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:2];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.9725 green:0.7922 blue:0.0000 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:3];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.5412 green:0.6078 blue:0.0588 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:4];
+    [colorPalette addColorsObject:colors];
     
     //Palette 8
     
     colorPalette = [NSEntityDescription insertNewObjectForEntityForName:@"ColorPalette" inManagedObjectContext:_managedObjectContext];
 
     colorPalette.index = [NSNumber numberWithInt:7];
-    color = [UIColor colorWithRed:0.9961 green:0.2627 blue:0.3961 alpha:1.0];
-    colorPalette.color1 = color;
-    color = [UIColor colorWithRed:0.9882 green:0.6157 blue:0.6039 alpha:1.0];
-    colorPalette.color2 = color;
-    color = [UIColor colorWithRed:0.9765 green:0.8039 blue:0.6784 alpha:1.0];
-    colorPalette.color3 = color;
-    color = [UIColor colorWithRed:0.7843 green:0.7843 blue:0.6627 alpha:1.0];
-    colorPalette.color4 = color;
-    color = [UIColor colorWithRed:0.5137 green:0.6863 blue:0.6078 alpha:1.0];
-    colorPalette.color5 = color;
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.9961 green:0.2627 blue:0.3961 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:0];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.9882 green:0.6157 blue:0.6039 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:1];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.9765 green:0.8039 blue:0.6784 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:2];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.7843 green:0.7843 blue:0.6627 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:3];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.5137 green:0.6863 blue:0.6078 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:4];
+    [colorPalette addColorsObject:colors];
     
     //Palette 9
     
     colorPalette = [NSEntityDescription insertNewObjectForEntityForName:@"ColorPalette" inManagedObjectContext:_managedObjectContext];
 
     colorPalette.index = [NSNumber numberWithInt:8];
-    color = [UIColor colorWithRed:0.3333 green:0.3843 blue:0.4392 alpha:1.0];
-    colorPalette.color1 = color;
-    color = [UIColor colorWithRed:0.3059 green:0.8039 blue:0.7686 alpha:1.0];
-    colorPalette.color2 = color;
-    color = [UIColor colorWithRed:0.7804 green:0.9569 blue:0.3922 alpha:1.0];
-    colorPalette.color3 = color;
-    color = [UIColor colorWithRed:1.0000 green:0.4196 blue:0.4196 alpha:1.0];
-    colorPalette.color4 = color;
-    color = [UIColor colorWithRed:0.7686 green:0.3020 blue:0.3451 alpha:1.0];
-    colorPalette.color5 = color;
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.3333 green:0.3843 blue:0.4392 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:0];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.3059 green:0.8039 blue:0.7686 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:1];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.7804 green:0.9569 blue:0.3922 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:2];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:1.0000 green:0.4196 blue:0.4196 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:3];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.7686 green:0.3020 blue:0.3451 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:4];
+    [colorPalette addColorsObject:colors];
 
     //Palette 10
     
     colorPalette = [NSEntityDescription insertNewObjectForEntityForName:@"ColorPalette" inManagedObjectContext:_managedObjectContext];
 
     colorPalette.index = [NSNumber numberWithInt:9];
-    color = [UIColor colorWithRed:0.4667 green:0.3098 blue:0.2196 alpha:1.0];
-    colorPalette.color1 = color;
-    color = [UIColor colorWithRed:0.8784 green:0.5569 blue:0.4745 alpha:1.0];
-    colorPalette.color2 = color;
-    color = [UIColor colorWithRed:0.9451 green:0.8314 blue:0.6863 alpha:1.0];
-    colorPalette.color3 = color;
-    color = [UIColor colorWithRed:0.9255 green:0.8980 blue:0.8078 alpha:1.0];
-    colorPalette.color4 = color;
-    color = [UIColor colorWithRed:0.7725 green:0.8784 blue:0.8627 alpha:1.0];
-    colorPalette.color5 = color;
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.4667 green:0.3098 blue:0.2196 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:0];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.8784 green:0.5569 blue:0.4745 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:1];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.9451 green:0.8314 blue:0.6863 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:2];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.9255 green:0.8980 blue:0.8078 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:3];
+    [colorPalette addColorsObject:colors];
+    colors = [NSEntityDescription insertNewObjectForEntityForName:@"Colors" inManagedObjectContext:self.managedObjectContext];
+    colors.color = [UIColor colorWithRed:0.7725 green:0.8784 blue:0.8627 alpha:1.0];
+    colors.index = [NSNumber numberWithInt:4];
+    [colorPalette addColorsObject:colors];
 
-
+    
     [_managedObjectContext save:nil];
 }
 

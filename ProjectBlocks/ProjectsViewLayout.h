@@ -10,4 +10,6 @@
 
 @interface ProjectsViewLayout : UICollectionViewFlowLayout
 
+@property (strong, nonatomic) NSIndexPath *selectedIndexPath;
+
 @end

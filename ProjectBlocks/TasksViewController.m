@@ -11,6 +11,7 @@
 #import "TaskViewCell.h"
 #import "TaskDetailView.h"
 #import "Task.h"
+#import "Colors.h"
 #import "RotationView.h"
 #import "OneFingerRotationGestureRecognizer.h"
 #import "BackgroundView.h"
@@ -67,9 +68,6 @@
     self.collectionView.delegate = self;
     
     self.collectionView.scrollEnabled = YES;
-    self.collectionView.maximumZoomScale = 1.0f;
-    self.collectionView.zoomScale = 0.5f;
-    
     
     self.view.backgroundColor = [UIColor clearColor];
     
@@ -131,6 +129,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TaskViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TaskCell" forIndexPath:indexPath];
     Task* task = [self.fetchedResultsController objectAtIndexPath:indexPath];
@@ -145,13 +144,40 @@
     cell.durationLabel.text = duration;
     
     //Add color Palette
-    UIColor *defaultColor = self.colorPalette.color1;
-    cell.contentView.backgroundColor = defaultColor;
-    float steps = [[self.fetchedResultsController fetchedObjects] count];
-    float hue = 0.1 - (0.1 / steps) * indexPath.row;
-    float saturation = 1.0 + (0.1 / steps ) * indexPath.row;
-    float brightness = 1.0 + (0.6 / steps ) * indexPath.row;
-    //cell.contentView.backgroundColor = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1.0];
+    
+    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES]];
+    NSArray *sortedColors = [[self.colorPalette.colors allObjects] sortedArrayUsingDescriptors:sortDescriptors];
+    Colors *colors = [sortedColors objectAtIndex:indexPath.section];
+    UIColor *color = colors.color;
+    float hue;
+    float saturation;
+    float brightness;
+    float alpha;
+    BOOL lightness = [color getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
+    if (saturation < 0.5 && brightness > 0.7) {
+        cell.taskLabel.textColor = [UIColor blackColor];
+        cell.durationLabel.textColor = [UIColor blackColor];
+    } else {
+        cell.taskLabel.textColor = [UIColor whiteColor];
+        cell.durationLabel.textColor = [UIColor whiteColor];
+    }
+    BOOL yellow = (hue > 0.13) && (hue < 0.2083);
+    BOOL green = (hue > 0.40) && (hue < 0.5222);
+    if (brightness > 0.65) {
+        if (yellow || green) {
+        cell.taskLabel.textColor = [UIColor blackColor];
+        cell.durationLabel.textColor = [UIColor blackColor];
+        }
+    }
+    
+    //float steps = [[self.fetchedResultsController fetchedObjects] ];
+    float countOfItems = [self.collectionView numberOfItemsInSection:indexPath.section];
+    float differenceToLastItem = countOfItems - (indexPath.row + 1);
+    float proportionToLastItem = differenceToLastItem / countOfItems;
+    brightness = brightness - (0.4 * proportionToLastItem);
+    cell.contentView.backgroundColor = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1.0];
+    NSLog(@"hue: %f saturation: %f brightness %f",hue,saturation,brightness);
+    
     
     return cell;
 }
@@ -306,12 +332,14 @@
     float randomNumber = (float)random()/RAND_MAX;
     task.sequential = randomNumber > 0.7 ? [NSNumber numberWithBool:NO] : [NSNumber numberWithBool:YES];
     
-    if (randomNumber < 0.5) {
+    if (randomNumber < 0.3) {
         task.section = [NSNumber numberWithInt:0];
-    } else if (randomNumber < 0.8) {
+    } else if (randomNumber < 0.5) {
         task.section = [NSNumber numberWithInt:1];
-    } else if (randomNumber < 2.0 ) {
-    task.section = [NSNumber numberWithInt:2];
+    } else if (randomNumber < 0.7 ) {
+        task.section = [NSNumber numberWithInt:2];
+    } else if  (randomNumber < 1.1) {
+        task.section = [NSNumber numberWithInt:3];
     }
 
     //Set title

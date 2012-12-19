@@ -31,6 +31,7 @@
     
     CGRect targetRect = CGRectMake(proposedContentOffset.x, 0.0, self.collectionView.bounds.size.width, self.collectionView.bounds.size.height);
     NSArray* array = [super layoutAttributesForElementsInRect:targetRect];
+    NSIndexPath* indexPath;
     
     for (UICollectionViewLayoutAttributes* layoutAttributes in array) {
         if (layoutAttributes.representedElementCategory != UICollectionElementCategoryCell)
@@ -39,9 +40,22 @@
         CGFloat itemHorizontalCenter = layoutAttributes.center.x;
         if (ABS(itemHorizontalCenter - horizontalCenter) < ABS(offsetAdjustment)) {
             offsetAdjustment = itemHorizontalCenter - horizontalCenter;
+            indexPath = [layoutAttributes indexPath];
         }
+        self.selectedIndexPath = indexPath;
     }
     return CGPointMake(proposedContentOffset.x + offsetAdjustment, proposedContentOffset.y);
+}
+
+- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewLayoutAttributes *attributes = [super layoutAttributesForItemAtIndexPath:indexPath];
+    if (indexPath == self.selectedIndexPath) {
+        NSLog(@"Selected Cell: %@",indexPath);
+    } else {
+        NSLog(@"Not Selected: %@",indexPath);
+    }
+    return attributes;
 }
 
 - (void)setLineAttributes:(UICollectionViewLayoutAttributes *)attributes visibleRect:(CGRect)visibleRect
@@ -59,6 +73,12 @@
         attributes.zIndex = 0;
     }
 }
+
+- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)oldBounds
+{
+    return YES;
+}
+
 
 
 

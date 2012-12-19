@@ -14,13 +14,16 @@
 		821A22FB1677E2B100CAA3EF /* ProjectsViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 821A22FA1677E2B000CAA3EF /* ProjectsViewLayout.m */; };
 		821A230D16787B8400CAA3EF /* ToDoList in Resources */ = {isa = PBXBuildFile; fileRef = 821A230C16787B8400CAA3EF /* ToDoList */; };
 		82275F0B167CE3160000866B /* DismissingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82275F0A167CE3160000866B /* DismissingView.m */; };
+		8228D69316807F190016020C /* ColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 8228D69216807F190016020C /* ColorPalette.m */; };
+		8228D69616807F190016020C /* Colors.m in Sources */ = {isa = PBXBuildFile; fileRef = 8228D69516807F190016020C /* Colors.m */; };
+		8228D69916807F190016020C /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 8228D69816807F190016020C /* Project.m */; };
+		8228D69C16807F1A0016020C /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 8228D69B16807F190016020C /* Task.m */; };
+		8228D69F16807F1A0016020C /* TaskImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8228D69E16807F1A0016020C /* TaskImage.m */; };
+		8228D6AB1680C9FF0016020C /* ProjectEditModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8228D6AA1680C9FE0016020C /* ProjectEditModalView.m */; };
+		8228D6AE1680DFD40016020C /* ModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8228D6AD1680DFD30016020C /* ModalView.m */; };
 		822C6924167763800065C9BF /* ProjectsMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 822C6923167763800065C9BF /* ProjectsMasterViewController.m */; };
 		822C6925167764410065C9BF /* CoreDataCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 822C6920167762530065C9BF /* CoreDataCollectionViewController.m */; };
 		822C692F167778E80065C9BF /* subtle-pattern-7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 822C692E167778E80065C9BF /* subtle-pattern-7.jpg */; };
-		8260411816805F5E00CED610 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 8260411716805F5D00CED610 /* Task.m */; };
-		8260411B16805F6500CED610 /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 8260411A16805F6200CED610 /* Project.m */; };
-		8260411E16805F7100CED610 /* ColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 8260411D16805F6B00CED610 /* ColorPalette.m */; };
-		8260412116805F8800CED610 /* TaskImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8260412016805F7E00CED610 /* TaskImage.m */; };
 		8283B595166A368D00C0A830 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8283B594166A368D00C0A830 /* UIKit.framework */; };
 		8283B597166A368D00C0A830 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8283B596166A368D00C0A830 /* Foundation.framework */; };
 		8283B599166A368D00C0A830 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8283B598166A368D00C0A830 /* CoreGraphics.framework */; };
@@ -60,19 +63,25 @@
 		821A230C16787B8400CAA3EF /* ToDoList */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDoList; sourceTree = "<group>"; };
 		82275F09167CE3160000866B /* DismissingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissingView.h; sourceTree = "<group>"; };
 		82275F0A167CE3160000866B /* DismissingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DismissingView.m; sourceTree = "<group>"; };
+		8228D69116807F190016020C /* ColorPalette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPalette.h; sourceTree = "<group>"; };
+		8228D69216807F190016020C /* ColorPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPalette.m; sourceTree = "<group>"; };
+		8228D69416807F190016020C /* Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Colors.h; sourceTree = "<group>"; };
+		8228D69516807F190016020C /* Colors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Colors.m; sourceTree = "<group>"; };
+		8228D69716807F190016020C /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Project.h; sourceTree = "<group>"; };
+		8228D69816807F190016020C /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Project.m; sourceTree = "<group>"; };
+		8228D69A16807F190016020C /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		8228D69B16807F190016020C /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		8228D69D16807F1A0016020C /* TaskImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskImage.h; sourceTree = "<group>"; };
+		8228D69E16807F1A0016020C /* TaskImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskImage.m; sourceTree = "<group>"; };
+		8228D6A91680C9FE0016020C /* ProjectEditModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectEditModalView.h; sourceTree = "<group>"; };
+		8228D6AA1680C9FE0016020C /* ProjectEditModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectEditModalView.m; sourceTree = "<group>"; };
+		8228D6AC1680DFD30016020C /* ModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalView.h; sourceTree = "<group>"; };
+		8228D6AD1680DFD30016020C /* ModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalView.m; sourceTree = "<group>"; };
 		822C691F167762530065C9BF /* CoreDataCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataCollectionViewController.h; sourceTree = "<group>"; };
 		822C6920167762530065C9BF /* CoreDataCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataCollectionViewController.m; sourceTree = "<group>"; };
 		822C6922167763800065C9BF /* ProjectsMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsMasterViewController.h; sourceTree = "<group>"; };
 		822C6923167763800065C9BF /* ProjectsMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsMasterViewController.m; sourceTree = "<group>"; };
 		822C692E167778E80065C9BF /* subtle-pattern-7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "subtle-pattern-7.jpg"; path = "ProjectBlocks/subtle-pattern-7.jpg"; sourceTree = "<group>"; };
-		8260411616805F5C00CED610 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Task.h; path = ProjectBlocks/Task.h; sourceTree = "<group>"; };
-		8260411716805F5D00CED610 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Task.m; path = ProjectBlocks/Task.m; sourceTree = "<group>"; };
-		8260411916805F5F00CED610 /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Project.h; path = ProjectBlocks/Project.h; sourceTree = "<group>"; };
-		8260411A16805F6200CED610 /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Project.m; path = ProjectBlocks/Project.m; sourceTree = "<group>"; };
-		8260411C16805F6600CED610 /* ColorPalette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorPalette.h; path = ProjectBlocks/ColorPalette.h; sourceTree = "<group>"; };
-		8260411D16805F6B00CED610 /* ColorPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColorPalette.m; path = ProjectBlocks/ColorPalette.m; sourceTree = "<group>"; };
-		8260411F16805F7500CED610 /* TaskImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskImage.h; path = ProjectBlocks/TaskImage.h; sourceTree = "<group>"; };
-		8260412016805F7E00CED610 /* TaskImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskImage.m; path = ProjectBlocks/TaskImage.m; sourceTree = "<group>"; };
 		8283B590166A368D00C0A830 /* ProjectBlocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectBlocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8283B594166A368D00C0A830 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8283B596166A368D00C0A830 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -223,14 +232,16 @@
 		8283B5D5166B782300C0A830 /* Managed Objects */ = {
 			isa = PBXGroup;
 			children = (
-				8260411F16805F7500CED610 /* TaskImage.h */,
-				8260412016805F7E00CED610 /* TaskImage.m */,
-				8260411C16805F6600CED610 /* ColorPalette.h */,
-				8260411D16805F6B00CED610 /* ColorPalette.m */,
-				8260411916805F5F00CED610 /* Project.h */,
-				8260411A16805F6200CED610 /* Project.m */,
-				8260411616805F5C00CED610 /* Task.h */,
-				8260411716805F5D00CED610 /* Task.m */,
+				8228D69D16807F1A0016020C /* TaskImage.h */,
+				8228D69E16807F1A0016020C /* TaskImage.m */,
+				8228D69A16807F190016020C /* Task.h */,
+				8228D69B16807F190016020C /* Task.m */,
+				8228D69716807F190016020C /* Project.h */,
+				8228D69816807F190016020C /* Project.m */,
+				8228D69416807F190016020C /* Colors.h */,
+				8228D69516807F190016020C /* Colors.m */,
+				8228D69116807F190016020C /* ColorPalette.h */,
+				8228D69216807F190016020C /* ColorPalette.m */,
 			);
 			name = "Managed Objects";
 			path = ..;
@@ -258,6 +269,10 @@
 				8295C32F16769489001FCCC3 /* ProjectViewCell.m */,
 				8283B5DE166BA18300C0A830 /* ProjectPopOverViewController.h */,
 				8283B5DF166BA18300C0A830 /* ProjectPopOverViewController.m */,
+				8228D6A91680C9FE0016020C /* ProjectEditModalView.h */,
+				8228D6AA1680C9FE0016020C /* ProjectEditModalView.m */,
+				8228D6AC1680DFD30016020C /* ModalView.h */,
+				8228D6AD1680DFD30016020C /* ModalView.m */,
 				821A22F91677E2B000CAA3EF /* ProjectsViewLayout.h */,
 				821A22FA1677E2B000CAA3EF /* ProjectsViewLayout.m */,
 			);
@@ -376,10 +391,13 @@
 				82F22CC6167E273C009ECC8F /* CoreDataHelper.m in Sources */,
 				82F22CCA167E3C48009ECC8F /* BackgroundView.m in Sources */,
 				82ED6085167E840B00FC2B47 /* UIColorTransformer.m in Sources */,
-				8260411816805F5E00CED610 /* Task.m in Sources */,
-				8260411B16805F6500CED610 /* Project.m in Sources */,
-				8260411E16805F7100CED610 /* ColorPalette.m in Sources */,
-				8260412116805F8800CED610 /* TaskImage.m in Sources */,
+				8228D69316807F190016020C /* ColorPalette.m in Sources */,
+				8228D69616807F190016020C /* Colors.m in Sources */,
+				8228D69916807F190016020C /* Project.m in Sources */,
+				8228D69C16807F1A0016020C /* Task.m in Sources */,
+				8228D69F16807F1A0016020C /* TaskImage.m in Sources */,
+				8228D6AB1680C9FF0016020C /* ProjectEditModalView.m in Sources */,
+				8228D6AE1680DFD40016020C /* ModalView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

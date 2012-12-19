@@ -173,6 +173,7 @@
 }
 
 /*
+
 - (void)prepareForCollectionViewUpdates:(NSArray *)updateItems
 {
     // Keep track of insert and delete index paths
@@ -244,8 +245,15 @@
         attributes.center = CGPointMake(0, 0);
         attributes.transform3D = CATransform3DMakeScale(0.1, 0.1, 1.0);
     }
-    
+ 
     return attributes;
 }
-*/
+ */
+
+- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)oldBounds
+{
+    return YES;
+}
+
+
 @end
