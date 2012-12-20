@@ -25,4 +25,6 @@
 @property (nonatomic, retain) Project *project;
 @property (nonatomic, retain) TaskImage *taskImage;
 
+-(NSString *)getTaskDurationAsString;
+
 @end

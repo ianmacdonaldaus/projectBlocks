@@ -20,9 +20,10 @@ static float cornerRadius = 15;
     self = [super initWithFrame:frame];
     if (self) {
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        
         self.layer.shouldRasterize = YES;
         self.layer.rasterizationScale = [[UIScreen mainScreen] scale];
-//        _backgroundView = [[UIView alloc] initWithFrame:[[UIApplication sharedApplication] keyWindow].bounds];
+        
         _backgroundView = [[UIView alloc] initWithFrame:frame];
         _backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _backgroundView.layer.opacity = 0.65;
@@ -59,14 +60,7 @@ static float cornerRadius = 15;
 
 -(void)handleTap:(UITapGestureRecognizer *)sender {
     
-    
-    /*CABasicAnimation *myAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    myAnimation.toValue = [NSNumber numberWithFloat:0.0];
-    myAnimation.duration = 0.25;
-    myAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-    myAnimation.
-    [self.layer addAnimation:myAnimation forKey:@"myAnimation"];
-    */
+
     [UIView animateWithDuration:0.25 animations:^{
         [self.layer setOpacity:0.0];
     } completion:^(BOOL finished) {

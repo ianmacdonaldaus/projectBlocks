@@ -10,6 +10,7 @@
 #import "TasksViewLayout.h"
 #import "TaskViewCell.h"
 #import "TaskDetailView.h"
+#import "TaskEditModalView.h"
 #import "Task.h"
 #import "Colors.h"
 #import "RotationView.h"
@@ -36,6 +37,7 @@
     @private OneFingerRotationGestureRecognizer *oneFingerGestureRecognizer;
     
     Task* selectedTask;
+    NSArray *sortedColors;
 
 
 }
@@ -122,13 +124,15 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
+    
+    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES]];
+    sortedColors = [[self.colorPalette.colors allObjects] sortedArrayUsingDescriptors:sortDescriptors];
 
 }
 
 -(void)handleBackButton {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TaskViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TaskCell" forIndexPath:indexPath];
@@ -138,16 +142,9 @@
     cell.taskLabel.text = task.title;
     
     // Add duration Label
-    float durationHours = floorf([task.durationMinutes floatValue] / 60);
-    float durationMinutes = [task.durationMinutes floatValue] - (durationHours * 60);
-    NSString *duration = [NSString stringWithFormat:@" %1.0fh %1.0fm",durationHours, durationMinutes];
-    cell.durationLabel.text = duration;
+    cell.durationLabel.text = [task getTaskDurationAsString];
     
     //Add color Palette
-    
-    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES]];
-    NSArray *sortedColors = [[self.colorPalette.colors allObjects] sortedArrayUsingDescriptors:sortDescriptors];
-    
     float colorIndex = indexPath.section;
     if (colorIndex > 4) {
         colorIndex =  ( (colorIndex) / 5 - floorf((colorIndex)/5) ) * 5;
@@ -176,10 +173,11 @@
     }
    
     float countOfItems = [self.collectionView numberOfItemsInSection:indexPath.section];
-    
+    float steps = MAX(countOfItems, 10);
     float differenceToLastItem = countOfItems - (indexPath.row + 1);
     float proportionToLastItem = differenceToLastItem / countOfItems;
-    brightness = brightness - (0.4 * proportionToLastItem);
+    brightness = brightness - (0.4 * differenceToLastItem/steps);
+    NSLog(@"%f %f %f",steps,proportionToLastItem, brightness);
     cell.contentView.backgroundColor = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1.0];
         
     return cell;
@@ -199,22 +197,19 @@
     return sequential;
 }
 
--(BOOL) returnABoolean {
-    return YES;
-}
-
 #pragma mark -
 #pragma mark Gesture Recognizers
 
 - (void)handleSingleTap:(UITapGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateEnded)
     {
-        CGPoint initialTapPoint = [sender locationInView:self.collectionView];
+/*        CGPoint initialTapPoint = [sender locationInView:self.collectionView];
         NSIndexPath* tappedCellPath = [self.collectionView indexPathForItemAtPoint:initialTapPoint];
         selectedTask = [self.fetchedResultsController objectAtIndexPath:tappedCellPath];
-        //selectedTask.title = @"I've been clicked";
-        //[self.collectionView reloadData];
-    }
+        if (selectedTask) {
+            [self showTaskEditModalView:tappedCellPath];
+        }
+    */}
 }
 
 - (void)handleDoubleTap:(UITapGestureRecognizer *)sender {
@@ -252,6 +247,23 @@
         [CATransaction commit];
     }
 }
+
+- (void)showTaskEditModalView:(NSIndexPath*)indexPath {
+    TaskEditModalView *modalView = [[TaskEditModalView alloc] initWithFrame:self.view.bounds];
+    modalView.managedObjectContext  = self.managedObjectContext;
+    Task *task = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    modalView.task = task;
+    [modalView.layer setOpacity:0.0];
+    [self.view addSubview:modalView];
+    
+    modalView.editView.backgroundColor = [self.collectionView cellForItemAtIndexPath:indexPath].contentView.backgroundColor;
+
+    [UIView animateWithDuration:0.25 animations:^{
+        [modalView.layer setOpacity:1.0];
+    } completion:^(BOOL finished) { nil; }];
+    
+}
+
 
 -(void)createRotationScreen {
     float circleRadius = 200.0f;
@@ -338,28 +350,13 @@
     task.section = [NSNumber numberWithFloat:sectionIndex];
 
     
-    
-    /*    if (randomNumber < 0.3) {
-        task.section = [NSNumber numberWithInt:0];
-    } else if (randomNumber < 0.5) {
-        task.section = [NSNumber numberWithInt:1];
-    } else if (randomNumber < 0.7 ) {
-        task.section = [NSNumber numberWithInt:2];
-    } else if  (randomNumber < 1.1) {
-        task.section = [NSNumber numberWithInt:3];
-    }
-*/
-    
     //Set title
     task.title = _project.name;
     
     //Set index
     task.index = [NSNumber numberWithInteger:[[self.fetchedResultsController fetchedObjects] count]];
 
-//    [self.collectionView reloadData];
     [self.managedObjectContext save:nil];
-    [self.fetchedResultsController performFetch:nil];
-    [self.collectionView reloadData];
     
 
 }
@@ -401,7 +398,7 @@
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"section" cacheName:nil];
-    aFetchedResultsController.delegate = nil;
+    aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     
 	NSError *error = nil;
@@ -415,7 +412,7 @@
     return _fetchedResultsController;
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+/*-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"editTask"] ) {
         TaskDetailView *taskDetailView = (TaskDetailView *)[segue destinationViewController];
         TaskViewCell *cell = (TaskViewCell *)sender;
@@ -426,7 +423,7 @@
         
     }
     
-}
+}*/
 
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
@@ -448,8 +445,7 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    [self performSegueWithIdentifier:@"editTask" sender:[self.collectionView cellForItemAtIndexPath:indexPath]];
+    [self showTaskEditModalView:indexPath];
 }
 
 

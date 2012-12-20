@@ -25,4 +25,16 @@
 @dynamic project;
 @dynamic taskImage;
 
+-(NSString *)getTaskDurationAsString{
+    NSString *durationText;
+    float durationHours = floorf([self.durationMinutes floatValue] / 60);
+    float durationMinutes = [self.durationMinutes floatValue] - (durationHours * 60);
+    if (durationHours> 0) {
+        durationText = [NSString stringWithFormat:@"%1.0fh %1.0fm",durationHours, durationMinutes];
+    } else {
+        durationText = [NSString stringWithFormat:@"%1.0fm", durationMinutes];
+    }
+    return durationText;
+}
+
 @end

@@ -97,7 +97,9 @@ static NSString *CellIdentifier = @"CollectionViewCell";
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     if ([_sectionChanges count] > 0)
-    {
+    {           NSLog(@"Section Changes");
+
+        /*
         [self.collectionView performBatchUpdates:^{
             
             for (NSDictionary *change in _sectionChanges)
@@ -109,6 +111,7 @@ static NSString *CellIdentifier = @"CollectionViewCell";
                     {
                         case NSFetchedResultsChangeInsert:
                             [self.collectionView insertSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
+              
                             break;
                         case NSFetchedResultsChangeDelete:
                             [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
@@ -118,12 +121,18 @@ static NSString *CellIdentifier = @"CollectionViewCell";
                             break;
                     }
                 }];
+                [self.collectionView reloadData];
             }
         } completion:nil];
+         */
+       
+        [self.collectionView reloadData];
+        
     }
     
     if ([_objectChanges count] > 0 && [_sectionChanges count] == 0)
     {
+        NSLog(@"Object Changes");
         if (!self.disableCollectionViewAnimations) {
             
         

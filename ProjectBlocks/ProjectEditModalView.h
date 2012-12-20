@@ -10,7 +10,7 @@
 #import "ModalView.h"
 #import "Project.h"
 
-@interface ProjectEditModalView : ModalView <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UITextFieldDelegate>
+@interface ProjectEditModalView : ModalView <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource>
 
 @property (strong, nonatomic) NSMutableArray *colorPalettes;
 @property (strong, nonatomic) Project *project;

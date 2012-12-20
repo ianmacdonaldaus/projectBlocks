@@ -24,6 +24,7 @@
 		822C6924167763800065C9BF /* ProjectsMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 822C6923167763800065C9BF /* ProjectsMasterViewController.m */; };
 		822C6925167764410065C9BF /* CoreDataCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 822C6920167762530065C9BF /* CoreDataCollectionViewController.m */; };
 		822C692F167778E80065C9BF /* subtle-pattern-7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 822C692E167778E80065C9BF /* subtle-pattern-7.jpg */; };
+		827985FA16822FD4000AA2AC /* TaskEditModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 827985F916822FD4000AA2AC /* TaskEditModalView.m */; };
 		8283B595166A368D00C0A830 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8283B594166A368D00C0A830 /* UIKit.framework */; };
 		8283B597166A368D00C0A830 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8283B596166A368D00C0A830 /* Foundation.framework */; };
 		8283B599166A368D00C0A830 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8283B598166A368D00C0A830 /* CoreGraphics.framework */; };
@@ -82,6 +83,8 @@
 		822C6922167763800065C9BF /* ProjectsMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsMasterViewController.h; sourceTree = "<group>"; };
 		822C6923167763800065C9BF /* ProjectsMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsMasterViewController.m; sourceTree = "<group>"; };
 		822C692E167778E80065C9BF /* subtle-pattern-7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "subtle-pattern-7.jpg"; path = "ProjectBlocks/subtle-pattern-7.jpg"; sourceTree = "<group>"; };
+		827985F816822FD3000AA2AC /* TaskEditModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskEditModalView.h; sourceTree = "<group>"; };
+		827985F916822FD4000AA2AC /* TaskEditModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskEditModalView.m; sourceTree = "<group>"; };
 		8283B590166A368D00C0A830 /* ProjectBlocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectBlocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8283B594166A368D00C0A830 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8283B596166A368D00C0A830 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -286,6 +289,8 @@
 				8283B5F4166D6C4900C0A830 /* TasksViewController.m */,
 				8283B5EF166D6C4600C0A830 /* TaskViewCell.h */,
 				8283B5F0166D6C4600C0A830 /* TaskViewCell.m */,
+				827985F816822FD3000AA2AC /* TaskEditModalView.h */,
+				827985F916822FD4000AA2AC /* TaskEditModalView.m */,
 				8283B5F1166D6C4700C0A830 /* TasksViewLayout.h */,
 				8283B5F2166D6C4700C0A830 /* TasksViewLayout.m */,
 				82D125461678BFF90073D5B9 /* TaskDetailView.h */,
@@ -398,6 +403,7 @@
 				8228D69F16807F1A0016020C /* TaskImage.m in Sources */,
 				8228D6AB1680C9FF0016020C /* ProjectEditModalView.m in Sources */,
 				8228D6AE1680DFD40016020C /* ModalView.m in Sources */,
+				827985FA16822FD4000AA2AC /* TaskEditModalView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

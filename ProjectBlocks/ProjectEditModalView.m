@@ -38,7 +38,7 @@ static float collectionViewHeight = 100;
     _colorPalettes = [CoreDataHelper getObjectsForEntity:@"ColorPalette" withSortKey:@"index" andSortAscending:YES andContext:self.managedObjectContext];
 
     float itemSize = self.editView.frame.size.width;
-    NSLog(@"%@", NSStringFromCGRect(self.editView.frame));
+ 
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     layout.itemSize = CGSizeMake(itemSize, collectionViewHeight);
@@ -49,14 +49,14 @@ static float collectionViewHeight = 100;
     self.collectionView.dataSource = self;
     self.collectionView.backgroundColor = [UIColor blackColor];
     
-    UIView *shadowLayer = [[UIView alloc] initWithFrame:self.collectionView.frame];
-    shadowLayer.layer.shadowOpacity = 0.3;
-    shadowLayer.layer.shadowOffset = CGSizeMake(0, 0);
-    shadowLayer.layer.shadowRadius = 15;
-    shadowLayer.layer.shouldRasterize = YES;
-    shadowLayer.backgroundColor = [UIColor blackColor];
+    UIView *collectionViewShadowLayer = [[UIView alloc] initWithFrame:self.collectionView.frame];
+    collectionViewShadowLayer.layer.shadowOpacity = 0.3;
+    collectionViewShadowLayer.layer.shadowOffset = CGSizeMake(0, 0);
+    collectionViewShadowLayer.layer.shadowRadius = 15;
+    collectionViewShadowLayer.layer.shouldRasterize = YES;
+    collectionViewShadowLayer.backgroundColor = [UIColor blackColor];
     [self.editView insertSubview:self.collectionView atIndex:0];
-    [self.editView insertSubview:shadowLayer atIndex:0];
+    [self.editView insertSubview:collectionViewShadowLayer atIndex:0];
     
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:CellIdentifier];
     self.collectionView.pagingEnabled = YES;
@@ -67,6 +67,7 @@ static float collectionViewHeight = 100;
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[self.project.colorPalette.index integerValue] inSection:0];
     [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
     
+    //set text edit box background
     UIView* view1 = [[UIView alloc] initWithFrame:CGRectMake(30, 20, self.editView.frame.size.width - 60, 45)];
     view1.layer.cornerRadius = 10;
     view1.backgroundColor = [UIColor whiteColor];
@@ -75,12 +76,14 @@ static float collectionViewHeight = 100;
     [self.editView insertSubview:view1 atIndex:0];
     
     self.projectTitleTextField = [[UITextField alloc] initWithFrame:CGRectMake(45, 27, self.editView.frame.size.width - 80, 30)];
-    [self.editView addSubview:self.projectTitleTextField];
     self.projectTitleTextField.text = self.project.name;
     self.projectTitleTextField.font = [UIFont fontWithName:@"AvenirNextCondensed-DemiBold" size:24];
     self.projectTitleTextField.clearButtonMode = UITextFieldViewModeAlways;
     self.projectTitleTextField.textColor = [UIColor whiteColor];
     [self.projectTitleTextField addTarget:self action:@selector(textFieldDidEndEditing:) forControlEvents:UIControlEventEditingDidEnd];
+    
+    [self.editView addSubview:self.projectTitleTextField];
+
 }
 
 -(void)setBackgroundColorToProjectColor {

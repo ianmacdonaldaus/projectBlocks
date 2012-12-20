@@ -48,6 +48,7 @@
         
         _gradientLayer = [CAGradientLayer layer];
         _gradientLayer.frame = self.bounds;
+        _gradientLayer.cornerRadius = 5;
         _gradientLayer.colors = @[(id)[[UIColor colorWithWhite:1.0f alpha:0.4f] CGColor],
         (id)[[UIColor colorWithWhite:1.0f alpha:0.2f] CGColor],
         (id)[[UIColor clearColor] CGColor],
@@ -61,7 +62,10 @@
 }
 
 -(void)layoutSubviews {
+    [CATransaction begin];
+    [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
     _gradientLayer.frame = self.bounds;
+    [CATransaction commit];
 }
 
 @end

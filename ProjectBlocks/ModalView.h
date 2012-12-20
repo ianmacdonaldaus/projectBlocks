@@ -10,10 +10,11 @@
 #import <QuartzCore/QuartzCore.h>
 
 
-@interface ModalView : UIView
+@interface ModalView : UIView <UITextFieldDelegate, UITextViewDelegate>
 
 @property (strong, nonatomic) UIView *backgroundView;
 @property (strong, nonatomic) UIView *editView;
 @property (strong, nonatomic) CAGradientLayer *gradientLayer;
+
 
 @end
