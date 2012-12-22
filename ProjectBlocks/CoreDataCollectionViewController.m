@@ -97,7 +97,7 @@ static NSString *CellIdentifier = @"CollectionViewCell";
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     if ([_sectionChanges count] > 0)
-    {           NSLog(@"Section Changes");
+    {     
 
         /*
         [self.collectionView performBatchUpdates:^{
@@ -132,7 +132,6 @@ static NSString *CellIdentifier = @"CollectionViewCell";
     
     if ([_objectChanges count] > 0 && [_sectionChanges count] == 0)
     {
-        NSLog(@"Object Changes");
         if (!self.disableCollectionViewAnimations) {
             
         

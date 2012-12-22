@@ -9,9 +9,9 @@
 #import "ProjectsMasterViewController.h"
 #import "ProjectEditModalView.h"
 #import "Project.h"
+#import "ProjectViewCell.h"
 #import "ProjectsViewLayout.h"
 #import "TasksViewController.h"
-#import "ProjectViewCell.h"
 #import "BackgroundView.h"
 #import "CoreDataHelper.h"
 #import <QuartzCore/QuartzCore.h>

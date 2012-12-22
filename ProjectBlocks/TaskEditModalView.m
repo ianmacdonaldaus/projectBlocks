@@ -8,12 +8,20 @@
 
 #import "TaskEditModalView.h"
 #import "CoreDataHelper.h"
+#import "RotationControlView.h"
+#import "OneFingerRotationGestureRecognizer.h"
+
 #import <QuartzCore/QuartzCore.h>
 
 @implementation TaskEditModalView {
     UITextField *taskTitleTextField;
     UITextView *taskDetailsTextView;
     UILabel *taskDurationLabel;
+    
+    RotationControlView *rotationControlView;
+    OneFingerRotationGestureRecognizer *oneFingerRotationGestureRecognizer;
+    @private CGFloat imageAngle;
+    
 }
 
 @synthesize task = _task;
@@ -101,6 +109,72 @@
 
 }
 
+-(void)createRotationScreen {
+    float circleRadius = 200.0f;
+    // Create the container view - this will intercept all other
+    //_rotationView = [[UIView alloc] initWithFrame:self.collectionView.bounds];
+    //_rotationView.backgroundColor = [UIColor clearColor];
+    
+    //CREATE THE CIRCLEVIEW - THIS WILL BE ROTATED WITH THE GESTURE
+    rotationControlView = [[RotationControlView alloc] initWithFrame:CGRectMake(self.bounds.size.width / 2 - circleRadius / 2, 3 * self.bounds.size.height / 4 - circleRadius / 2, circleRadius, circleRadius)];
+    rotationControlView.layer.cornerRadius = circleRadius / 2;
+    rotationControlView.backgroundColor = [UIColor clearColor];
+    rotationControlView.opaque = YES;
+    rotationControlView.hidden = YES;
+    
+    //ADD THE NEW VIEWS
+    //[rotationControlView addSubview:_circleView];
+    [self addSubview:rotationControlView];
+    
+    //IMPLEMENT THE GESTURE RECOGNIZER
+    CGPoint midPoint = CGPointMake(rotationControlView.bounds.size.width/2, rotationControlView.bounds.size.height / 2);
+    CGFloat outRadius = rotationControlView.frame.size.width / 2;
+    
+    oneFingerRotationGestureRecognizer = [[OneFingerRotationGestureRecognizer alloc] initWithMidPoint:midPoint innerRadius:outRadius / 4 outerRadius:outRadius * 2 target:self];
+    [rotationControlView addGestureRecognizer:oneFingerRotationGestureRecognizer];
+    
+    //IMPLEMENT THE DISMISS ROTATION SCREEN GESTURE RECOGNIZER
+//    UITapGestureRecognizer *oneTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissRotationScreen:)];
+ //   oneTapGestureRecognizer.numberOfTapsRequired = 1;
+ //   [_rotationView addGestureRecognizer:oneTapGestureRecognizer];
+    
+}
+
+#pragma mark - CircularGestureRecognizerDelegate protocol
+
+- (void) rotation: (CGFloat) angle
+{
+    // calculate rotation angle
+    float newDurationLength = [self.task.durationMinutes floatValue] * (1 + angle/360);
+    //self.disableCollectionViewAnimations = YES;
+    [CATransaction commit];
+    [CATransaction begin];
+    [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+    self.task.durationMinutes = [NSNumber numberWithFloat:newDurationLength];
+    // [self.collectionView reloadData];
+    [CATransaction commit];
+    
+    //_rotationText.text = [NSString stringWithFormat:@"%f",_selectedCell.bounds.size.width];
+    
+    
+    imageAngle += angle;
+    if (imageAngle > 360)
+        imageAngle -= 360;
+    else if (imageAngle < -360)
+        imageAngle += 360;
+    
+    // rotate image and update text field
+    rotationControlView.transform = CGAffineTransformMakeRotation(imageAngle *  M_PI / 180);
+}
+
+- (void) finalAngle: (CGFloat) angle
+{
+    // circular gesture ended, update text field
+    
+}
+
+#pragma mark -
+#pragma mark Text UIControl methods
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     [textField resignFirstResponder];

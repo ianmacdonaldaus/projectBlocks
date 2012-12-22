@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RotationView : UIView
+@interface RotationControlView : UIView
 
 @end

@@ -37,4 +37,10 @@
     return durationText;
 }
 
+- (BOOL)sequentialForItemAtIndexPath {
+    BOOL sequential = [self.sequential boolValue];
+    return sequential;
+}
+
+
 @end

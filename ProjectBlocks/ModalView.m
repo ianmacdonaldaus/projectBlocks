@@ -69,6 +69,22 @@ static float cornerRadius = 15;
     
 }
 
+#pragma mark -
+#pragma mark Text Field Methods
+
+-(IBAction)textFieldReturn:(id)sender
+{
+    [sender resignFirstResponder];
+}
+
+-(void)hideKeyboard {
+    [self endEditing:YES];
+}
+
+
+#pragma mark -
+#pragma mark Reposition on rotation
+
 -(void)layoutSubviews {
     _editView.center = CGPointMake(_backgroundView.center.x,_backgroundView.center.y - 150);
     _gradientLayer.frame = _editView.bounds;

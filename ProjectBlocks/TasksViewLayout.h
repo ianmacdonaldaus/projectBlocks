@@ -11,7 +11,7 @@
 
 @class TasksViewLayout;
 
-@protocol CollectionViewDelegateTaskViewLayout <UICollectionViewDelegate>
+@protocol TasksViewDelegateLayout <UICollectionViewDelegate>
 @optional
 
 - (CGFloat)widthForItemAtIndexPath:(NSIndexPath*)indexPath;

@@ -65,9 +65,9 @@
 //    self.view.superview.bounds = frame;
         self.view.superview.bounds = CGRectMake(0, 0, 420, 300);
 
-    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-    DismissingView *dismiss = [[DismissingView alloc] initWithFrame:window.frame target:self selector:@selector(dismissView:)];
-    [dismiss addToWindow:window];
+   // UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    //DismissingView *dismiss = [[DismissingView alloc] initWithFrame:window.frame target:self selector:@selector(dismissView:)];
+//    [dismiss addToWindow:window];
 
 }
 

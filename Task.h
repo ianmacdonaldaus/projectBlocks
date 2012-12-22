@@ -26,5 +26,6 @@
 @property (nonatomic, retain) TaskImage *taskImage;
 
 -(NSString *)getTaskDurationAsString;
+-(BOOL)sequentialForItemAtIndexPath;
 
 @end

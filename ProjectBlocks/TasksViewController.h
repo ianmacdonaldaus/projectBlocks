@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "TasksViewLayout.h"
+#import "LXReorderableCollectionViewFlowLayout.h"
 #import "CoreDataCollectionViewController.h"
 #import "Project.h"
 #import "ColorPalette.h"
 
 
-@interface TasksViewController : CoreDataCollectionViewController <CollectionViewDelegateTaskViewLayout, UIScrollViewDelegate, NSFetchedResultsControllerDelegate, UICollectionViewDelegate> {
+@interface TasksViewController : CoreDataCollectionViewController <TasksViewDelegateLayout, UIScrollViewDelegate, NSFetchedResultsControllerDelegate, UICollectionViewDelegate> {
 
     NSFetchedResultsController *fetchedResultsController;
     NSManagedObjectContext *managedObjectContext;

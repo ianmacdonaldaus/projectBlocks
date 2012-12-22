@@ -9,6 +9,8 @@
 #import "TaskViewCell.h"
 #import <QuartzCore/QuartzCore.h>
 
+static float cornerRadius = 6;
+
 @implementation TaskViewCell {
     CAGradientLayer *_gradientLayer;
 }
@@ -16,17 +18,15 @@
 @synthesize taskLabel;
 @synthesize durationLabel;
 
-
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-//        self.contentView.alpha = 0.5;
-        self.contentView.layer.cornerRadius = 5;
+
+        self.contentView.layer.cornerRadius = cornerRadius;
         self.contentView.layer.shadowOpacity = 0.3;
         self.contentView.layer.shadowOffset = CGSizeMake(3, 3);
         self.contentView.layer.shadowRadius = 5;
-        //self.contentView.backgroundColor = [UIColor whiteColor];
         self.contentView.layer.shouldRasterize = YES;
         self.contentView.layer.rasterizationScale = [[UIScreen mainScreen] scale];
         
@@ -48,7 +48,8 @@
         
         _gradientLayer = [CAGradientLayer layer];
         _gradientLayer.frame = self.bounds;
-        _gradientLayer.cornerRadius = 5;
+        _gradientLayer.cornerRadius = cornerRadius;
+            
         _gradientLayer.colors = @[(id)[[UIColor colorWithWhite:1.0f alpha:0.4f] CGColor],
         (id)[[UIColor colorWithWhite:1.0f alpha:0.2f] CGColor],
         (id)[[UIColor clearColor] CGColor],

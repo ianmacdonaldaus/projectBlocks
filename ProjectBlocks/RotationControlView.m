@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Ian MacDonald. All rights reserved.
 //
 
-#import "RotationView.h"
+#import "RotationControlView.h"
 #import <QuartzCore/QuartzCore.h>
 
-@implementation RotationView
+@implementation RotationControlView
 
 - (id)initWithFrame:(CGRect)frame
 {

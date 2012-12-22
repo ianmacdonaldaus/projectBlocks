@@ -51,7 +51,7 @@
     totalCount = 0;
     float sectionYOffset = 0;
     
-    id<CollectionViewDelegateTaskViewLayout> delegate = (id<CollectionViewDelegateTaskViewLayout>)self.collectionView.delegate;
+    id<TasksViewDelegateLayout> delegate = (id<TasksViewDelegateLayout>)self.collectionView.delegate;
 
     for (NSInteger section = 0; section < [self.collectionView numberOfSections]; section++){
         float lastPosition = 0;
@@ -65,10 +65,12 @@
         for (NSInteger item = 0; item < [self.collectionView numberOfItemsInSection:section] ; item++) {
            
             // Get whether current cell is sequential
+            
             BOOL sequential = [delegate sequentialForItemAtIndexPath:[NSIndexPath indexPathForItem:item inSection:section]];
+            
 
             // Get current cell width
-            currentCellWidth = [delegate widthForItemAtIndexPath:[NSIndexPath indexPathForItem:item inSection:section]];
+             currentCellWidth = [delegate widthForItemAtIndexPath:[NSIndexPath indexPathForItem:item inSection:section]];
             
             // Set start position of current cell
             if (!sequential) {
@@ -121,15 +123,9 @@
         NSValue* tempRect = [NSValue valueWithCGRect:rect];
         [sectionRects addObject:tempRect];
         
-//        NSLog(@"%@", tempDuration);
-//        NSLog(@"%@", tempCount);
-//        NSLog(@"%@", tempRect);
-        
-        
     }
     //set total content size
     contentSize = CGSizeMake(MAX(durationScale * maximumDuration , self.collectionView.frame.size.width), (ITEM_SIZE * totalCount + [self.collectionView numberOfSections] * ITEM_SIZE));
-//    NSLog(@"content Size %f",contentSize.width);
     
     for (int section = 0; section < sectionRects.count; section++) {
         CGRect tempRect = [[sectionRects objectAtIndex:section] CGRectValue];
@@ -143,17 +139,19 @@
 -(UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     UICollectionViewLayoutAttributes* attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-    //NSLog(@"section %i - row %i",indexPath.section, indexPath.row);
     CGRect sectionRect = [sectionRects[indexPath.section] CGRectValue];
     CGRect cellRect = [[[cellRects objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] CGRectValue];
     
     attributes.size = CGSizeMake(cellRect.size.width, ITEM_SIZE);
     attributes.center = CGPointMake(CGRectGetMinX(sectionRect) + cellRect.origin.x + cellRect.size.width / 2, CGRectGetMinY(sectionRect) + cellRect.origin.y + cellRect.size.height/2);
-    
-//    NSLog(@"section %i row %i size %@ center %@",indexPath.section,indexPath.row,NSStringFromCGSize(attributes.size), NSStringFromCGPoint(attributes.center));
-    
+        
     return attributes;
-                                                    
+    
+}
+
+-(UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewLayoutAttributes* attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
+    return attributes;
 }
 
 -(CGSize) collectionViewContentSize {
@@ -172,83 +170,7 @@
     return attributes;
 }
 
-/*
 
-- (void)prepareForCollectionViewUpdates:(NSArray *)updateItems
-{
-    // Keep track of insert and delete index paths
-    [super prepareForCollectionViewUpdates:updateItems];
-    
-    self.deleteIndexPaths = [NSMutableArray array];
-    self.insertIndexPaths = [NSMutableArray array];
-    
-    for (UICollectionViewUpdateItem *update in updateItems)
-    {
-        if (update.updateAction == UICollectionUpdateActionDelete)
-        {
-            [self.deleteIndexPaths addObject:update.indexPathBeforeUpdate];
-        }
-        else if (update.updateAction == UICollectionUpdateActionInsert)
-        {
-            [self.insertIndexPaths addObject:update.indexPathAfterUpdate];
-        }
-    }
-}
-
-- (void)finalizeCollectionViewUpdates
-{
-    [super finalizeCollectionViewUpdates];
-    // release the insert and delete index paths
-    self.deleteIndexPaths = nil;
-    self.insertIndexPaths = nil;
-}
-
-// Note: name of method changed
-// Also this gets called for all visible cells (not just the inserted ones) and
-// even gets called when deleting cells!
-- (UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
-{
-    // Must call super
-    UICollectionViewLayoutAttributes *attributes = [super initialLayoutAttributesForAppearingItemAtIndexPath:itemIndexPath];
-    
-    if ([self.insertIndexPaths containsObject:itemIndexPath])
-    {
-        // only change attributes on inserted cells
-        if (!attributes)
-            attributes = [self layoutAttributesForItemAtIndexPath:itemIndexPath];
-        
-        // Configure attributes ...
-        attributes.alpha = 0.0;
-        attributes.center = CGPointMake(0, 0);
-    }
-    
-    return attributes;
-}
-
-// Note: name of method changed
-// Also this gets called for all visible cells (not just the deleted ones) and
-// even gets called when inserting cells!
-- (UICollectionViewLayoutAttributes *)finalLayoutAttributesForDisappearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
-{
-    // So far, calling super hasn't been strictly necessary here, but leaving it in
-    // for good measure
-    UICollectionViewLayoutAttributes *attributes = [super finalLayoutAttributesForDisappearingItemAtIndexPath:itemIndexPath];
-    
-    if ([self.deleteIndexPaths containsObject:itemIndexPath])
-    {
-        // only change attributes on deleted cells
-        if (!attributes)
-            attributes = [self layoutAttributesForItemAtIndexPath:itemIndexPath];
-        
-        // Configure attributes ...
-        attributes.alpha = 0.0;
-        attributes.center = CGPointMake(0, 0);
-        attributes.transform3D = CATransform3DMakeScale(0.1, 0.1, 1.0);
-    }
- 
-    return attributes;
-}
- */
 
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)oldBounds
 {
