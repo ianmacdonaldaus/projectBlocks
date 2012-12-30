@@ -20,19 +20,19 @@ static float cornerRadius = 15;
     self = [super initWithFrame:frame];
     if (self) {
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        
         self.layer.shouldRasterize = YES;
         self.layer.rasterizationScale = [[UIScreen mainScreen] scale];
         
+        
+        //Background View
         _backgroundView = [[UIView alloc] initWithFrame:frame];
         _backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _backgroundView.layer.opacity = 0.65;
         _backgroundView.backgroundColor = [UIColor blackColor];
         [self addSubview:_backgroundView];
         
-        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-        [_backgroundView addGestureRecognizer:tapGestureRecognizer];
-
+        
+        //Edit View Box
         _editView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 400, 300)];
         _editView.backgroundColor = [UIColor whiteColor];
         _editView.layer.shadowOpacity = 0.5;
@@ -53,19 +53,33 @@ static float cornerRadius = 15;
         _gradientLayer.locations = @[@0.00f, @0.01f,@0.8f,@1.00f];
         _gradientLayer.cornerRadius = cornerRadius;
         [_editView.layer addSublayer:_gradientLayer];
+
+        // Gesture recognizers
+        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+        [self addGestureRecognizer:tapGestureRecognizer];
+
     }
     return self;
 }
 
 
 -(void)handleTap:(UITapGestureRecognizer *)sender {
+    CGPoint locationOfTouch = [sender locationInView:sender.view];
+    UIView* subview = [sender.view hitTest:locationOfTouch withEvent:nil];
     
-
-    [UIView animateWithDuration:0.25 animations:^{
-        [self.layer setOpacity:0.0];
-    } completion:^(BOOL finished) {
-        [self removeFromSuperview];
-    }];
+    if (subview == self.backgroundView) {
+        NSLog(@"BackgroundView tapped");
+        [UIView animateWithDuration:0.25 animations:^{
+            [self.layer setOpacity:0.0];
+        } completion:^(BOOL finished) {
+            [self removeFromSuperview];
+        }];
+        return;
+    }
+    if (subview == self.editView) {
+        [self endEditing:YES];
+        return;
+    }
     
 }
 
@@ -81,6 +95,10 @@ static float cornerRadius = 15;
     [self endEditing:YES];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
+}
 
 #pragma mark -
 #pragma mark Reposition on rotation

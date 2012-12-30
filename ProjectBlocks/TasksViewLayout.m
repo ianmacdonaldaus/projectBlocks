@@ -150,7 +150,14 @@
 }
 
 -(UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewLayoutAttributes* attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
+    
+    UICollectionViewLayoutAttributes* attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:kind withIndexPath:indexPath];
+    CGRect sectionRect = [sectionRects[indexPath.section] CGRectValue];
+    float sectionWidth = MAX(durationScale * maximumDuration , self.collectionView.frame.size.width);
+    
+    attributes.size = CGSizeMake(sectionWidth * 2, sectionRect.size.height + (ITEM_SIZE * 0.75));
+    attributes.center = CGPointMake(sectionWidth / 2, sectionRect.origin.y + sectionRect.size.height/2);
+    attributes.zIndex = -100;
     return attributes;
 }
 
@@ -159,6 +166,9 @@
 }
 
 -(NSArray*)layoutAttributesForElementsInRect:(CGRect)rect {
+    
+    // add a filter fopr elements - first if the section rect is in view - then the specific tasks
+    
     NSMutableArray* attributes = [NSMutableArray array];
     for (NSInteger section = 0; section < [self.collectionView numberOfSections]; section++) {
         for (NSInteger row=0 ; row < [self.collectionView numberOfItemsInSection:section] ; row++)
@@ -166,6 +176,7 @@
             NSIndexPath* indexPath = [NSIndexPath indexPathForItem:row inSection:section];
             [attributes addObject:[self layoutAttributesForItemAtIndexPath:indexPath]];
         }
+        [attributes addObject:[self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]]];
     }
     return attributes;
 }

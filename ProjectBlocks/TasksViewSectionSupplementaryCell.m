@@ -15,15 +15,19 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        self.contentView.layer.opacity = 0.25;
+        //self.layer.shouldRasterize = NO;
+        //self.opaque = NO;
+        self.contentView.backgroundColor = [UIColor clearColor];
+        
     }
     return self;
 }
 
 -(void)willMoveToWindow:(UIWindow *)newWindow {
-    self.layer.backgroundColor = [self.backgroundPaletteColor CGColor];
-    self.layer.opacity = 0.5;
-    self.layer.cornerRadius = 5;
+    //self.layer.opacity = 0.25;
+    //self.layer.shouldRasterize = NO;
+    //self.opaque = NO;
 }
 
 @end

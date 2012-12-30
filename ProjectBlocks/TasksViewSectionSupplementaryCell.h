@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TasksViewSectionSupplementaryCell : UICollectionReusableView
+@interface TasksViewSectionSupplementaryCell : UICollectionViewCell
 
 @property (nonatomic, retain) UIColor *backgroundPaletteColor;
 

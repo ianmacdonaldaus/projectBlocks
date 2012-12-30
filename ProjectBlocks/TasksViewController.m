@@ -10,7 +10,6 @@
 #import "TasksViewLayout.h"
 #import "TaskViewCell.h"
 #import "TasksViewSectionSupplementaryCell.h"
-#import "TaskDetailView.h"
 #import "TaskEditModalView.h"
 #import "Task.h"
 #import "Colors.h"
@@ -65,15 +64,15 @@
     durationScale = 3.0f;
     
     [self.collectionView registerClass:[TaskViewCell class] forCellWithReuseIdentifier:@"TaskCell"];
-    [self.collectionView registerClass:[TasksViewSectionSupplementaryCell class] forCellWithReuseIdentifier:@"SectionCell"];
-
+    [self.collectionView registerClass:[TasksViewSectionSupplementaryCell class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"SectionCell"];
     [self.collectionView reloadData];
     self.collectionView.frame = CGRectMake(0, 50, self.view.bounds.size.width, self.view.bounds.size.height - 50);
+    
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     
     self.collectionView.scrollEnabled = YES;
-    
+    self.collectionView.pagingEnabled = NO;
     self.view.backgroundColor = [UIColor clearColor];
     
     // Create the background view
@@ -140,6 +139,7 @@
 #pragma mark Collection View Methods
 
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
     TaskViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TaskCell" forIndexPath:indexPath];
     Task* task = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
@@ -189,8 +189,19 @@
 }
 
 - (UICollectionReusableView *)collectionView: (UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    TasksViewSectionSupplementaryCell *sectionView = [self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"SectionView" forIndexPath:indexPath];
+   
+    TasksViewSectionSupplementaryCell *sectionView = [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"SectionCell" forIndexPath:indexPath];
     
+    float colorIndex = indexPath.section;
+    if (colorIndex > 4) {
+        colorIndex =  ( (colorIndex) / 5 - floorf((colorIndex)/5) ) * 5;
+    }
+    Colors *colors = [sortedColors objectAtIndex:colorIndex];
+    UIColor *color = colors.color;
+
+    //sectionView.layer.backgroundColor = [color CGColor];
+    sectionView.contentView.layer.backgroundColor = [color CGColor];
+//    sectionView.layer.opacity = 0.25;
     return sectionView;
 }
 
@@ -214,13 +225,13 @@
 - (void)handleSingleTap:(UITapGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateEnded)
     {
-/*        CGPoint initialTapPoint = [sender locationInView:self.collectionView];
+        CGPoint initialTapPoint = [sender locationInView:self.collectionView];
         NSIndexPath* tappedCellPath = [self.collectionView indexPathForItemAtPoint:initialTapPoint];
         selectedTask = [self.fetchedResultsController objectAtIndexPath:tappedCellPath];
         if (selectedTask) {
-            [self showTaskEditModalView:tappedCellPath];
+            [self showTaskEditModalView:tappedCellPath rotation:NO];
         }
-    */}
+    }
 }
 
 - (void)handleDoubleTap:(UITapGestureRecognizer *)sender {
@@ -231,6 +242,7 @@
                 if (tappedCellPath!=nil)
                 {
                     selectedTask = [self.fetchedResultsController objectAtIndexPath:tappedCellPath];
+                    [self showTaskEditModalView:tappedCellPath rotation:YES];
                 } else {
                     [self addTask];
                 }
@@ -257,10 +269,11 @@
     }
 }
 
-- (void)showTaskEditModalView:(NSIndexPath*)indexPath {
+- (void)showTaskEditModalView:(NSIndexPath*)indexPath rotation:(BOOL)rotation {
     TaskEditModalView *modalView = [[TaskEditModalView alloc] initWithFrame:self.view.bounds];
     modalView.managedObjectContext  = self.managedObjectContext;
     Task *task = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    modalView.showRotationControl = rotation;
     modalView.task = task;
     [modalView.layer setOpacity:0.0];
     [self.view addSubview:modalView];
@@ -272,79 +285,6 @@
     } completion:^(BOOL finished) { nil; }];
     
 }
-
-
-/*-(void)createRotationScreen {
-    float circleRadius = 200.0f;
-    // Create the container view - this will intercept all other
-    // CREATE THE CONTAINER VIEW - THIS WILL INTERCEPT ALL OTHER GESTURES WHILE ROTATING
-    _rotationView = [[UIView alloc] initWithFrame:self.collectionView.bounds];
-    _rotationView.backgroundColor = [UIColor clearColor];
-    
-    //CREATE THE CIRCLEVIEW - THIS WILL BE ROTATED WITH THE GESTURE
-    _circleView = [[RotationControlView alloc] initWithFrame:CGRectMake(self.collectionView.bounds.size.width / 2 - circleRadius / 2, 3 * self.collectionView.bounds.size.height / 4 - circleRadius / 2, circleRadius, circleRadius)];
-    _circleView.layer.cornerRadius = circleRadius / 2;
-    _circleView.backgroundColor = [UIColor clearColor];
-    _circleView.opaque = YES;
-//    _circleView.layer.opacity = ;
-    
-    //ADD THE NEW VIEWS
-    [_rotationView addSubview:_circleView];
-    [self.view addSubview:_rotationView];
-    
-    //IMPLEMENT THE GESTURE RECOGNIZER
-    CGPoint midPoint = CGPointMake(_circleView.bounds.size.width/2, _circleView.bounds.size.height / 2);
-    CGFloat outRadius = _circleView.frame.size.width / 2;
-    
-    oneFingerGestureRecognizer = [[OneFingerRotationGestureRecognizer alloc] initWithMidPoint:midPoint innerRadius:outRadius / 4 outerRadius:outRadius * 2 target:self];
-    [_circleView addGestureRecognizer:oneFingerGestureRecognizer];
-    
-    //IMPLEMENT THE DISMISS ROTATION SCREEN GESTURE RECOGNIZER
-    UITapGestureRecognizer *oneTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissRotationScreen:)];
-    oneTapGestureRecognizer.numberOfTapsRequired = 1;
-    [_rotationView addGestureRecognizer:oneTapGestureRecognizer];
-    
-}
-
-#pragma mark - CircularGestureRecognizerDelegate protocol
-
-- (void) rotation: (CGFloat) angle
-{
-    // calculate rotation angle
-    float newDurationLength = [selectedTask.durationMinutes floatValue] * (1 + angle/360);
-    self.disableCollectionViewAnimations = YES;
-    [CATransaction commit];
-    [CATransaction begin];
-    [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
-        selectedTask.durationMinutes = [NSNumber numberWithFloat:newDurationLength];
-       // [self.collectionView reloadData];
-    [CATransaction commit];
-    
-    //_rotationText.text = [NSString stringWithFormat:@"%f",_selectedCell.bounds.size.width];
-    
-    
-    imageAngle += angle;
-    if (imageAngle > 360)
-        imageAngle -= 360;
-    else if (imageAngle < -360)
-        imageAngle += 360;
-    
-    // rotate image and update text field
-    _circleView.transform = CGAffineTransformMakeRotation(imageAngle *  M_PI / 180);
-}
-
-- (void) finalAngle: (CGFloat) angle
-{
-    // circular gesture ended, update text field
-    
-}
-
--(void)dismissRotationScreen:(UITapGestureRecognizer*)sender {
-    [_rotationView removeFromSuperview];
-    selectedTask = nil;
-    self.disableCollectionViewAnimations = NO;
-}
-*/
 
 -(void)addTask {
     Task* task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:_managedObjectContext];
@@ -446,16 +386,16 @@
 {
     if([NSStringFromSelector(action) isEqualToString:@"cut:"])
     {
-        
+ 
         [_managedObjectContext deleteObject:[_fetchedResultsController objectAtIndexPath:indexPath]];
         
     }
 }
-*/
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self showTaskEditModalView:indexPath];
-}
 
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self showTaskEditModalView:indexPath rotation:NO];
+}
+*/
 
 
 @end
