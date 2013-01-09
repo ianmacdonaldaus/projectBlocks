@@ -14,14 +14,8 @@
 #import "ColorPalette.h"
 
 
-@interface TasksViewController : CoreDataCollectionViewController <TasksViewDelegateLayout, UIScrollViewDelegate, NSFetchedResultsControllerDelegate, UICollectionViewDelegate> {
+@interface TasksViewController : CoreDataCollectionViewController <TasksViewDelegateLayout, UIScrollViewDelegate, UICollectionViewDelegate>
 
-    NSFetchedResultsController *fetchedResultsController;
-    NSManagedObjectContext *managedObjectContext;
-}
-
-@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) Project* project;
 @property (strong, nonatomic) ColorPalette* colorPalette;
 @property (nonatomic, assign) NSInteger cellCount;
