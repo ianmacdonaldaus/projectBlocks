@@ -130,6 +130,13 @@
     NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES]];
     sortedColors = [[self.colorPalette.colors allObjects] sortedArrayUsingDescriptors:sortDescriptors];
 
+    for (Task *task in [self.fetchedResultsController fetchedObjects]) {
+        NSIndexPath *indexPath = [self.fetchedResultsController indexPathForObject:task];
+        if (task.index != [NSNumber numberWithInt:indexPath.row]) {
+            task.index = [NSNumber numberWithInt:indexPath.row];
+        }
+
+    }
 }
 
 -(void)handleBackButton {
@@ -147,7 +154,8 @@
     cell.taskLabel.text = task.title;
     
     // Add duration Label
-    cell.durationLabel.text = [task getTaskDurationAsString];
+    //cell.durationLabel.text = [task getTaskDurationAsString];
+    cell.durationLabel.text = [task.index stringValue];
     
     //Add color Palette
     float colorIndex = indexPath.section;
@@ -182,7 +190,6 @@
     float differenceToLastItem = countOfItems - (indexPath.row + 1);
     float proportionToLastItem = differenceToLastItem / countOfItems;
     brightness = brightness - (0.4 * differenceToLastItem/steps);
-    NSLog(@"%f %f %f",steps,proportionToLastItem, brightness);
     cell.contentView.backgroundColor = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1.0];
         
     return cell;
@@ -306,8 +313,11 @@
     //Set index
     task.index = [NSNumber numberWithInteger:[[self.fetchedResultsController fetchedObjects] count]];
 
-    [self.managedObjectContext save:nil];
+    // Need to change the index to be the number of object within the current section...
+    
+//    [self.managedObjectContext save:nil];
 }
+
 
 #pragma mark -
 #pragma mark Miscellaneous
@@ -335,8 +345,9 @@
     //[fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"section" ascending:YES];
-    NSArray *sortDescriptors = @[sortDescriptor];
+    NSSortDescriptor *sortDescriptorSection = [[NSSortDescriptor alloc] initWithKey:@"section" ascending:YES];
+    NSSortDescriptor *sortDescriptorRow = [[NSSortDescriptor alloc] initWithKey:@"index" ascending:YES];
+    NSArray *sortDescriptors = @[sortDescriptorSection, sortDescriptorRow];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
@@ -398,8 +409,39 @@
 */
 
 - (void)collectionView:(UICollectionView *)theCollectionView layout:(UICollectionViewLayout *)theLayout itemAtIndexPath:(NSIndexPath *)theFromIndexPath willMoveToIndexPath:(NSIndexPath *)theToIndexPath {
+
+    NSLog(@"from: %@",theFromIndexPath);
+    NSLog(@"to: %@",theToIndexPath);
+    
+    Task *taskToBeMoved = [self.fetchedResultsController objectAtIndexPath:theFromIndexPath];
+    
+    NSLog(@"Task Index: %@",taskToBeMoved.index);
+    
+    taskToBeMoved.index = [NSNumber numberWithInt:theToIndexPath.row];
+
+    NSLog(@"New task index: %@",taskToBeMoved.index);
+    
+    BOOL moveIndexUpwards = YES ? theToIndexPath.row > theFromIndexPath.row : NO;
+    for (Task *task in [self.fetchedResultsController fetchedObjects]) {
+        NSLog(@"stepped task %@, %@",task.section,task.index);
+        if ([task.section floatValue] == theFromIndexPath.section) {
+            if (moveIndexUpwards) {
+                if (([task.index integerValue] > theFromIndexPath.row) && ([task.index integerValue] <= theToIndexPath.row)) {
+                    task.index = [NSNumber numberWithInt:([task.index integerValue] - 1)];
+                }
+            } else if (!moveIndexUpwards) {
+                if (([task.index integerValue] < theFromIndexPath.row) && ([task.index integerValue] >= theToIndexPath.row)) {
+                    task.index = [NSNumber numberWithInt:([task.index integerValue] + 1)];
+                }
+            }
+        }
+    }
     
 }
 
+-(void)setTaskIndex:(NSIndexPath *)indexPath {
+    Task *task = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    task.index = [NSNumber numberWithInt:indexPath.row];
+}
 
 @end

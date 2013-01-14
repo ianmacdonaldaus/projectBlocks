@@ -186,7 +186,9 @@ static NSString * const kLXReorderableCollectionViewFlowLayoutScrollingDirection
     
     attributes.size = CGSizeMake(cellRect.size.width, ITEM_SIZE);
     attributes.center = CGPointMake(CGRectGetMinX(sectionRect) + cellRect.origin.x + cellRect.size.width / 2, CGRectGetMinY(sectionRect) + cellRect.origin.y + cellRect.size.height/2);
-        
+    
+    [self applyLayoutAttributes:attributes];
+    
     return attributes;
     
 }
@@ -313,18 +315,24 @@ static NSString * const kLXReorderableCollectionViewFlowLayoutScrollingDirection
 - (void)invalidateLayoutIfNecessary {
     NSIndexPath *theIndexPathOfSelectedItem = [self.collectionView indexPathForItemAtPoint:self.currentView.center];
     if ((![theIndexPathOfSelectedItem isEqual:self.selectedItemIndexPath]) &&(theIndexPathOfSelectedItem)) {
+
+        //this is where we will do a test for whether it is sequential or not
+        // test for relative position within the index path
+        
         NSIndexPath *thePreviousSelectedIndexPath = self.selectedItemIndexPath;
         self.selectedItemIndexPath = theIndexPathOfSelectedItem;
+        NSLog(@"%@",theIndexPathOfSelectedItem);
         if ([self.collectionView.delegate conformsToProtocol:@protocol(TasksViewDelegateLayout)]) {
             id<TasksViewDelegateLayout> theDelegate = (id<TasksViewDelegateLayout>)self.collectionView.delegate;
             [theDelegate collectionView:self.collectionView layout:self itemAtIndexPath:thePreviousSelectedIndexPath willMoveToIndexPath:theIndexPathOfSelectedItem];
         }
-        [self.collectionView performBatchUpdates:^{
+        [self invalidateLayout];
+/*        [self.collectionView performBatchUpdates:^{
             [self.collectionView moveItemAtIndexPath:thePreviousSelectedIndexPath toIndexPath:theIndexPathOfSelectedItem];
             [self.collectionView deleteItemsAtIndexPaths:@[ thePreviousSelectedIndexPath ]];
             [self.collectionView insertItemsAtIndexPaths:@[ theIndexPathOfSelectedItem ]];
         } completion:^(BOOL finished) {
-        }];
+        }];*/
     }
 }
 
@@ -449,8 +457,7 @@ static NSString * const kLXReorderableCollectionViewFlowLayoutScrollingDirection
                          [theDelegate collectionView:self.collectionView layout:self didBeginReorderingAtIndexPath:theIndexPathOfSelectedItem];
                      }
                  }
-                 NSLog(@"Finished animation");
-             }];
+            }];
             
             [self invalidateLayout];
         } break;
