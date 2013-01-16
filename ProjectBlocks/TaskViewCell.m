@@ -55,7 +55,7 @@ static float cornerRadius = 6;
         (id)[[UIColor clearColor] CGColor],
         (id)[[UIColor colorWithWhite:0.3f alpha:0.1f] CGColor]];
         _gradientLayer.locations = @[@0.00f, @0.01f,@0.8f,@1.00f];
-        [self.contentView.layer addSublayer:_gradientLayer];
+        //[self.contentView.layer addSublayer:_gradientLayer];
 
 
     }

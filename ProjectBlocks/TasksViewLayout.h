@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Task.h"
 //#import "CVViewController.h"
 
 @class TasksViewLayout;
@@ -21,6 +22,7 @@
 @property (weak, nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 
 @property (strong, nonatomic) NSIndexPath *selectedItemIndexPath;
+@property (strong, nonatomic) Task *selectedTask;
 @property (weak, nonatomic) UIView *currentView;
 @property (assign, nonatomic) CGPoint currentViewCenter;
 @property (assign, nonatomic) CGPoint panTranslationInCollectionView;
@@ -38,11 +40,13 @@
 @protocol TasksViewDelegateLayout <UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 - (void)collectionView:(UICollectionView *)theCollectionView layout:(UICollectionViewLayout *)theLayout itemAtIndexPath:(NSIndexPath *)theFromIndexPath willMoveToIndexPath:(NSIndexPath *)theToIndexPath;
+- (void)collectionView:(UICollectionView *)theCollectionView layout:(UICollectionViewLayout *)theLayout item:(Task *)taskToBeMoved willMoveToIndexPath:(NSIndexPath *)theToIndexPath;
 
 @optional
 
 - (CGFloat)widthForItemAtIndexPath:(NSIndexPath*)indexPath;
 - (BOOL)sequentialForItemAtIndexPath:(NSIndexPath*)indexPath;
+- (id)objectInProjectAtIndex:(NSIndexPath *)indexPath;
 
 - (void)collectionView:(UICollectionView *)theCollectionView layout:(UICollectionViewLayout *)theLayout willBeginReorderingAtIndexPath:(NSIndexPath *)theIndexPath;
 

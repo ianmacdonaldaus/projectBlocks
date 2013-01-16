@@ -321,11 +321,39 @@ static NSString * const kLXReorderableCollectionViewFlowLayoutScrollingDirection
         
         NSIndexPath *thePreviousSelectedIndexPath = self.selectedItemIndexPath;
         self.selectedItemIndexPath = theIndexPathOfSelectedItem;
-        NSLog(@"%@",theIndexPathOfSelectedItem);
+        
+        
+        if ([self.collectionView.delegate conformsToProtocol:@protocol(TasksViewDelegateLayout)]) {
+            id<TasksViewDelegateLayout> theDelegate = (id<TasksViewDelegateLayout>)self.collectionView.delegate;
+            [theDelegate collectionView:self.collectionView layout:self item:self.selectedTask  willMoveToIndexPath:theIndexPathOfSelectedItem];
+        }
+        
+        /*
         if ([self.collectionView.delegate conformsToProtocol:@protocol(TasksViewDelegateLayout)]) {
             id<TasksViewDelegateLayout> theDelegate = (id<TasksViewDelegateLayout>)self.collectionView.delegate;
             [theDelegate collectionView:self.collectionView layout:self itemAtIndexPath:thePreviousSelectedIndexPath willMoveToIndexPath:theIndexPathOfSelectedItem];
+        }*/
+        
+  
+        // testing of why the task jumps around -
+        //self.selectedTask.index = [NSNumber numberWithInteger:theIndexPathOfSelectedItem.row];
+        //self.selectedTask.section = [NSNumber numberWithInteger:theIndexPathOfSelectedItem.section];
+        
+        //START OF DEBUG CODE
+        
+/*        if ([self.collectionView.delegate conformsToProtocol:@protocol(TasksViewDelegateLayout)]) {
+            id<TasksViewDelegateLayout> theDelegate = (id<TasksViewDelegateLayout>)self.collectionView.delegate;
+            if ([theDelegate respondsToSelector:@selector(objectInProjectAtIndex:)]) {
+                
+                Task * taskForIndexPathOfSelectedItem = [theDelegate objectInProjectAtIndex:theIndexPathOfSelectedItem];
+                taskForIndexPathOfSelectedItem.title = @"changed";
+//                NSLog(@"%@ - %@ - %@, %@", theIndexPathOfSelectedItem,taskForIndexPathOfSelectedItem.title, taskForIndexPathOfSelectedItem.section, taskForIndexPathOfSelectedItem.index);
+                NSLog(@"%@ - %@ - %@, %@", theIndexPathOfSelectedItem,self.selectedTask.title,self.selectedTask.section,self.selectedTask.index);
+            }
         }
+*/
+        // END OF DEBUG CODE
+        
         [self invalidateLayout];
 /*        [self.collectionView performBatchUpdates:^{
             [self.collectionView moveItemAtIndexPath:thePreviousSelectedIndexPath toIndexPath:theIndexPathOfSelectedItem];
@@ -333,7 +361,7 @@ static NSString * const kLXReorderableCollectionViewFlowLayoutScrollingDirection
             [self.collectionView insertItemsAtIndexPaths:@[ theIndexPathOfSelectedItem ]];
         } completion:^(BOOL finished) {
         }];*/
-    }
+    } 
 }
 
 #pragma mark - Target/Action methods
@@ -435,6 +463,13 @@ static NSString * const kLXReorderableCollectionViewFlowLayoutScrollingDirection
             [self.collectionView addSubview:theView];
             
             self.selectedItemIndexPath = theIndexPathOfSelectedItem;
+            if ([self.collectionView.delegate conformsToProtocol:@protocol(TasksViewDelegateLayout)]) {
+                id<TasksViewDelegateLayout> theDelegate = (id<TasksViewDelegateLayout>)self.collectionView.delegate;
+                if ([theDelegate respondsToSelector:@selector(objectInProjectAtIndex:)]) {
+
+                    self.selectedTask = [theDelegate objectInProjectAtIndex:theIndexPathOfSelectedItem];
+                }
+            }
             self.currentView = theView;
             self.currentViewCenter = theView.center;
             
@@ -623,7 +658,7 @@ static NSString * const kLXReorderableCollectionViewFlowLayoutScrollingDirection
 #pragma mark - UIGestureRecognizerDelegate methods
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)theGestureRecognizer {
-    NSLog(@"recognizer should begin");
+    //NSLog(@"recognizer should begin");
     if ([self.panGestureRecognizer isEqual:theGestureRecognizer]) {
         return (self.selectedItemIndexPath != nil);
     }

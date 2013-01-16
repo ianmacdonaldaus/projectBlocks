@@ -155,7 +155,9 @@
     
     // Add duration Label
     //cell.durationLabel.text = [task getTaskDurationAsString];
-    cell.durationLabel.text = [task.index stringValue];
+    NSString *debugString = [NSString stringWithFormat:@"%@ %@",[task.sequential boolValue] ? @"YES" : @"NO" , [task.index stringValue]];
+    cell.durationLabel.text = debugString;
+    
     
     //Add color Palette
     float colorIndex = indexPath.section;
@@ -223,6 +225,11 @@
 -(BOOL) sequentialForItemAtIndexPath:(NSIndexPath*)indexPath {
     Task *task = [self.fetchedResultsController objectAtIndexPath:indexPath];
     return [task sequentialForItemAtIndexPath];
+}
+
+-(id)objectInProjectAtIndex:(NSIndexPath *)indexPath {
+    Task *task = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    return task;
 }
 
 
@@ -408,34 +415,102 @@
 }
 */
 
-- (void)collectionView:(UICollectionView *)theCollectionView layout:(UICollectionViewLayout *)theLayout itemAtIndexPath:(NSIndexPath *)theFromIndexPath willMoveToIndexPath:(NSIndexPath *)theToIndexPath {
+- (void)collectionView:(UICollectionView *)theCollectionView layout:(UICollectionViewLayout *)theLayout item:(Task *)taskToBeMoved willMoveToIndexPath:(NSIndexPath *)theToIndexPath {
+ 
+    NSMutableArray *objectsToIncreaseIndex = [NSMutableArray array];
+    NSMutableArray *objectsToDecreaseIndex = [NSMutableArray array];
+    NSIndexPath *theFromIndexPath = [self.fetchedResultsController indexPathForObject:taskToBeMoved];
+    
+    NSLog(@"%@ - %@ %@ to %i %i", taskToBeMoved.title, taskToBeMoved.section, taskToBeMoved.index,theToIndexPath.section,theToIndexPath.row);
 
-    NSLog(@"from: %@",theFromIndexPath);
-    NSLog(@"to: %@",theToIndexPath);
+    int fromSection = theFromIndexPath.section;
+    int toSection = theToIndexPath.section;
     
-    Task *taskToBeMoved = [self.fetchedResultsController objectAtIndexPath:theFromIndexPath];
-    
-    NSLog(@"Task Index: %@",taskToBeMoved.index);
-    
-    taskToBeMoved.index = [NSNumber numberWithInt:theToIndexPath.row];
+    if (theFromIndexPath.section == theToIndexPath.section) {
+        int movingUpwards = 1 ? theFromIndexPath.row <  theToIndexPath.row : 0;
+        
+        for (int i = 0; i<[self.collectionView numberOfItemsInSection:fromSection]; i++) {
+            Task *task = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForItem:i inSection:fromSection]];
+            if (movingUpwards == 1) {
+                
+                if ([task.index integerValue] > theFromIndexPath.row && [task.index integerValue] <= theToIndexPath.row) {
+                    [objectsToDecreaseIndex addObject:task];
+                }
 
-    NSLog(@"New task index: %@",taskToBeMoved.index);
-    
-    BOOL moveIndexUpwards = YES ? theToIndexPath.row > theFromIndexPath.row : NO;
-    for (Task *task in [self.fetchedResultsController fetchedObjects]) {
-        NSLog(@"stepped task %@, %@",task.section,task.index);
-        if ([task.section floatValue] == theFromIndexPath.section) {
-            if (moveIndexUpwards) {
-                if (([task.index integerValue] > theFromIndexPath.row) && ([task.index integerValue] <= theToIndexPath.row)) {
-                    task.index = [NSNumber numberWithInt:([task.index integerValue] - 1)];
+            } else {
+                
+                if ([task.index integerValue] < theFromIndexPath.row && [task.index integerValue] >= theToIndexPath.row) {
+                    [objectsToIncreaseIndex addObject:task];
                 }
-            } else if (!moveIndexUpwards) {
-                if (([task.index integerValue] < theFromIndexPath.row) && ([task.index integerValue] >= theToIndexPath.row)) {
-                    task.index = [NSNumber numberWithInt:([task.index integerValue] + 1)];
-                }
+
+            }
+        }
+    } else {
+
+        for (int i = 0; i<[self.collectionView numberOfItemsInSection:fromSection]; i++) {
+            Task *task = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForItem:i inSection:fromSection]];
+            if ([task.index integerValue] > theFromIndexPath.row) {
+                [objectsToDecreaseIndex addObject:task];
+            }
+        }
+        for (int i = 0; i < [self.collectionView numberOfItemsInSection:toSection]; i++) {
+            Task *task = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForItem:i inSection:toSection]];
+            if ([task.index integerValue] >= theToIndexPath.row) {
+                [objectsToIncreaseIndex addObject:task];
             }
         }
     }
+
+    for (Task *task in objectsToIncreaseIndex) {
+        task.index = [NSNumber numberWithInt:([task.index integerValue] + 1)];
+    }
+    for (Task *task in objectsToDecreaseIndex) {
+        task.index = [NSNumber numberWithInt:([task.index integerValue] - 1)];
+    }
+    
+    taskToBeMoved.section = [NSNumber numberWithInt:theToIndexPath.section];
+    taskToBeMoved.index = [NSNumber numberWithInt:theToIndexPath.row];
+
+}
+
+
+- (void)collectionView:(UICollectionView *)theCollectionView layout:(UICollectionViewLayout *)theLayout itemAtIndexPath:(NSIndexPath *)theFromIndexPath willMoveToIndexPath:(NSIndexPath *)theToIndexPath {
+
+    NSMutableArray *objectsToIncreaseIndex = [NSMutableArray array];
+    NSMutableArray *objectsToDecreaseIndex = [NSMutableArray array];
+    
+    Task *taskToBeMoved = [self.fetchedResultsController objectAtIndexPath:theFromIndexPath];
+    NSLog(@"%@", taskToBeMoved.title);
+    
+    taskToBeMoved.index = [NSNumber numberWithInt:theToIndexPath.row];
+    taskToBeMoved.section = [NSNumber numberWithInt:theToIndexPath.section];
+
+    int sameSectionAdjustment = 1 ? (theFromIndexPath.section == theToIndexPath.section) && (theFromIndexPath.row > theToIndexPath.row) : 0;
+
+    for (Task *task in [self.fetchedResultsController fetchedObjects]) {
+        
+        if (task != taskToBeMoved) {
+            
+            if([task.section floatValue] == theFromIndexPath.section) {
+                
+                if ([task.index integerValue] > theFromIndexPath.row ) {
+                    [objectsToDecreaseIndex addObject:task];
+                }
+            
+            
+                if ([task.index integerValue] > theToIndexPath.row - sameSectionAdjustment) {
+                    [objectsToIncreaseIndex addObject:task];
+                }
+            }
+            
+        }
+    }
+     for (Task *task in objectsToIncreaseIndex) {
+            task.index = [NSNumber numberWithInt:([task.index integerValue] + 1)];
+        }
+        for (Task *task in objectsToDecreaseIndex) {
+            task.index = [NSNumber numberWithInt:([task.index integerValue] - 1)];
+        }
     
 }
 

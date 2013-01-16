@@ -40,7 +40,6 @@ static NSString *CellIdentifier = @"CollectionViewCell";
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    //NSLog(@"CV - number of sections: %i",[[self.fetchedResultsController sections] count] );
     return [[self.fetchedResultsController sections] count];
 }
 
@@ -48,7 +47,6 @@ static NSString *CellIdentifier = @"CollectionViewCell";
 {
     
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-    //NSLog(@"CV - number of items in section: %i",[sectionInfo numberOfObjects]);
     return [sectionInfo numberOfObjects];
 }
 
@@ -96,7 +94,7 @@ static NSString *CellIdentifier = @"CollectionViewCell";
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    NSLog(@"CoreDataCollectionViewController: controllerDidChangeContent");
+    //NSLog(@"CoreDataCollectionViewController: controllerDidChangeContent");
     if ([_sectionChanges count] > 0)
     {     
 
@@ -133,7 +131,7 @@ static NSString *CellIdentifier = @"CollectionViewCell";
     
     if ([_objectChanges count] > 0 && [_sectionChanges count] == 0)
     {
-        if (!self.disableCollectionViewAnimations) {
+        /*if (!self.disableCollectionViewAnimations) {
             
         
             [self.collectionView performBatchUpdates:^{
@@ -161,7 +159,12 @@ static NSString *CellIdentifier = @"CollectionViewCell";
                     }];
                 }
             } completion:nil];
+
+
             }
+         */
+         [self.collectionView reloadData];
+
     }
     [_sectionChanges removeAllObjects];
     [_objectChanges removeAllObjects];
