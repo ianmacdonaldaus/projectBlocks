@@ -27,8 +27,8 @@ static float cornerRadius = 6;
         self.contentView.layer.shadowOpacity = 0.3;
         self.contentView.layer.shadowOffset = CGSizeMake(3, 3);
         self.contentView.layer.shadowRadius = 5;
-        self.contentView.layer.shouldRasterize = YES;
-        self.contentView.layer.rasterizationScale = [[UIScreen mainScreen] scale];
+//        self.contentView.layer.shouldRasterize = YES;
+//        self.contentView.layer.rasterizationScale = [[UIScreen mainScreen] scale];
         
         
         taskLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 2, frame.size.width - 10, 20)];

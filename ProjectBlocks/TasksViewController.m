@@ -155,7 +155,7 @@
     
     // Add duration Label
     //cell.durationLabel.text = [task getTaskDurationAsString];
-    NSString *debugString = [NSString stringWithFormat:@"%@ %@",[task.sequential boolValue] ? @"YES" : @"NO" , [task.index stringValue]];
+    NSString *debugString = [NSString stringWithFormat:@"%@ %@ %@",[task.sequential boolValue] ? @"YES" : @"NO" , [task.section stringValue], [task.index stringValue] ];
     cell.durationLabel.text = debugString;
     
     
@@ -215,7 +215,7 @@
 }
 
 - (CGFloat)widthForItemAtIndexPath:(NSIndexPath*)indexPath {
-
+    NSLog(@"width for indexPath: %@", indexPath);
     Task* task = [self.fetchedResultsController objectAtIndexPath:indexPath];
     float minutes = [task.durationMinutes floatValue];
     float width = minutes * durationScale;
@@ -421,8 +421,6 @@
     NSMutableArray *objectsToDecreaseIndex = [NSMutableArray array];
     NSIndexPath *theFromIndexPath = [self.fetchedResultsController indexPathForObject:taskToBeMoved];
     
-    NSLog(@"%@ - %@ %@ to %i %i", taskToBeMoved.title, taskToBeMoved.section, taskToBeMoved.index,theToIndexPath.section,theToIndexPath.row);
-
     int fromSection = theFromIndexPath.section;
     int toSection = theToIndexPath.section;
     
@@ -471,47 +469,6 @@
     taskToBeMoved.section = [NSNumber numberWithInt:theToIndexPath.section];
     taskToBeMoved.index = [NSNumber numberWithInt:theToIndexPath.row];
 
-}
-
-
-- (void)collectionView:(UICollectionView *)theCollectionView layout:(UICollectionViewLayout *)theLayout itemAtIndexPath:(NSIndexPath *)theFromIndexPath willMoveToIndexPath:(NSIndexPath *)theToIndexPath {
-
-    NSMutableArray *objectsToIncreaseIndex = [NSMutableArray array];
-    NSMutableArray *objectsToDecreaseIndex = [NSMutableArray array];
-    
-    Task *taskToBeMoved = [self.fetchedResultsController objectAtIndexPath:theFromIndexPath];
-    NSLog(@"%@", taskToBeMoved.title);
-    
-    taskToBeMoved.index = [NSNumber numberWithInt:theToIndexPath.row];
-    taskToBeMoved.section = [NSNumber numberWithInt:theToIndexPath.section];
-
-    int sameSectionAdjustment = 1 ? (theFromIndexPath.section == theToIndexPath.section) && (theFromIndexPath.row > theToIndexPath.row) : 0;
-
-    for (Task *task in [self.fetchedResultsController fetchedObjects]) {
-        
-        if (task != taskToBeMoved) {
-            
-            if([task.section floatValue] == theFromIndexPath.section) {
-                
-                if ([task.index integerValue] > theFromIndexPath.row ) {
-                    [objectsToDecreaseIndex addObject:task];
-                }
-            
-            
-                if ([task.index integerValue] > theToIndexPath.row - sameSectionAdjustment) {
-                    [objectsToIncreaseIndex addObject:task];
-                }
-            }
-            
-        }
-    }
-     for (Task *task in objectsToIncreaseIndex) {
-            task.index = [NSNumber numberWithInt:([task.index integerValue] + 1)];
-        }
-        for (Task *task in objectsToDecreaseIndex) {
-            task.index = [NSNumber numberWithInt:([task.index integerValue] - 1)];
-        }
-    
 }
 
 -(void)setTaskIndex:(NSIndexPath *)indexPath {

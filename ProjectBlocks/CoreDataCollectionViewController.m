@@ -123,15 +123,15 @@ static NSString *CellIdentifier = @"CollectionViewCell";
                 [self.collectionView reloadData];
             }
         } completion:nil];
-         */
-       
+         
+       */
         [self.collectionView reloadData];
         
     }
     
     if ([_objectChanges count] > 0 && [_sectionChanges count] == 0)
     {
-        /*if (!self.disableCollectionViewAnimations) {
+        if (!self.disableCollectionViewAnimations) {
             
         
             [self.collectionView performBatchUpdates:^{
@@ -158,12 +158,12 @@ static NSString *CellIdentifier = @"CollectionViewCell";
                         }
                     }];
                 }
-            } completion:nil];
-
-
+            } completion:^(BOOL finished){
+                [self.collectionView reloadData];
+            }];
             }
-         */
-         [self.collectionView reloadData];
+         
+//         [self.collectionView reloadData];
 
     }
     [_sectionChanges removeAllObjects];

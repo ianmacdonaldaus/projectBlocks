@@ -66,6 +66,7 @@ static NSString * const kLXReorderableCollectionViewFlowLayoutScrollingDirection
 //      store the rect size and max duration for each section
 
 -(void)prepareLayout {
+
     durationScale = 1;
     sectionDurations = [NSMutableArray array];
     cellRects = [NSMutableArray array];
@@ -93,8 +94,8 @@ static NSString * const kLXReorderableCollectionViewFlowLayoutScrollingDirection
             
 
             // Get current cell width
-             currentCellWidth = [delegate widthForItemAtIndexPath:[NSIndexPath indexPathForItem:item inSection:section]];
-            
+             //currentCellWidth = [delegate widthForItemAtIndexPath:[NSIndexPath indexPathForItem:item inSection:section]];
+            currentCellWidth = 100;
             // Set start position of current cell
             if (!sequential) {
                 if (currentCellWidth > lastCellWidth) {
@@ -179,7 +180,6 @@ static NSString * const kLXReorderableCollectionViewFlowLayoutScrollingDirection
  */
 
 -(UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     UICollectionViewLayoutAttributes* attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
     CGRect sectionRect = [sectionRects[indexPath.section] CGRectValue];
     CGRect cellRect = [[[cellRects objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] CGRectValue];
@@ -194,7 +194,7 @@ static NSString * const kLXReorderableCollectionViewFlowLayoutScrollingDirection
 }
 
 -(UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    
+
     UICollectionViewLayoutAttributes* attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:kind withIndexPath:indexPath];
     CGRect sectionRect = [sectionRects[indexPath.section] CGRectValue];
     float sectionWidth = MAX(durationScale * maximumDuration , self.collectionView.frame.size.width);
@@ -234,7 +234,7 @@ static NSString * const kLXReorderableCollectionViewFlowLayoutScrollingDirection
 -(NSArray*)layoutAttributesForElementsInRect:(CGRect)rect {
     
     // add a filter fopr elements - first if the section rect is in view - then the specific tasks
-    
+   
     NSMutableArray* attributes = [NSMutableArray array];
     for (NSInteger section = 0; section < [self.collectionView numberOfSections]; section++) {
         for (NSInteger row=0 ; row < [self.collectionView numberOfItemsInSection:section] ; row++)
@@ -309,10 +309,13 @@ static NSString * const kLXReorderableCollectionViewFlowLayoutScrollingDirection
 - (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)theLayoutAttributes {
     if ([theLayoutAttributes.indexPath isEqual:self.selectedItemIndexPath]) {
         theLayoutAttributes.hidden = YES;
+        NSLog(@"applyLayoutAttributes");
+        //theLayoutAttributes.alpha = 0.3;
     }
 }
 
 - (void)invalidateLayoutIfNecessary {
+  
     NSIndexPath *theIndexPathOfSelectedItem = [self.collectionView indexPathForItemAtPoint:self.currentView.center];
     if ((![theIndexPathOfSelectedItem isEqual:self.selectedItemIndexPath]) &&(theIndexPathOfSelectedItem)) {
 
@@ -543,7 +546,7 @@ static NSString * const kLXReorderableCollectionViewFlowLayoutScrollingDirection
 - (void)handlePanGesture:(UIPanGestureRecognizer *)thePanGestureRecognizer {
     switch (thePanGestureRecognizer.state) {
         case UIGestureRecognizerStateBegan:
-            
+            NSLog(@"Bleep");
         case UIGestureRecognizerStateChanged: {
             CGPoint theTranslationInCollectionView = [thePanGestureRecognizer translationInView:self.collectionView];
             self.panTranslationInCollectionView = theTranslationInCollectionView;
