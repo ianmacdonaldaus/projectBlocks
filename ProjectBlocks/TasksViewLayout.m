@@ -65,8 +65,8 @@ static NSString * const kLXReorderableCollectionViewFlowLayoutScrollingDirection
 //      create an array of centerpoints for each cell within each section frame
 //      store the rect size and max duration for each section
 
--(void)prepareLayout {
 
+-(void)prepareLayout {
     durationScale = 1;
     sectionDurations = [NSMutableArray array];
     cellRects = [NSMutableArray array];
@@ -94,8 +94,8 @@ static NSString * const kLXReorderableCollectionViewFlowLayoutScrollingDirection
             
 
             // Get current cell width
-             //currentCellWidth = [delegate widthForItemAtIndexPath:[NSIndexPath indexPathForItem:item inSection:section]];
-            currentCellWidth = 100;
+            currentCellWidth = [delegate widthForItemAtIndexPath:[NSIndexPath indexPathForItem:item inSection:section]];
+            
             // Set start position of current cell
             if (!sequential) {
                 if (currentCellWidth > lastCellWidth) {
@@ -180,23 +180,33 @@ static NSString * const kLXReorderableCollectionViewFlowLayoutScrollingDirection
  */
 
 -(UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
     UICollectionViewLayoutAttributes* attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-    CGRect sectionRect = [sectionRects[indexPath.section] CGRectValue];
-    CGRect cellRect = [[[cellRects objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] CGRectValue];
     
-    attributes.size = CGSizeMake(cellRect.size.width, ITEM_SIZE);
-    attributes.center = CGPointMake(CGRectGetMinX(sectionRect) + cellRect.origin.x + cellRect.size.width / 2, CGRectGetMinY(sectionRect) + cellRect.origin.y + cellRect.size.height/2);
-    
-    [self applyLayoutAttributes:attributes];
-    
+    switch (attributes.representedElementCategory) {
+        case UICollectionElementCategoryCell: {
+            CGRect sectionRect = [sectionRects[indexPath.section] CGRectValue];
+            CGRect cellRect = [[[cellRects objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] CGRectValue];
+            
+            attributes.size = CGSizeMake(cellRect.size.width, ITEM_SIZE);
+            attributes.center = CGPointMake(CGRectGetMinX(sectionRect) + cellRect.origin.x + cellRect.size.width / 2, CGRectGetMinY(sectionRect) + cellRect.origin.y + cellRect.size.height/2);
+            
+            [self applyLayoutAttributes:attributes];
+
+        } break;
+        default: {
+        } break;
+    }
     return attributes;
-    
 }
 
 -(UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
 
     UICollectionViewLayoutAttributes* attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:kind withIndexPath:indexPath];
+    
     CGRect sectionRect = [sectionRects[indexPath.section] CGRectValue];
+    NSLog(@"%@ %@", indexPath, NSStringFromCGRect(sectionRect));
+    
     float sectionWidth = MAX(durationScale * maximumDuration , self.collectionView.frame.size.width);
     
     attributes.size = CGSizeMake(sectionWidth * 2, sectionRect.size.height + (ITEM_SIZE * 0.75));
@@ -233,8 +243,8 @@ static NSString * const kLXReorderableCollectionViewFlowLayoutScrollingDirection
 
 -(NSArray*)layoutAttributesForElementsInRect:(CGRect)rect {
     
-    // add a filter fopr elements - first if the section rect is in view - then the specific tasks
-   
+    // add a filter for elements - first if the section rect is in view - then the specific tasks
+    NSLog(@"LAFER");
     NSMutableArray* attributes = [NSMutableArray array];
     for (NSInteger section = 0; section < [self.collectionView numberOfSections]; section++) {
         for (NSInteger row=0 ; row < [self.collectionView numberOfItemsInSection:section] ; row++)
@@ -242,6 +252,7 @@ static NSString * const kLXReorderableCollectionViewFlowLayoutScrollingDirection
             NSIndexPath* indexPath = [NSIndexPath indexPathForItem:row inSection:section];
             [attributes addObject:[self layoutAttributesForItemAtIndexPath:indexPath]];
         }
+        NSLog(@"Section %i",section);
         [attributes addObject:[self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]]];
     }
     return attributes;
@@ -308,15 +319,15 @@ static NSString * const kLXReorderableCollectionViewFlowLayoutScrollingDirection
 
 - (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)theLayoutAttributes {
     if ([theLayoutAttributes.indexPath isEqual:self.selectedItemIndexPath]) {
-        theLayoutAttributes.hidden = YES;
-        NSLog(@"applyLayoutAttributes");
-        //theLayoutAttributes.alpha = 0.3;
+        theLayoutAttributes.hidden = NO;
+        theLayoutAttributes.alpha = 0.3;
     }
 }
 
 - (void)invalidateLayoutIfNecessary {
   
     NSIndexPath *theIndexPathOfSelectedItem = [self.collectionView indexPathForItemAtPoint:self.currentView.center];
+    
     if ((![theIndexPathOfSelectedItem isEqual:self.selectedItemIndexPath]) &&(theIndexPathOfSelectedItem)) {
 
         //this is where we will do a test for whether it is sequential or not
@@ -325,18 +336,11 @@ static NSString * const kLXReorderableCollectionViewFlowLayoutScrollingDirection
         NSIndexPath *thePreviousSelectedIndexPath = self.selectedItemIndexPath;
         self.selectedItemIndexPath = theIndexPathOfSelectedItem;
         
-        
-        if ([self.collectionView.delegate conformsToProtocol:@protocol(TasksViewDelegateLayout)]) {
-            id<TasksViewDelegateLayout> theDelegate = (id<TasksViewDelegateLayout>)self.collectionView.delegate;
-            [theDelegate collectionView:self.collectionView layout:self item:self.selectedTask  willMoveToIndexPath:theIndexPathOfSelectedItem];
-        }
-        
-        /*
+    
         if ([self.collectionView.delegate conformsToProtocol:@protocol(TasksViewDelegateLayout)]) {
             id<TasksViewDelegateLayout> theDelegate = (id<TasksViewDelegateLayout>)self.collectionView.delegate;
             [theDelegate collectionView:self.collectionView layout:self itemAtIndexPath:thePreviousSelectedIndexPath willMoveToIndexPath:theIndexPathOfSelectedItem];
-        }*/
-        
+        }
   
         // testing of why the task jumps around -
         //self.selectedTask.index = [NSNumber numberWithInteger:theIndexPathOfSelectedItem.row];
@@ -358,12 +362,12 @@ static NSString * const kLXReorderableCollectionViewFlowLayoutScrollingDirection
         // END OF DEBUG CODE
         
         [self invalidateLayout];
-/*        [self.collectionView performBatchUpdates:^{
-            [self.collectionView moveItemAtIndexPath:thePreviousSelectedIndexPath toIndexPath:theIndexPathOfSelectedItem];
-            [self.collectionView deleteItemsAtIndexPaths:@[ thePreviousSelectedIndexPath ]];
-            [self.collectionView insertItemsAtIndexPaths:@[ theIndexPathOfSelectedItem ]];
+        [self.collectionView performBatchUpdates:^{
+            //[self.collectionView moveItemAtIndexPath:thePreviousSelectedIndexPath toIndexPath:theIndexPathOfSelectedItem];
+//            [self.collectionView deleteItemsAtIndexPaths:@[ thePreviousSelectedIndexPath ]];
+//            [self.collectionView insertItemsAtIndexPaths:@[ theIndexPathOfSelectedItem ]];
         } completion:^(BOOL finished) {
-        }];*/
+        }];
     } 
 }
 
@@ -476,7 +480,7 @@ static NSString * const kLXReorderableCollectionViewFlowLayoutScrollingDirection
             self.currentView = theView;
             self.currentViewCenter = theView.center;
             
-            theImageView.alpha = 0.0f;
+            theImageView.alpha = 1.0f;
             theHighlightedImageView.alpha = 1.0f;
             
             [UIView
@@ -546,7 +550,7 @@ static NSString * const kLXReorderableCollectionViewFlowLayoutScrollingDirection
 - (void)handlePanGesture:(UIPanGestureRecognizer *)thePanGestureRecognizer {
     switch (thePanGestureRecognizer.state) {
         case UIGestureRecognizerStateBegan:
-            NSLog(@"Bleep");
+            //NSLog(@"Bleep");
         case UIGestureRecognizerStateChanged: {
             CGPoint theTranslationInCollectionView = [thePanGestureRecognizer translationInView:self.collectionView];
             self.panTranslationInCollectionView = theTranslationInCollectionView;

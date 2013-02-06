@@ -15,7 +15,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.contentView.layer.opacity = 0.25;
+        //self.contentView.layer.opacity = 0.25;
         //self.layer.shouldRasterize = NO;
         //self.opaque = NO;
         self.contentView.backgroundColor = [UIColor clearColor];

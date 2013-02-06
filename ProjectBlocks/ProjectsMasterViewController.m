@@ -11,7 +11,7 @@
 #import "Project.h"
 #import "ProjectViewCell.h"
 #import "ProjectsViewLayout.h"
-#import "TasksViewController.h"
+#import "TasksViewControllerNew.h"
 #import "BackgroundView.h"
 #import "CoreDataHelper.h"
 #import <QuartzCore/QuartzCore.h>
@@ -214,15 +214,15 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"taskViewSegue"] ) {
-        TasksViewController *tasksViewController = (TasksViewController *)[segue destinationViewController];
-        tasksViewController.managedObjectContext = self.managedObjectContext;
+        TasksViewControllerNew *tasksViewControllerNew = (TasksViewControllerNew *)[segue destinationViewController];
+        tasksViewControllerNew.managedObjectContext = self.managedObjectContext;
         
         NSIndexPath *index = [self.collectionView indexPathForCell:sender];
         
         Project *project = (Project *)[_fetchedResultsController objectAtIndexPath:index];
 
-        tasksViewController.project = project;
-        tasksViewController.colorPalette = project.colorPalette;
+        tasksViewControllerNew.project = project;
+        tasksViewControllerNew.colorPalette = project.colorPalette;
         
     }
 }

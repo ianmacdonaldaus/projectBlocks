@@ -15,19 +15,24 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnail" optional="YES" attributeType="Binary" syncable="YES"/>
         <relationship name="colorPalette" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ColorPalette" inverseName="project" inverseEntity="ColorPalette" syncable="YES"/>
-        <relationship name="task" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Task" inverseName="project" inverseEntity="Task" syncable="YES"/>
+        <relationship name="section" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Section" inverseName="project" inverseEntity="Section" syncable="YES"/>
+    </entity>
+    <entity name="Section" representedClassName="Section" syncable="YES">
+        <attribute name="index" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="project" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="Project" inverseName="section" inverseEntity="Project" syncable="YES"/>
+        <relationship name="task" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="section" inverseEntity="Task" syncable="YES"/>
     </entity>
     <entity name="Task" representedClassName="Task" syncable="YES">
         <attribute name="completed" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="durationMinutes" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="index" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="section" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="sequential" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="timeToFinish" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="titleDetail" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="project" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="task" inverseEntity="Project" syncable="YES"/>
+        <relationship name="section" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Section" inverseName="task" inverseEntity="Section" syncable="YES"/>
         <relationship name="taskImage" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="TaskImage" inverseName="task" inverseEntity="TaskImage" syncable="YES"/>
     </entity>
     <entity name="TaskImage" representedClassName="TaskImage" syncable="YES">
@@ -39,7 +44,8 @@
         <element name="ColorPalette" positionX="-3699" positionY="-1584" width="128" height="88"/>
         <element name="Colors" positionX="-3872" positionY="-1584" width="128" height="88"/>
         <element name="Project" positionX="-3530" positionY="-1584" width="128" height="118"/>
-        <element name="Task" positionX="-3357" positionY="-1584" width="128" height="208"/>
-        <element name="TaskImage" positionX="-3177" positionY="-1434" width="128" height="75"/>
+        <element name="Task" positionX="-3375" positionY="-1422" width="128" height="193"/>
+        <element name="TaskImage" positionX="-3224" positionY="-1305" width="128" height="75"/>
+        <element name="Section" positionX="-3528" positionY="-1426" width="128" height="103"/>
     </elements>
 </model>

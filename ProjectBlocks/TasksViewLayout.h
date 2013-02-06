@@ -39,7 +39,7 @@
 
 @protocol TasksViewDelegateLayout <UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
-- (void)collectionView:(UICollectionView *)theCollectionView layout:(UICollectionViewLayout *)theLayout item:(Task *)taskToBeMoved willMoveToIndexPath:(NSIndexPath *)theToIndexPath;
+- (void)collectionView:(UICollectionView *)theCollectionView layout:(UICollectionViewLayout *)theLayout itemAtIndexPath:(NSIndexPath *)theFromIndexPath willMoveToIndexPath:(NSIndexPath *)theToIndexPath;
 
 @optional
 

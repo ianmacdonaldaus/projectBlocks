@@ -2,13 +2,13 @@
 //  Project.m
 //  ProjectBlocks
 //
-//  Created by Ian MacDonald on 18/12/2012.
-//  Copyright (c) 2012 Ian MacDonald. All rights reserved.
+//  Created by Ian MacDonald on 20/01/2013.
+//  Copyright (c) 2013 Ian MacDonald. All rights reserved.
 //
 
 #import "Project.h"
 #import "ColorPalette.h"
-#import "Task.h"
+#import "Section.h"
 
 
 @implementation Project
@@ -17,6 +17,6 @@
 @dynamic name;
 @dynamic thumbnail;
 @dynamic colorPalette;
-@dynamic task;
+@dynamic section;
 
 @end
